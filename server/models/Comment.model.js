@@ -22,11 +22,11 @@ const commentSchema = new Schema(
       ref: "User",
     },
 
-    isValidated: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
+    // isValidated: {
+    //   type: Boolean,
+    //   required: true,
+    //   default: false,
+    // },
   },
   {
     timestamps: true,

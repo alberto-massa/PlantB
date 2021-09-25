@@ -16,7 +16,6 @@ const userSchema = new Schema({
   password: {
     type: String,
     minlength: 4,
-    maxlength: 20,
     required: true,
   },
 
@@ -25,7 +24,7 @@ const userSchema = new Schema({
     unique: true,
     match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "is invalid"],
     lowercase: true,
-    required: true,
+    // required: true,
     trim: true
   },
 
@@ -60,6 +59,6 @@ const userSchema = new Schema({
 
 },{timestamps: true});
 
-const User = mongoose.model('User', userSchema)
+const User = model('User', userSchema)
 
 module.exports = User;

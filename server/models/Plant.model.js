@@ -16,6 +16,10 @@ const plantSchema = new Schema({
       default: "to-do.png",
       type: String
   },
+  comment: {
+    type: Schema.Types.ObjectId,
+    ref: "Comment",
+  },
 
   description: {
       type: String
@@ -59,6 +63,6 @@ const plantSchema = new Schema({
   },
 });
 
-const Plant = mongoose.model("Plant", plantSchema);
+const Plant = model("Plant", plantSchema);
 
 module.exports = Plant;
