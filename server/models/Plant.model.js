@@ -29,7 +29,7 @@ const plantSchema = new Schema({
 
   sellerId: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "User", //add shop
     required: true,
   },
 
