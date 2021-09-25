@@ -47,6 +47,12 @@ const shopSchema = new Schema(
       type: String,
       required: true
     },
+
+    validated: {
+      type: Boolean,
+      default: false,
+      required: true
+    }
   },
   { timestamps: true }
 );
