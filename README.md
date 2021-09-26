@@ -3,7 +3,7 @@
 FRONT PATHS:
 
 | Path                  | Description                           |
-| --------------------- | ------------------------------------- |
+| :-------------------: | :-----------------------------------: |
 | /register             | Form to register                      |
 | /login                | Form to sing in                       |
 | /                     | View that shows homepage              |
