@@ -2,7 +2,7 @@
 
 FRONT PATHS:
 
-| Path                  | Description                           |
+| PATH                  | DESCRIPTION                          |
 | :-------------------: | :-----------------------------------: |
 | /register             | Form to register                      |
 | /login                | Form to sing in                       |
