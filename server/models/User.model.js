@@ -36,10 +36,9 @@ const userSchema = new Schema(
     },
 
     age: {
-      type: Number,
-      min: 1,
-      max: 99,
-      match: /[0-6]{3}[A-C]/,
+      type: Date,
+      required: true,
+      trim: true,
     },
 
     role: {
