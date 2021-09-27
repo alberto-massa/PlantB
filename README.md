@@ -12,11 +12,15 @@
   <a href="https://getbootstrap.com/">
     <img src="https://img.shields.io/badge/Bootstrap-v5.1.1-brightgreen" />
   </a>
-  <a href="https://github.com/frinyvonnick/gitmoji-changelog">
-    <img src="https://img.shields.io/badge/changelog-gitmoji-brightgreen.svg" alt="gitmoji-changelog">
+  <a href="https://react-bootstrap.github.io/">
+    <img src="https://img.shields.io/badge/React%20Bootstrap-v2.0.0-brightgreen">
   </a>
-  <a href="https://twitter.com/FranckAbgrall">
-    <img alt="Twitter: FranckAbgrall" src="https://img.shields.io/twitter/follow/FranckAbgrall.svg?style=social" target="_blank" />
+  <a href="https://www.linkedin.com/in/massa-alberto/">
+    <img alt="Linkedin: Alberto Massa" src="https://img.shields.io/badge/Linkedin-Alberto%20Massa-lightgrey?style=flat&logo=linkedin&labelColor=blue" target="_blank" />
+  </a>
+  
+   <a href="www.linkedin.com/in/jose-bohopo">
+    <img alt="Linkedin: Jose Bohopo" src="https://img.shields.io/badge/Linkedin-Jose%20Bohopo-lightgrey?style=flat&logo=linkedin&labelColor=blue" target="_blank" />
   </a>
 </p>
 
