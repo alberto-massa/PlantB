@@ -1,4 +1,4 @@
-# PlantB
+  <h1 align="center">Welcome to  <strong>PlantB</strong> 👋</h1>
 
 FRONT PATHS:
 
