@@ -5,15 +5,15 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   Comment.find()
-    .then(Comment => res.status(200).json(Comment))
-    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Shops", err }))
+    .then(comment => res.status(200).json(comment))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Comment", err }))
 })
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   Plant.findById(id)
     .populate('comment')
-    .then(Comment => res.status(200).json({ Comment, message: "Comment getted" }))
+    .then(comment => res.status(200).json({ comment, message: "Comment getted" }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving a single Comment", err }))
 })
 

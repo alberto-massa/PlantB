@@ -2,8 +2,8 @@
 
 FRONT PATHS:
 
-| Path                  | Description                           |     |     |
-| --------------------- | ------------------------------------- | --- | --- |
+| Path                  | Description                           | 
+| --------------------- | ------------------------------------- |
 | /register             | Form to register                      |
 | /login                | Form to sing in                       |
 | /                     | View that shows homepage              |
@@ -23,11 +23,13 @@ FRONT PATHS:
 | /new-comment          | Creates a comment                     |
 | /sendmsg/:targetname  | Sends message to a shop or user       |
 | /messages             | Shows a message list                  |
+| /cart                 | Shows the cart                        |
+
 
 BACK PATHS:
 
 | METHOD |         PATH          |              DESCRIPTION               |
-| :----: | :-------------------: | :------------------------------------: |
+| ------ | --------------------- | -------------------------------------- |
 |  POST  |        /signup        |     Saves the user in the Database     |
 |  POST  |     /signup-shop      |     Saves the shop in the Database     |
 |  POST  |        /login         |     Logs the user in the Database      |
@@ -60,3 +62,5 @@ BACK PATHS:
 |  POST  |     /comment/:id      |           Create new comment           |
 |  GET   |     /comment/:id      |            Gets one comment            |
 |  GET   |     /:id/comments     |      View one item's all comments      |
+|  GET   |     /cart/:id         |      cart of the selected product      |
+|  POST  |     /cart             |      gets plant details                |
