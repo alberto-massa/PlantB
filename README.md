@@ -1,4 +1,4 @@
-  <h1 align="center">Welcome to  <strong>PlantB</strong><img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F001%2F209%2F514%2Fnon_2x%2Ftropical-plant-png.png&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2Fpng%2F1209514-tropical-plant&tbnid=VrCGtXcjChCsNM&vet=12ahUKEwiw5_qgoZ_zAhVH-YUKHbfRCtQQMyhiegUIARCbAQ..i&docid=yi7T24jQWd7J-M&w=889&h=980&q=plant%20png&ved=2ahUKEwiw5_qgoZ_zAhVH-YUKHbfRCtQQMyhiegUIARCbAQ" alt="plant gif"/></h1>
+  <h1 align="center">Welcome to  <strong>PlantB</strong> :seeding:</h1>
 
 FRONT PATHS:
 
