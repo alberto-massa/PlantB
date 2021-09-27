@@ -2,10 +2,11 @@
 
 <p align="center">
   
-   <a href="https://es.reactjs.org/">
+  
+   <a href="https://www.npmjs.com/">
      <img src="https://img.shields.io/badge/npm-v7.22.0-blue" />
   </a>
-  <a href="https://www.npmjs.com/">
+  <a href="https://es.reactjs.org/">
     <img alt="React" src="https://img.shields.io/badge/React-v1.6.4-brightgreen" target="_blank" />
   </a>
   <a href="https://getbootstrap.com/">
