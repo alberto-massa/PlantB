@@ -1,4 +1,4 @@
-  <h1 align="center">Welcome to  <strong>PlantB</strong> 👋</h1>
+  <h1 align="center">Welcome to  <strong>PlantB</strong><img src="https://loading.io/icon/bn52dg" alt="plant gif"/></h1>
 
 FRONT PATHS:
 
