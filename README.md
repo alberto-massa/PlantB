@@ -1,4 +1,4 @@
-  <h1 align="center">Welcome to  <strong>PlantB</strong> :seeding:</h1>
+  <h1 align="center">Welcome to  <strong>PlantB</strong> :seedling:</h1>
 
 FRONT PATHS:
 
