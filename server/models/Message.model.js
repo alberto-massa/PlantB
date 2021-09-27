@@ -2,29 +2,21 @@ const { Schema, model } = require("mongoose");
 
 const messageSchema = new Schema(
 
-  // Preguntar como referenciar 2 type object
   {
-    authorId: {
-      type: [{user:{ type: Schema.ObjectId, ref: 'User' },
-      shop:{ type: Schema.ObjectId, ref: 'Shop' }}]
-      
-    },
+    authorId: { type: Schema.Types.ObjectId, ref: 'User' },
 
-
-    receiverId: {
-      type: [{user:{ type: Schema.ObjectId, ref: 'User' },
-      shop:{ type: Schema.ObjectId, ref: 'Shop' }}]
-      
-    },
+    receiverId: { type: Schema.Types.ObjectId, ref: 'User' },
 
     subject: {
       type: String,
       required: true,
+
     },
 
     content: {
       type: String,
       required: true,
+
     },
   },
   {

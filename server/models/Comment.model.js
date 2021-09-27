@@ -8,7 +8,8 @@ const commentSchema = new Schema(
     },
 
     plantRef: {
-      type: Number,
+      type: Schema.Types.ObjectId,
+      ref: "Plant",
     },
 
     rating: {
