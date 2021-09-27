@@ -19,7 +19,7 @@
     <img alt="Linkedin: Alberto Massa" src="https://img.shields.io/badge/Linkedin-Alberto%20Massa-lightgrey?style=flat&logo=linkedin&labelColor=blue" target="_blank" />
   </a>
   
-   <a href="www.linkedin.com/in/jose-bohopo">
+   <a href="https://www.linkedin.com/in/jose-bohopo">
     <img alt="Linkedin: Jose Bohopo" src="https://img.shields.io/badge/Linkedin-Jose%20Bohopo-lightgrey?style=flat&logo=linkedin&labelColor=blue" target="_blank" />
   </a>
 </p>
