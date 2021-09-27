@@ -1,9 +1,12 @@
   <h1 align="center">Welcome to  <strong>PlantB</strong> :seedling: </h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/npm-v7.22.0-blue" />
+  
+   <a href="https://es.reactjs.org/">
+     <img src="https://img.shields.io/badge/npm-v7.22.0-blue" />
+  </a>
   <a href="https://www.npmjs.com/">
-    <img alt="downloads" src="https://img.shields.io/npm/dm/readme-md-generator.svg?color=blue" target="_blank" />
+    <img alt="React" src="https://img.shields.io/badge/React-v1.6.4-brightgreen" target="_blank" />
   </a>
   <a href="https://getbootstrap.com/">
     <img src="https://img.shields.io/badge/Bootstrap-v5.1.1-brightgreen" />
