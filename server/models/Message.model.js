@@ -1,8 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 const messageSchema = new Schema(
-
-  // Preguntar como referenciar 2 type object
   {
     authorId: {
       type: [{user:{ type: Schema.ObjectId, ref: 'User' },
