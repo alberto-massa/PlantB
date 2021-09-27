@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const plantSchema = new Schema({
+
   name: {
     unique: true,
     type: String,
@@ -13,53 +14,59 @@ const plantSchema = new Schema({
   },
 
   image: {
-      default: "to-do.png",
-      type: String
-  },
-  comment: {
-    type: Schema.Types.ObjectId,
-    ref: "Comment",
+    default: "to-do.png",
+    type: String,
   },
 
+  comment: [
+    {
+      type: Schema.ObjectId,
+      ref: "Comment",
+    },
+  ],
+
   description: {
-      type: String
+      size: {
+      type: String,
+    },
+
+    type: {
+      type: String,
+    },
+
+    toxic: {
+      type: Boolean,
+    },
+
+    location: {
+      type: String,
+      enum: ["Indoors", "Outdoors"],
+    },
+
+    temperature: {
+      type: Number,
+    },
+
+    watering: {
+      type: String,
+    },
   },
 
   buyerId: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
   },
 
   sellerId: {
     type: Schema.Types.ObjectId,
-    ref: "User", //add shop
+    ref: "User", //add shop -> to joint with user (maybe role)
     required: true,
   },
 
-  size: {
-    type: String,
-  },
-
-  type: {
-    type: String
-  },
-
-  toxic: {
-    type: Boolean,
-  },
-
-  location: {
-    type: String,
-    enum: ["Indoors", "Outdoors"],
-  },
-
-  temperature: {
+  price: {
     type: Number,
-  },
-
-  watering: {
-    type: String,
+    required: true,
+    default: 0,
   },
 });
 
