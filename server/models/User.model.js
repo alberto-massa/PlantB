@@ -1,10 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
-
   {
     username: {
-      unique: true,
+      // unique: true,
       type: String,
       required: true,
       minlength: 4,
@@ -23,16 +22,16 @@ const userSchema = new Schema(
 
     email: {
       type: String,
-      unique: true,
+      // unique: true,
       match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "is invalid"],
       lowercase: true,
       // required: true,
       trim: true,
     },
- 
+
     address: {
       type: String,
-      minlength: 1,   
+      minlength: 1,
     },
 
     age: {
@@ -51,7 +50,7 @@ const userSchema = new Schema(
     validated: {
       type: Boolean,
       default: false,
-      required: true
+      required: true,
     },
 
     avatar: {
@@ -59,20 +58,23 @@ const userSchema = new Schema(
       default: "to-do.png",
     },
 
-    //if already exists in form -> don't create
-    favouritePlants: {
-        type: Schema.Types.ObjectId,
-        ref: "Plant"},
-    
-    // si ya tenemos el seller dentro del usuario como lo referenciamos??
-    // ref  object id
-    favouriteSeller: {
-      type: [String],  
-    },
+    // favouritePlants: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Plant",
+    //   },
+    // ],
+
+    // favouriteSeller: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "User",
+    //   },
+    // ],
   },
   { timestamps: true }
 );
 
-const User = model('User', userSchema)
+const User = model("User", userSchema);
 
 module.exports = User;

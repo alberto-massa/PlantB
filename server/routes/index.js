@@ -8,6 +8,7 @@ const messageRouter = require("./message.routes.js");
 const cartRouter = require("./cart.routes.js");
 const checkoutRouter = require("./checkout.routes.js");
 const invoiceRouter = require("./invoice.routes.js");
+const uploadsRouter = require("./uploads.routes.js");
 
 router.use("/auth", authRouter);
 router.use("/plant", plantRouter);
@@ -17,5 +18,6 @@ router.use("/message", messageRouter);
 router.use("/cart", cartRouter);
 router.use("/checkout", checkoutRouter);
 router.use("/invoice", invoiceRouter);
+router.use("/uploads", uploadsRouter)
 
 module.exports = router;

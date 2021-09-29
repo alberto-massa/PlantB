@@ -1,21 +1,20 @@
-import './App.css';
+import "./App.css";
 import { Component } from "react";
 import Navigation from "./components/layout/Navigation/Navigation";
-import Routes from "./components/routes"
+import Routes from "./components/routes";
 
 class App extends Component {
   
-  render  = () => {
+  storeUser = (user) => this.setState({ loggedUser: user });
+
+  render = () => {
     return (
       <>
-        <Navigation
-          // loggedUser={this.state.loggedUser}
-          // storeUser={this.storeUser}
-        />
-        <Routes/>
+        <Navigation storeUser={this.storeUser}/>
+        <Routes storeUser={this.storeUser} />
       </>
     );
-  }
-};
+  };
+}
 
 export default App;

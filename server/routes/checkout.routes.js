@@ -2,8 +2,9 @@ const express = require("express");
 const Checkout = require("../models/Checkout.model");
 const Cart = require("../models/Cart.model");
 const router = express.Router();
+const { isLoggedIn } = require("./../middleware/index.js")
 
-router.get("/:id", (req, res) => {
+router.get("/:id", isLoggedIn, (req, res) => {
   const { id } = req.params;
 
   Cart
@@ -12,7 +13,7 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.status(500).json({ code: 500, message: "Error retrieving Cart", err }))
 });
 
-router.post("/", (req, res) => {
+router.post("/", isLoggedIn, (req, res) => {
   Checkout
     .create(checkout)
     .then(((checkout) => res.status(200).json({ checkout, message: "Check-out created" })))
