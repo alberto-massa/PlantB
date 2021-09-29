@@ -1,9 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const plantSchema = new Schema({
-
   name: {
-    unique: true,
     type: String,
     required: true,
     minlength: 4,
@@ -26,7 +24,7 @@ const plantSchema = new Schema({
   ],
 
   description: {
-      size: {
+    size: {
       type: String,
     },
 

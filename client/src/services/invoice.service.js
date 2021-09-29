@@ -9,7 +9,7 @@ class InvoiceService {
 
   getInvoice = (id) => this.instance.get(`/${id}`);
   createInvoice = (invoice) => this.instance.post("/", invoice);
-  editInvoice = (id) => this.instance.put(`/${id}`);
+  // editInvoice = (id) => this.instance.put(`/${id}`);
 }
 
 export default InvoiceService;
