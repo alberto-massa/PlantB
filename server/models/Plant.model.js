@@ -37,7 +37,7 @@ const plantSchema = new Schema({
     },
 
     location: {
-      type: String,
+      type: [String],
       enum: ["Indoors", "Outdoors"],
     },
 

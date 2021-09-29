@@ -15,7 +15,7 @@ class AuthService {
     address,
     age,
     role,
-    avatar= "",
+    avatar = "",
   ) =>
     this.instance.post("/signup", {
       username,
