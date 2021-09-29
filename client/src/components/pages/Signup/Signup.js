@@ -1,79 +1,123 @@
 import AuthService from "./../../../services/auth.service";
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Spinner } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
+const { formatSignDate } = require("../../../utils/index")
 
-class Signup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-      email: "",
-      address: "",
-      age: 0,
-      role: false,
-      avatar: "",
-    };
-    this.authService = new AuthService();
-    this.uploadService = new UploadService();
-  }
+const authService = new AuthService();
+const uploadService = new UploadService();
 
-  handleInput = (e) => {
-    let { name, value, type } = e.target;
 
-    type === "radio" && (value === "true" ? (value = true) : (value = false));
+const Signup = (props) => {
 
-    this.setState({
-      [name]: value,
-    });
-  };
+   const [ username, setUsername ] = useState("")
+   const [password, setPassword] = useState("")
+   const [email, setEmail] = useState("")
+   const [address, setAddress] = useState("")
+   const [age, setAge] = useState(0)
+   const [role, setRole] = useState("")
+   const [avatar, setAvatar] = useState("")
+   const [isLoading, setIsLoading] = useState(false)
 
-  handleFormSubmit = (e) => {
+   const clearState = () => {
+
+      setUsername("")
+      setPassword("")
+      setEmail("")
+      setAddress("")
+      setAge(0)
+      setRole("")
+      setAvatar("")
+
+   }
+
+
+   const handleChange = (e) => {
+
+     let { value, name, type } = e.target
+     type === "radio" && (value === "true" ? (value = true) : (value = false));
+
+      switch (name) {
+
+        case "username":
+          setUsername(value)
+          break;
+        
+        case "password":
+          setPassword(value)
+          break;
+        
+        case "email":
+          setEmail(value)
+          break;
+
+        case "address":
+          setAddress(value)
+          break;
+
+        case "age":
+          setAge(value)
+          break;
+
+        case "role":
+          setRole(value)
+          break;
+        
+        case "avatar":
+          setAvatar(value)
+          break;
+              
+        default: 
+          break  
+
+      }
+   }
+   
+
+ const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    let { username, password, email, address, age, role, avatar } = this.state;
-    role ? (role = "Shop") : (role = "User");
-
-    this.authService
-      .signup(username, password, email, address, age, role, avatar)
-      .then(() => this.props.history.push("/"))
+    
+    let tmp = ''
+    role ? (tmp = "Shop")  : (tmp = "User");
+ 
+    authService
+      .signup(username, password, email, address, age, tmp, avatar)
+      .then(() => props.history.push("/"))
       .catch((err) => console.log(err));
+
+      clearState()
   };
 
-  handleFile = (e) => {
-    this.setState({
-      ...this.state,
-      isLoading: true,
-    });
+  const handleFile = (e) => {
+
+    setIsLoading(true)
 
     const uploadData = new FormData();
+    console.log(uploadData)
     uploadData.append("imageData", e.target.files[0]);
 
 
-    this.uploadService
+    uploadService
       .uploadImg(uploadData)
       .then((res) => {
-        this.setState({
-          ...this.state,
-          isLoading: false,
-          avatar: res.data.cloudinary_url,
-        });
-        console.log(res.data.cloudinary_url);
+        
+          setIsLoading(false)
+          setAvatar(res.data.cloudinary_url)
+        console.log(setAvatar);
       })
       .catch((err) => alert("Error, image not uploaded "));
-  };
+  };  
 
-  render() {
+  
     return (
       <Container>
-        <Form onSubmit={this.handleFormSubmit}>
+        <Form onSubmit={handleFormSubmit}>
           <Form.Group className="mb-3" controlId="username">
             <Form.Label>Username*</Form.Label>
             <Form.Control
               name="username"
-              value={this.state.username}
-              onChange={(e) => this.handleInput(e)}
+              value={username}
+              onChange={(e) => handleChange(e)}
               type="text"
               placeholder="Enter username"
             />
@@ -83,8 +127,8 @@ class Signup extends Component {
             <Form.Label>Password*</Form.Label>
             <Form.Control
               name="password"
-              value={this.state.password}
-              onChange={(e) => this.handleInput(e)}
+              value={password}
+              onChange={(e) => handleChange(e)}
               type="password"
               placeholder="Password"
             />
@@ -94,8 +138,8 @@ class Signup extends Component {
             <Form.Label>Email*</Form.Label>
             <Form.Control
               name="email"
-              value={this.state.email}
-              onChange={(e) => this.handleInput(e)}
+              value={email}
+              onChange={(e) => handleChange(e)}
               type="email"
               placeholder="Email"
             />
@@ -105,8 +149,8 @@ class Signup extends Component {
             <Form.Label>Address*</Form.Label>
             <Form.Control
               name="address"
-              value={this.state.address}
-              onChange={(e) => this.handleInput(e)}
+              value={address}
+              onChange={(e) => handleChange(e)}
               type="text"
               placeholder="Postal address"
             />
@@ -116,8 +160,10 @@ class Signup extends Component {
             <Form.Label>Date of Birth*</Form.Label>
             <Form.Control
               name="age"
-              value={this.state.age}
-              onChange={(e) => this.handleInput(e)}
+              value={age}              
+             // min="2018-01-01" 
+              max={formatSignDate()}
+              onChange={(e) => handleChange(e)}
               type="date"
               placeholder="Age"
             />
@@ -134,7 +180,7 @@ class Signup extends Component {
                   type="radio"
                   id={`inline-${type}-1`}
                   value={true}
-                  onChange={(e) => this.handleInput(e)}
+                  onChange={(e) => handleChange(e)}
                 />
                 <Form.Check
                   defaultChecked
@@ -144,7 +190,7 @@ class Signup extends Component {
                   type="radio"
                   id={`inline-${type}-2`}
                   value={false}
-                  onChange={(e) => this.handleInput(e)}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             ))}
@@ -154,26 +200,26 @@ class Signup extends Component {
             <Form.Label>Avatar</Form.Label>
             <Form.Control
               name="avatar"
-              onChange={(e) => this.handleFile(e)}
+              onChange={(e) => handleFile(e)}
               type="file"
             />
           </Form.Group>
 
-          {this.state.isLoading && (
+          {isLoading && (
             <Spinner animation="border" variant="success" />
           )}
 
           <Button
-            disabled={this.state.isLoading}
+            disabled={isLoading}
             variant="primary"
             type="submit"
           >
-            {this.state.isLoading ? "Loading..." : "Submit"}
+            {isLoading ? "Loading..." : "Submit"}
           </Button>
         </Form>
       </Container>
     );
-  }
+  
 }
 
 
