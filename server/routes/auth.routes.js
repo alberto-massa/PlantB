@@ -14,7 +14,6 @@ router.post("/signup", (req, res) => {
       }
 
       User.findOne({ email }).then((emailFound) => {
-        console.log(emailFound);
         if (emailFound) {
           res.status(400).json({ code: 400, message: "Email already exists" });
           return;
@@ -23,8 +22,6 @@ router.post("/signup", (req, res) => {
 
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
-
-      console.log(role);
 
       User.create({
         username,

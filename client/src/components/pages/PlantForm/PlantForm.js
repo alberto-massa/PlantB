@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
-import AuthService from "../../../services/auth.service";
 import PlantService from "../../../services/plant.service";
 import UploadService from "../../../services/upload.service";
 
@@ -46,8 +45,6 @@ const PlantForm = (props) => {
 
     type === "radio" && (value === "true" ? (value = true) : (value = false));
 
-    console.log(e.target.value);
-
     switch (name) {
       case "name":
         setName(value);
@@ -88,11 +85,6 @@ const PlantForm = (props) => {
         name,
         image,
         description: { size, type, toxic, location, temperature, watering },
-        // size,
-        // type,
-        // toxic,
-        // location,
-        // temperature,
         sellerId: props.loggedUser,
         price,
       })
@@ -113,7 +105,6 @@ const PlantForm = (props) => {
       .then((res) => {
         setIsLoading(false);
         setImage(res.data.cloudinary_url);
-        console.log(res.data.cloudinary_url);
       })
       .catch((err) => alert("Error, image not uploaded "));
   };
