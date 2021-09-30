@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
+import AuthService from "../../../services/auth.service";
 import PlantService from "../../../services/plant.service";
 import UploadService from "../../../services/upload.service";
 
 const plantService = new PlantService();
 const uploadService = new UploadService();
+
 
 const PlantForm = (props) => {
   const [name, setName] = useState("");
@@ -17,6 +19,7 @@ const PlantForm = (props) => {
   const [watering, setWatering] = useState("");
   const [price, setPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+
 
   const clearState = () => {
     setName("");
@@ -73,9 +76,6 @@ const PlantForm = (props) => {
       case "watering":
         setWatering(value);
         break;
-      case "temperature":
-        setTemperature(value);
-        break;
       default:
     }
   };
@@ -93,6 +93,7 @@ const PlantForm = (props) => {
         // toxic,
         // location,
         // temperature,
+        sellerId: props.loggedUser,
         price,
       })
       .then(() => {
