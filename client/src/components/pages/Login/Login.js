@@ -19,6 +19,7 @@ const Login = (props) => {
     authService
       .login(username, password)
       .then((res) => {
+        console.log(res.data)
         props.storeUser(res.data);
         props.history.push("/");
       })
