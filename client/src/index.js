@@ -8,9 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <BrowserRouter>
-    {/* <React.StrictMode> COMMENTED TO FIX CONSOLE WARNING */}
     <App />
-    {/* </React.StrictMode> */}
   </BrowserRouter>,
 
   document.getElementById("root")
