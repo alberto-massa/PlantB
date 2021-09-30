@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CommentService from "./../../../services/Comment.service";
 import { Button, Form } from "react-bootstrap";
 import Rating from "react-rating"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const commentService = new CommentService();
 
