@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Nav, Navbar} from "react-bootstrap";
 import AuthService from "../../../services/auth.service";
+import PlantService from "../../../services/plant.service";
 
 const authService = new AuthService();
 
@@ -11,6 +12,14 @@ const Navigation = (props) => {
       .then(() => props.storeUser(null))
       .catch((err) => console.log(err));
   };
+
+  const getPlants = () =>{
+
+    PlantService
+      .getPlants()
+      .then(res)
+
+  }
   
   return (
     <Navbar bg="light" expand="xs">
