@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import CommentService from "./../../../services/Comment.service";
+import CommentService from "./../../../services/comment.service";
 import { Button, Form } from "react-bootstrap";
+<<<<<<< HEAD
 //import Rating from "react-rating"
+=======
+>>>>>>> main
 
 const commentService = new CommentService();
 
@@ -17,7 +20,7 @@ const CommentForm = (props) => {
     const handleChange = (e) => {
         const {value, name} = e.target;
 
-        switch(name) {
+        switch (name) {
             case "content":
                 setContent(value);
                 break;
@@ -31,46 +34,46 @@ const CommentForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const authorId = props.loggedUser;
+
         commentService
-            .createComment({content, rating})
+            .createComment({ content, rating, authorId })
             .then(() => {
                 clearState()
             })
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err, 'jgfkjhgkjghj'))
     }
 
     return (
       <>
-        <h1>Add a comment</h1>
-        <Form.Group className="mb-3" controlId="content">
-          <Form.Label>Content*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="content"
-            value={content}
-            type="text"
-            placeholder="Your comments goes here"
-          />
-        </Form.Group>
-
-        {/* <Rating
-          emptySymbol="fa fa-star-o fa-2x"
-          fullSymbol="fa fa-star fa-2x"
-          fractions={2}
-        /> */}
-
         <Form onSubmit={handleSubmit}>
+          <h1>Add a comment </h1>
           <Form.Group className="mb-3" controlId="rating">
-            <Form.Label>Content*: </Form.Label>
+            <Form.Label>Review this seller</Form.Label>
+
             <Form.Control
               onChange={(e) => handleChange(e)}
               name="rating"
               value={rating}
               type="number"
-              placeholder="Your comments goes here"
+              placeholder="Your comment goes here"
             />
           </Form.Group>
-          <Button>Submit</Button>
+
+          <Form.Group className="mb-3" controlId="content">
+            <Form.Label>Additional info:</Form.Label>
+            <Form.Control
+              onChange={(e) => handleChange(e)}
+              name="content"
+              value={content}
+              type="text"
+              placeholder="Your comment goes here"
+            />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
         </Form>
       </>
     );

@@ -19,6 +19,10 @@ const App = () => {
     }
     fetchUser();
   }, []);
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
   return (
     <>
       <Navigation loggedUser={loggedUser} storeUser={storeUser}/>

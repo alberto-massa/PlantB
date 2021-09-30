@@ -4,7 +4,6 @@ import AuthService from "../../../services/auth.service";
 import PlantService from "../../../services/plant.service";
 import Searchbar from "../Searchbar/Searchbar";
 
-
 const Navigation = (props) => {
   
   const [plants, setPlants] = useState([])
@@ -65,14 +64,30 @@ const displayPlants = (searchValue) => {
                 
 
 
+        <Navbar.Brand href="#">
+          <Searchbar plant={displayPlants} />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+
+            {props.loggedUser ? (
+              <>
+                <Nav.Link href="/" onClick={logout}>
+                  Logout
+                </Nav.Link>
+                <Nav.Link href="/new-plant">New Plant</Nav.Link>
+                <Nav.Link href="/new-comment">New Comment</Nav.Link>
+                <Nav.Link href="/new-message">New Message</Nav.Link>
+                <Nav.Link href="/profile">My profile</Nav.Link>
               </>
-              :
+            ) : (
               <>
                 <Nav.Link href="/login">Login</Nav.Link>
                 <Nav.Link href="/register">Register</Nav.Link>
               </>
-            }
-            
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
