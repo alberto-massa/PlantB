@@ -14,7 +14,12 @@ const Searchbar = (props) => {
         const { value } = e.target
         setSearchValue(value)
 
+
+        props.displayPlants(searchValue)
+
     }
+
+     
 
 
     return(

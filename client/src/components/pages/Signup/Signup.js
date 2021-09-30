@@ -146,7 +146,6 @@ const Signup = (props) => {
               type="text"
               apiKey={process.env.REACT_APP_API_KEY_MAPS}
               onPlaceSelected={(place) => {
-                console.log(place)
                 setAddress(place.formatted_address);
               }}
               placeholder="Your city address"
