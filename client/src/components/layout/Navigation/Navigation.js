@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Nav, Navbar} from "react-bootstrap";
 import AuthService from "../../../services/auth.service";
+import Searchbar from "../Searchbar/Searchbar";
+
 
 const authService = new AuthService();
 
@@ -16,6 +18,7 @@ export default function Navigation(props) {
     <Navbar bg="light" expand="xs">
       <Container>
         <Navbar.Brand href="/">PlantB</Navbar.Brand>
+        <Navbar.Brand href="#"><Searchbar /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
