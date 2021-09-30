@@ -10,17 +10,15 @@ const App = () => {
   const [loggedUser, setLoggedUser] = useState(undefined);
   const storeUser = (user) => setLoggedUser(user);
 
-  const fetchUser = () => {
-    authService
-      .isloggedin()
-      .then((res) => storeUser(res.data))
-      .catch(() => storeUser(null));
-  };
-
   useEffect(() => {
+    const fetchUser = () => {
+      authService
+        .isloggedin()
+        .then((res) => storeUser(res.data))
+        .catch(() => storeUser(null));
+    }
     fetchUser();
-  });
-
+  }, []);
   return (
     <>
       <Navigation loggedUser={loggedUser} storeUser={storeUser}/>

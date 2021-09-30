@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CommentService from "./../../../services/Comment.service";
 import { Button, Form } from "react-bootstrap";
-import Rating from "react-rating"
+//import Rating from "react-rating"
 
 const commentService = new CommentService();
 
@@ -53,11 +53,11 @@ const CommentForm = (props) => {
           />
         </Form.Group>
 
-        <Rating
+        {/* <Rating
           emptySymbol="fa fa-star-o fa-2x"
           fullSymbol="fa fa-star fa-2x"
           fractions={2}
-        />
+        /> */}
 
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="rating">
