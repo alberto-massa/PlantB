@@ -17,11 +17,6 @@ const Routes = ({ storeUser }) => {
         path="/new-plant"
         render={(props) => <PlantForm {...props} />}
       />
-      <Route
-        exact
-        path="/new-plant"
-        render={(props) => <PlantForm {...props} />}
-      />
     </Switch>
   );
 };

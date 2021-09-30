@@ -1,20 +1,32 @@
 import "./App.css";
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "./components/layout/Navigation/Navigation";
 import Routes from "./components/routes";
+import AuthService from "./services/auth.service";
 
-class App extends Component {
-  
-  storeUser = (user) => this.setState({ loggedUser: user });
+const authService = new AuthService();
 
-  render = () => {
-    return (
-      <>
-        <Navigation storeUser={this.storeUser}/>
-        <Routes storeUser={this.storeUser} />
-      </>
-    );
+const App = () => {
+  const [loggedUser, setLoggedUser] = useState(undefined);
+  const storeUser = (user) => setLoggedUser(user);
+
+  const fetchUser = () => {
+    authService
+      .isloggedin()
+      .then((res) => storeUser(res.data))
+      .catch(() => storeUser(null));
   };
+
+  useEffect(() => {
+    fetchUser();
+  });
+
+  return (
+    <>
+      <Navigation loggedUser={loggedUser} storeUser={storeUser}/>
+      <Routes storeUser={storeUser} loggedUser={loggedUser}/>
+    </>
+  );
 }
 
 export default App;

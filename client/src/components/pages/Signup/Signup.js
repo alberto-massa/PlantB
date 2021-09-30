@@ -2,6 +2,8 @@ import AuthService from "./../../../services/auth.service";
 import React, { useState } from "react";
 import { Container, Form, Button, Spinner } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
+import Autocomplete from "react-google-autocomplete";
+
 const { formatSignDate } = require("../../../utils/index")
 
 const authService = new AuthService();
@@ -20,7 +22,6 @@ const Signup = (props) => {
    const [isLoading, setIsLoading] = useState(false)
 
    const clearState = () => {
-
       setUsername("")
       setPassword("")
       setEmail("")
@@ -28,9 +29,7 @@ const Signup = (props) => {
       setAge(0)
       setRole("")
       setAvatar("")
-
    }
-
 
    const handleChange = (e) => {
 
@@ -67,13 +66,10 @@ const Signup = (props) => {
           setAvatar(value)
           break;
               
-        default: 
-          break  
-
+        default:
       }
    }
    
-
  const handleFormSubmit = (e) => {
     e.preventDefault();
     
@@ -93,22 +89,17 @@ const Signup = (props) => {
     setIsLoading(true)
 
     const uploadData = new FormData();
-    console.log(uploadData)
     uploadData.append("imageData", e.target.files[0]);
-
 
     uploadService
       .uploadImg(uploadData)
-      .then((res) => {
-        
+      .then((res) => {    
           setIsLoading(false)
           setAvatar(res.data.cloudinary_url)
-        console.log(setAvatar);
       })
-      .catch((err) => alert("Error, image not uploaded "));
+      .catch((err) => alert("Error, image not uploaded"));
   };  
 
-  
     return (
       <Container>
         <Form onSubmit={handleFormSubmit}>
@@ -147,12 +138,18 @@ const Signup = (props) => {
 
           <Form.Group className="mb-3" controlId="address">
             <Form.Label>Address*</Form.Label>
-            <Form.Control
+            <Autocomplete
+              className="form-control"
               name="address"
               value={address}
               onChange={(e) => handleChange(e)}
               type="text"
-              placeholder="Postal address"
+              apiKey={process.env.REACT_APP_API_KEY_MAPS}
+              onPlaceSelected={(place) => {
+                console.log(place)
+                setAddress(place.formatted_address);
+              }}
+              placeholder="Your city address"
             />
           </Form.Group>
 
@@ -160,8 +157,7 @@ const Signup = (props) => {
             <Form.Label>Date of Birth*</Form.Label>
             <Form.Control
               name="age"
-              value={age}              
-             // min="2018-01-01" 
+              value={age}
               max={formatSignDate()}
               onChange={(e) => handleChange(e)}
               type="date"
@@ -205,15 +201,9 @@ const Signup = (props) => {
             />
           </Form.Group>
 
-          {isLoading && (
-            <Spinner animation="border" variant="success" />
-          )}
+          {isLoading && <Spinner animation="border" variant="success" />}
 
-          <Button
-            disabled={isLoading}
-            variant="primary"
-            type="submit"
-          >
+          <Button disabled={isLoading} variant="primary" type="submit">
             {isLoading ? "Loading..." : "Submit"}
           </Button>
         </Form>
