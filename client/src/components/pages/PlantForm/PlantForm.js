@@ -6,7 +6,6 @@ import UploadService from "../../../services/upload.service";
 const plantService = new PlantService();
 const uploadService = new UploadService();
 
-
 const PlantForm = (props) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
