@@ -2,11 +2,11 @@ import AuthService from "./../../../services/auth.service";
 import React, { useState } from "react";
 import { Container, Form, Button, Spinner } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
-import {
-  GeoapifyGeocoderAutocomplete,
-  GeoapifyContext,
-} from "@geoapify/react-geocoder-autocomplete";
-import "@geoapify/geocoder-autocomplete/styles/minimal.css";
+// import {
+//   GeoapifyGeocoderAutocomplete,
+//   GeoapifyContext,
+// } from "@geoapify/react-geocoder-autocomplete";
+// import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 
 const { formatSignDate } = require("../../../utils/index");
 
@@ -137,7 +137,7 @@ const Signup = (props) => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="address">
+        {/* <Form.Group className="mb-3" controlId="address">
           <Form.Label>Address*</Form.Label>
           <GeoapifyContext apiKey={process.env.REACT_APP_API_KEY_GEO}>
             <GeoapifyGeocoderAutocomplete
@@ -154,7 +154,7 @@ const Signup = (props) => {
               }}
             />
           </GeoapifyContext>
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group className="mb-3" controlId="age">
           <Form.Label>Date of Birth*</Form.Label>
@@ -170,14 +170,13 @@ const Signup = (props) => {
 
         <Form.Group className="mb-3" controlId="role">
           <Form.Label>Are you a company?</Form.Label>
-          {["radio"].map((type) => (
-            <div key={`inline-${type}`}>
+            <div key={`inline-radio`}>
               <Form.Check
                 inline
                 label="Yes"
                 name="role"
-                type={type}
-                id={`inline-${type}-1`}
+                type="radio"
+                id={`inline-radio-1`}
                 value={true}
                 onChange={(e) => handleChange(e)}
               />
@@ -186,13 +185,12 @@ const Signup = (props) => {
                 inline
                 label="No"
                 name="role"
-                type={type}
-                id={`inline-${type}-2`}
+                type="radio"
+                id={`inline-radio-2`}
                 value={false}
                 onChange={(e) => handleChange(e)}
               />
             </div>
-          ))}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="avatar">

@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   Plant.findById(id)
+    .populate("sellerId")
     .then(plant => res.status(200).json({ plant, message: "Plant getted" }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving a single Plant", err }))
 })

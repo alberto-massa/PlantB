@@ -51,8 +51,9 @@ const CommentForm = (props) => {
             const ratingValue = idx + 1;
 
             return (
-              <label>
+              <label key={idx}>
                 <input
+                  id="starRadio"
                   type="radio"
                   name="rating"
                   value={ratingValue}
