@@ -29,8 +29,6 @@ const Navigation = (props) => {
   const displayPlants = (searchValue) => {
 
     const filteredPlants = plantsList.filter((plant) => plant.name.toLowerCase().includes(searchValue.toLowerCase()))
-    console.log(filteredPlants)
-
     setPlants(filteredPlants)
   }
 
@@ -52,8 +50,10 @@ const Navigation = (props) => {
                     <Navbar.Brand><Searchbar plant={displayPlants} /></Navbar.Brand>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <p>{plants.length > 0 && plants.map((plant) => <Dropdown.Item href={`/plant/${plant._id}`} eventKey="2"><p>{plant.name}</p></Dropdown.Item>)}</p>
-                  </Dropdown.Menu>
+                    {plants.length > 0 && plants.map((plant, idx) =>
+                    <Dropdown.Item key={`${plant._id}-${idx}`} href={`/plant/${plant._id}`} eventKey="2">
+                      <li>{plant.name}</li></Dropdown.Item>)}
+                    </Dropdown.Menu>
                 </Dropdown>
                 
 
@@ -65,12 +65,11 @@ const Navigation = (props) => {
                 <Nav.Link as={Link} to="/new-plant">New Plant</Nav.Link>
                 <Nav.Link as={Link} to="/new-comment">New Comment</Nav.Link>
                 <Nav.Link as={Link} to="/new-message">New Message</Nav.Link>
-                <Nav.Link as={Link} to="/profile">My profile</Nav.Link>
+                <Nav.Link as={Link} to={`/${props.loggedUser.username}`}>My profile</Nav.Link>
               </>
             ) : (
               <>
-
-               <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                <Nav.Link as={Link} to="/login">Login</Nav.Link>
                 <Nav.Link as={Link} to="/register">Register</Nav.Link>
               </>
             )}
