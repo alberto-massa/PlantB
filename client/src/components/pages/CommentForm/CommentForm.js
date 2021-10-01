@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import CommentService from "./../../../services/comment.service";
+import CommentService from "../../../services/comment.service";
 import { Button, Form } from "react-bootstrap";
-<<<<<<< HEAD
-//import Rating from "react-rating"
-=======
->>>>>>> main
 
 const commentService = new CommentService();
 
