@@ -4,8 +4,6 @@ const Plant = require("../models/Plant.model");
 const router = express.Router();
 const { isLoggedIn, checkRoles } = require("./../middleware/index.js")
 
-
-
 router.get("/", isLoggedIn, (req, res) => {
   Comment.find()
     .then(comment => res.status(200).json(comment))

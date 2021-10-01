@@ -16,16 +16,20 @@ const App = () => {
         .isloggedin()
         .then((res) => storeUser(res.data))
         .catch(() => storeUser(null));
-    }
+    };
     fetchUser();
   }, []);
 
   return (
     <>
-      <Navigation loggedUser={loggedUser} storeUser={storeUser}/>
-      <Routes storeUser={storeUser} loggedUser={loggedUser}/>
+      <Navigation loggedUser={loggedUser} storeUser={storeUser} />
+      {loggedUser !== undefined ? (
+        <Routes storeUser={storeUser} loggedUser={loggedUser} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   );
-}
+};
 
 export default App;

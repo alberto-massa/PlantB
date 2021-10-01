@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Nav, Navbar} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import AuthService from "../../../services/auth.service";
 import PlantService from "../../../services/plant.service";
 import Searchbar from "../Searchbar/Searchbar";
@@ -51,29 +52,29 @@ return(
   return (
     <Navbar bg="light" expand="xs">
       <Container>
-        <Navbar.Brand href="/">PlantB</Navbar.Brand>
-        <Navbar.Brand href="#">
+        <Navbar.Brand as={Link} to="/">PlantB</Navbar.Brand>
+        <Navbar.Brand as={Link} to="#">
           <Searchbar plant={displayPlants} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
 
             {props.loggedUser ? (
               <>
-                <Nav.Link href="/" onClick={logout}>
+                <Nav.Link as={Link} to="/" onClick={logout}>
                   Logout
                 </Nav.Link>
-                <Nav.Link href="/new-plant">New Plant</Nav.Link>
-                <Nav.Link href="/new-comment">New Comment</Nav.Link>
-                <Nav.Link href="/new-message">New Message</Nav.Link>
-                <Nav.Link href="/profile">My profile</Nav.Link>
+                <Nav.Link as={Link} to="/new-plant">New Plant</Nav.Link>
+                <Nav.Link as={Link} to="/new-comment">New Comment</Nav.Link>
+                <Nav.Link as={Link} to="/new-message">New Message</Nav.Link>
+                <Nav.Link as={Link} to="/profile">My profile</Nav.Link>
               </>
             ) : (
               <>
-                <Nav.Link href="/login">Login</Nav.Link>
-                <Nav.Link href="/register">Register</Nav.Link>
+                <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                <Nav.Link as={Link} to="/register">Register</Nav.Link>
               </>
             )}
           </Nav>

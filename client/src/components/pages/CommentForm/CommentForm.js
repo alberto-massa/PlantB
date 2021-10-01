@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CommentService from "./../../../services/comment.service";
+import CommentService from "../../../services/comment.service";
 import { Button, Form } from "react-bootstrap";
 
 const commentService = new CommentService();
