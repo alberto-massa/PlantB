@@ -2,23 +2,17 @@ import React, { useState } from "react";
 import { Container, FormControl, InputGroup } from "react-bootstrap"
 
 
-
-
 const Searchbar = (props) => {
 
     const [searchValue, setSearchValue] = useState("")
+    const { plant } = props
 
     const handleChange = (e) => {
         const { value } = e.target
         setSearchValue(value)
-
-
-        props.displayPlants(searchValue)
+        plant(value)
 
     }
-
-     
-
 
     return(
 
@@ -33,7 +27,7 @@ const Searchbar = (props) => {
                 aria-label="buscar"
                 />
 
-            </InputGroup>
+            </InputGroup>      
 
         </Container>
 
