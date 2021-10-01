@@ -147,7 +147,6 @@ const Signup = (props) => {
               onChange={(e) => handleChange(e)}
               name="address"
               lang={"en"}
-              type="text"
               placeSelect={(place) => {
                 setAddress(
                   `${place.properties.address_line1}, ${place.properties.address_line2}`
@@ -177,7 +176,7 @@ const Signup = (props) => {
                 inline
                 label="Yes"
                 name="role"
-                type="radio"
+                type={type}
                 id={`inline-${type}-1`}
                 value={true}
                 onChange={(e) => handleChange(e)}
@@ -187,7 +186,7 @@ const Signup = (props) => {
                 inline
                 label="No"
                 name="role"
-                type="radio"
+                type={type}
                 id={`inline-${type}-2`}
                 value={false}
                 onChange={(e) => handleChange(e)}

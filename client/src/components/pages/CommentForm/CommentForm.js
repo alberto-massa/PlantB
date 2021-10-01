@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import CommentService from "../../../services/comment.service";
 import { Button, Form } from "react-bootstrap";
+import { FaStar } from "react-icons/fa"
+import "./CommentForm.css"
 
 const commentService = new CommentService();
 
 const CommentForm = (props) => {
     const [content, setContent] = useState("")
-    const [rating, setRating] = useState(0)
+    const [rating, setRating] = useState(null)
+    const [hover, setHover] = useState(null)
 
     const clearState = () => {
         setContent("")
@@ -43,21 +46,33 @@ const CommentForm = (props) => {
     return (
       <>
         <Form onSubmit={handleSubmit}>
-          <h1>Add a comment </h1>
-          <Form.Group className="mb-3" controlId="rating">
-            <Form.Label>Review this seller</Form.Label>
+          <h1>Review this seller </h1>
+          {[...Array(5)].map((star, idx) => {
+            const ratingValue = idx + 1;
 
-            <Form.Control
-              onChange={(e) => handleChange(e)}
-              name="rating"
-              value={rating}
-              type="number"
-              placeholder="Your comment goes here"
-            />
-          </Form.Group>
+            return (
+              <label>
+                <input
+                  type="radio"
+                  name="rating"
+                  value={ratingValue}
+                  onClick={(e) => handleChange(e)}
+                />
+                <FaStar
+                  className="star"
+                  color={
+                    ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                  }
+                  size={30}
+                  onMouseEnter={() => setHover(ratingValue)}
+                  onMouseLeave={() => setHover(null)}
+                />
+              </label>
+            );
+          })}
 
           <Form.Group className="mb-3" controlId="content">
-            <Form.Label>Additional info:</Form.Label>
+            <Form.Label>Additional comment:</Form.Label>
             <Form.Control
               onChange={(e) => handleChange(e)}
               name="content"
