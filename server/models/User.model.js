@@ -55,7 +55,9 @@ const userSchema = new Schema(
 
     avatar: {
       type: String,
-      default: "to-do.png",
+      required: true,
+      default:
+        "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-man-default-avatar-png-image_2813122.jpg",
     },
 
     // favouritePlants: [

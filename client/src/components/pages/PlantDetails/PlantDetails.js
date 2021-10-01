@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import PlantService from "../../../services/plant.service"
- const { formatDate } = require("../../../utils/index")
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
+const { formatDate } = require("../../../utils/index")
 
 
 const PlantDetails = (props, loggedUser) => {
