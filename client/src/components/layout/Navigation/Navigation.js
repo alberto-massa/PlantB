@@ -55,7 +55,7 @@ const Navigation = (props) => {
 
   return (
     <>
-      <Navbar bg="light" expand="xs">
+      {/* <Navbar bg="light" expand="xs">
         <Container>
           <Navbar.Brand as={Link} to="/">
             PlantB
@@ -81,7 +81,7 @@ const Navigation = (props) => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
+      </Navbar> */}
 
       <Navbar className="navbar" collapseOnSelect expand="lg" variant="dark">
         <Container>
