@@ -8,13 +8,12 @@ import MessageForm from "./FormMessage/FormMessage"
 const { formatDate } = require("../../../utils/index")
 
 
-const PlantDetails = (props, loggedUser) => {
+const PlantDetails = (props) => {
   const plantService = new PlantService();
   const [plantsDetails, setPlantsDetails] = useState(undefined);
   const { id } = props.match.params;
 
   const getOnePlant = (id) => {
-
     plantService
       .getPlant(id)
       .then((plant) => {

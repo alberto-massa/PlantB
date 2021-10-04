@@ -9,6 +9,7 @@ import CommentForm from "../pages/CommentForm/CommentForm";
 import PlantDetails from "../pages/PlantDetails/PlantDetails";
 import EditPlant from "../pages/PlantDetails/Editplant/Editplant";
 import SendMessage from "../pages/SendMessage/SendMessage";
+import PlantsList from "../pages/PlantsList/PlantsList";
 
 const Routes = ({ storeUser, loggedUser }) => {
   return (
@@ -48,7 +49,8 @@ const Routes = ({ storeUser, loggedUser }) => {
       <Route exact path="/new-comment" render={ (props) => <CommentForm { ...props } loggedUser={ loggedUser } /> } />
       <Route exact path="/login" render={ (props) => <Login storeUser={ storeUser } { ...props } /> } />
       <Route path="/edit-plant/:id" render={ (props) => <EditPlant { ...props } loggedUser={ loggedUser } /> } />
-      
+      <Route path="/plants" render={(props) => <PlantsList {...props}/>}/>
+        
       { loggedUser !== null ? (
         <Route path={ `/${loggedUser.username}` } render={(props) => <Profile { ...props } loggedUser={ loggedUser } /> } />
       ) 

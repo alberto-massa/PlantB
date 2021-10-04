@@ -17,7 +17,7 @@ const Home = () => {
               Plants reduce stress levels and boost your mood - making them
               perfect for your home and your work space, too.
             </p>
-            <Link>
+            <Link to={'/plants'}>
               <button className="homepage__btn">Check our plants</button>
             </Link>
           </Col>

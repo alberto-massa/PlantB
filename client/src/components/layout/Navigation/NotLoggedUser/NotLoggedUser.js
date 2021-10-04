@@ -1,9 +1,7 @@
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
-
- const NotLoggedUser = (props) => {
+ const NotLoggedUser = () => {
 
     return (
       <Nav.Link as={Link} to="/login">
