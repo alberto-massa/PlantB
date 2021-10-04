@@ -23,11 +23,13 @@ const App = () => {
   return (
     <>
       <Navigation loggedUser={loggedUser} storeUser={storeUser} />
+
       {loggedUser !== undefined ? (
         <Routes storeUser={storeUser} loggedUser={loggedUser} />
       ) : (
         <p>Loading...</p>
-      )}
+      )}  
+      
     </>
   );
 };

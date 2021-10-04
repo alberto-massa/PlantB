@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import AuthService from "../../../services/auth.service";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [username, setUsername] = useState("")
@@ -54,6 +55,8 @@ const Login = (props) => {
           Submit
         </Button>
       </Form>
+
+      <p>Not registered? <Link to={"/register"}>Register now.</Link></p>
     </Container>
   );
 };
