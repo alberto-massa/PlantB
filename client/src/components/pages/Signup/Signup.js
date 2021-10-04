@@ -2,6 +2,8 @@ import AuthService from "./../../../services/auth.service";
 import React, { useState } from "react";
 import { Container, Form, Button, Spinner } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
+import Geocode from "react-geocode";
+
 // import {
 //   GeoapifyGeocoderAutocomplete,
 //   GeoapifyContext,
