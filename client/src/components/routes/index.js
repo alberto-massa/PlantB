@@ -43,7 +43,7 @@ const Routes = ({ storeUser, loggedUser }) => {
       <Route exact path="/register" render={ (props) => <SignUp { ...props } /> } />
       <Route exact path="/login" render={ (props) => <Login storeUser={ storeUser } { ...props } /> } />
       <Route exact path="/new-plant" render={ (props) => <PlantForm { ...props } loggedUser={ loggedUser } /> } />
-      <Route path="/plant/:id" render={ (props) => <PlantDetails { ...props } loggedUser={ loggedUser } /> } />
+      <Route exact path="/plant/:id" render={ (props) => <PlantDetails { ...props } loggedUser={ loggedUser } /> } />
       <Route exact path="/new-comment" render={ (props) => <CommentForm { ...props } loggedUser={ loggedUser } /> } />
       <Route exact path="/login" render={ (props) => <Login storeUser={ storeUser } { ...props } /> } />
       <Route path="/edit-plant/:id" render={ (props) => <EditPlant { ...props } loggedUser={ loggedUser } /> } />
