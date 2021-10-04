@@ -3,6 +3,8 @@ import PlantService from "../../../services/plant.service"
 import { Card, Container, ListGroup, ListGroupItem } from "react-bootstrap"
 import RemoveItem from "./RemoveItem/RemoveItem"
 import { Link } from "react-router-dom"
+import EditPlant from "./Editplant/Editplant"
+import MessageForm from "./FormMessage/FormMessage"
 const { formatDate } = require("../../../utils/index")
 
 
@@ -12,7 +14,6 @@ const PlantDetails = (props, loggedUser) => {
   const { id } = props.match.params;
 
   const getOnePlant = (id) => {
-    console.log(id);
 
     plantService
       .getPlant(id)
@@ -29,6 +30,9 @@ const PlantDetails = (props, loggedUser) => {
   useEffect(() => {
     getOnePlant(id);
   }, [id]);
+
+
+ 
 
   return (
     <>
@@ -63,9 +67,21 @@ const PlantDetails = (props, loggedUser) => {
 
               <div>
                 <>
-                  {props.loggedUser.role === "Admin" ? (
-                    <RemoveItem id={id} {...props} />
-                  ) : null}
+                  {props.loggedUser.role === "Admin" && <RemoveItem id={id} {...props} />}
+                </>
+              </div>
+
+              
+              <div>
+                <>
+                  {props.loggedUser._id === plantsDetails.sellerId._id &&
+                   
+                   <Container>
+                        <RemoveItem id={id} {...props} />
+                        <Link className="btn bg-success" to={`/edit-plant/${id}`}>
+                            Edit plant
+                        </Link>
+                    </Container>}
                 </>
               </div>
 
@@ -105,7 +121,7 @@ const PlantDetails = (props, loggedUser) => {
               </>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="#">Card Link</Card.Link>
+              <MessageForm id={plantsDetails.sellerId._id} />
               <Card.Link href="#">Another Link</Card.Link>
             </Card.Body>
           </Card>

@@ -1,12 +1,29 @@
-import React, { useState } from "react";
-import MessageService from "./../../../services/message.service";
+import React, { useEffect, useState } from "react";
+import MessageService from "../../../services/message.service";
 import { Button, Form } from "react-bootstrap";
 
 const messageService = new MessageService();
 
-const MessageForm = (props) => {
+const SendMessage = (props) => {
     const [subject, setSubject] = useState("");
     const [content, setContent] = useState("");
+    const [username, setUsername] = useState("")
+    const [address, setAddress] = useState("")
+    const [avatar, setAvatar] = useState("")
+
+    const { id } = props.id
+
+
+   useEffect(() => {
+    
+     const getOneUser = (id) => {
+     
+      
+     
+     
+     }
+     
+   }, []) 
   
   const clearState = () => {
     setSubject("");
@@ -75,4 +92,4 @@ const MessageForm = (props) => {
   );
 };
 
-export default MessageForm;
+export default SendMessage;

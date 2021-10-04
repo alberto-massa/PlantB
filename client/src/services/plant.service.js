@@ -12,7 +12,7 @@ class PlantService {
   getPlant = (id) => this.instance.get(`/${id}`);
   createPlant = (plant) => this.instance.post("/", plant);
   deletePlant = (id) => this.instance.delete(`/${id}`);
-  editPlant = (id) => this.instance.put(`/${id}`);
+  editPlant = (id, plant) => this.instance.put(`/${id}`, plant);
 }
 
 export default PlantService;

@@ -94,7 +94,7 @@ const Navigation = (props) => {
         </Container>
       </Navbar>
 
-      <Navbar bg="light" expand="xs">
+      {/* <Navbar bg="light" expand="xs">
         <Container>
           <Navbar.Brand as={Link} to="/">
             PlantB
@@ -105,7 +105,7 @@ const Navigation = (props) => {
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>xq
-              <Dropdown className="d-inline mx-2" autoclose="inside" show>
+              <Dropdown className="d-inline mx-2"  show>
                 <Dropdown.Toggle id="dropdown-autoclose-inside">
                   <Navbar.Brand>
                     <Searchbar displayPlants={displayPlants} />
@@ -155,7 +155,7 @@ const Navigation = (props) => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
+      </Navbar> */}
     </>
   );
 };

@@ -5,9 +5,10 @@ import Profile from "./../pages/Profile/Profile";
 import PlantForm from "../pages/PlantForm/PlantForm";
 import { Switch, Route, Redirect } from "react-router-dom";
 import CommentForm from "../pages/CommentForm/CommentForm";
-import MessageForm from "../pages/MessageForm/MessageForm";
+//import MessageForm from "../pages/SendMessage/SendMessage";
 import PlantDetails from "../pages/PlantDetails/PlantDetails";
 import EditPlant from "../pages/PlantDetails/Editplant/Editplant";
+import SendMessage from "../pages/SendMessage/SendMessage";
 
 const Routes = ({ storeUser, loggedUser }) => {
   return (
@@ -31,7 +32,7 @@ const Routes = ({ storeUser, loggedUser }) => {
           )
         }
       />
-      <Route path="/new-message" render={ (props) => loggedUser ? ( <MessageForm { ...props } loggedUser={ loggedUser } />
+      <Route path="/new-message" render={ (props) => loggedUser ? ( <SendMessage { ...props } loggedUser={ loggedUser } />
           ) 
           : 
           (
