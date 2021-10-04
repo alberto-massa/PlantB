@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react"
 import PlantService from "../../../services/plant.service"
-import { Card, Container, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import RemoveItem from "./RemoveItem/RemoveItem"
-import { Link } from "react-router-dom"
 const { formatDate } = require("../../../utils/index")
 
 
-const PlantDetails = (props, loggedUser) => {
+const PlantDetails = (props) => {
   const plantService = new PlantService();
   const [plantsDetails, setPlantsDetails] = useState(undefined);
   const { id } = props.match.params;
 
   const getOnePlant = (id) => {
-    console.log(id);
-
     plantService
       .getPlant(id)
       .then((plant) => {

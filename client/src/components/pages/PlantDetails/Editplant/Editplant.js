@@ -4,14 +4,6 @@
 
 const EditPlant = (props, loggedUser) => {
 
-    const { id } = props.match.params
-    console.log =(id)
-
-    const editPlant = (id) => {
-
-    
-
-    }
 
     return(
 

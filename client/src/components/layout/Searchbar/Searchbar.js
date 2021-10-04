@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FormControl } from "react-bootstrap";
+import "./Searchbar.css"
 
 const Searchbar = (props) => {
   const [searchValue, setSearchValue] = useState("");
@@ -13,6 +14,7 @@ const Searchbar = (props) => {
 
   return (
     <FormControl
+      className="searchbar__input"
       type="search"
       placeholder="Search for a plant"
       aria-label="Search"
