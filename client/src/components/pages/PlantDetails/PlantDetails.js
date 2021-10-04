@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import PlantService from "../../../services/plant.service"
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Card, Container, ListGroup, ListGroupItem } from "react-bootstrap"
 import RemoveItem from "./RemoveItem/RemoveItem"
+import { Link } from "react-router-dom"
 const { formatDate } = require("../../../utils/index")
 
 
@@ -10,25 +11,24 @@ const PlantDetails = (props, loggedUser) => {
     const plantService = new PlantService();
     const [ plantsDetails, setPlantsDetails ] = useState(undefined)
     const { id } = props.match.params 
-    console.log(props.loggedUser)   
-
+    
     useEffect(() => {
-
-
+        
+        
         const getOnePlant = (id) => {
             plantService
-                .getPlant(id)
-                .then(plant => {
-
-                    setPlantsDetails(plant.data.plant)
-
-                })
-                .catch(err => console.log(err))
+            .getPlant(id)
+            .then(plant => {
+                
+                setPlantsDetails(plant.data.plant)
+                
+            })
+            .catch(err => console.log(err))
         }
-
+        
         getOnePlant(id)
     }, [])
-
+    
 
     return (
         <>
@@ -53,18 +53,29 @@ const PlantDetails = (props, loggedUser) => {
                                 <ListGroupItem>Watering: { plantsDetails.description.watering }</ListGroupItem>
                                 
                                 <div>
-                                        <>
-                                        {props.loggedUser.role === "Admin" ?
-                                        (
-                                           <RemoveItem id={id} {...props} />
-                                        )
-                                        :
-                                        (
-                                            null
-                                        )
+                                        {props.loggedUser.role === "Admin" &&
+                                           <RemoveItem id={id} {...props} />}
+                                </div>  
+
+                                <hr/>
+                                <hr/>
+
+                                <div>
+                                        {props.loggedUser._id === plantsDetails.sellerId._id &&
+                                        
+                                           <>
+                                                <Container>
+                                                    <RemoveItem id={id} {...props} />
+                                                </Container>
+                                                <hr/>
+                                                <Container>
+                                                    <Link to={`/edit-plant/${id}`}>
+                                                    Edit Plant
+                                                    </Link>
+                                                </Container>
+                                           </>
                                         }
-                                        </>
-                                    </div>  
+                                </div>
                                 
                                 <>
                                 { props.loggedUser ? 

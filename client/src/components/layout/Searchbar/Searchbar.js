@@ -5,12 +5,12 @@ import { Container, FormControl, InputGroup } from "react-bootstrap"
 const Searchbar = (props) => {
 
     const [searchValue, setSearchValue] = useState("")
-    const { plant } = props
+    const { displayPlants } = props
 
     const handleChange = (e) => {
         const { value } = e.target
         setSearchValue(value)
-        plant(value)
+        displayPlants(value)
 
     }
 

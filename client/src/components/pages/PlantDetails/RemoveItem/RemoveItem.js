@@ -1,5 +1,6 @@
 import PlantService from "../../../../services/plant.service"
-import { Button, Form,  } from "react-bootstrap"
+import { Button, Container, Form,  } from "react-bootstrap"
+import { Link } from "react-router-dom";
 
 const RemoveItem = ({id}, props) =>{
     console.log('those are the props',props)
@@ -8,22 +9,25 @@ const RemoveItem = ({id}, props) =>{
 
     const removePlant = (id) => {
 
-        // plantService
-        //     .deletePlant(id)
-        //     .then(res => console.log("this is the plant you just deleted",res))
-        //     .catch(err => console.log("error on delete your plant", err))
+        plantService
+            .deletePlant(id)
+            .then(res => {
+                
+                console.log("this is the plant you just deleted",res)
+                props.history.push('/')
+                
+            })
+            .catch(err => console.log("error on delete your plant", err))
             
-           // props.history.push('/Home')
     
     }
 
     return(
 
-        <Form onSubmit={removePlant(id)}>
-        <Button  variant="primary" type="submit">
+        <Button onClick ={(id) => removePlant(id)}  variant="primary" type="button">
           Delete a plant
         </Button>
-        </Form>
+        
 
     )
 }
