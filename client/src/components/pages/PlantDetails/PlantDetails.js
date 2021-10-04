@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react"
 import PlantService from "../../../services/plant.service"
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import RemoveItem from "./RemoveItem/RemoveItem"
 const { formatDate } = require("../../../utils/index")
 
 
 const PlantDetails = (props, loggedUser) => {
 
+    const plantService = new PlantService();
     const [ plantsDetails, setPlantsDetails ] = useState(undefined)
-    const { id } = props.match.params    
+    const { id } = props.match.params 
+    console.log(props.loggedUser)   
 
     useEffect(() => {
 
-        const plantService = new PlantService();
 
         const getOnePlant = (id) => {
             plantService
@@ -19,7 +21,6 @@ const PlantDetails = (props, loggedUser) => {
                 .then(plant => {
 
                     setPlantsDetails(plant.data.plant)
-                    console.log(plant.data.plant,'------------------', plantsDetails)
 
                 })
                 .catch(err => console.log(err))
@@ -27,6 +28,7 @@ const PlantDetails = (props, loggedUser) => {
 
         getOnePlant(id)
     }, [])
+
 
     return (
         <>
@@ -49,6 +51,21 @@ const PlantDetails = (props, loggedUser) => {
                                 <ListGroupItem>Toxic: { plantsDetails.description.toxic }</ListGroupItem>
                                 <ListGroupItem>Temperature: { plantsDetails.description.temperature }</ListGroupItem>
                                 <ListGroupItem>Watering: { plantsDetails.description.watering }</ListGroupItem>
+                                
+                                <div>
+                                        <>
+                                        {props.loggedUser.role === "Admin" ?
+                                        (
+                                           <RemoveItem id={id} {...props} />
+                                        )
+                                        :
+                                        (
+                                            null
+                                        )
+                                        }
+                                        </>
+                                    </div>  
+                                
                                 <>
                                 { props.loggedUser ? 
                                 (
@@ -61,6 +78,7 @@ const PlantDetails = (props, loggedUser) => {
                                     <ListGroupItem>Plantb user since: { formatDate(plantsDetails.sellerId?.createdAt) }</ListGroupItem>
                                     <ListGroupItem>Address: { plantsDetails.sellerId?.address }</ListGroupItem>
                                     <ListGroupItem>Email: { plantsDetails.sellerId?.email }</ListGroupItem>
+                                                          
                                 </div>
                                 )
                                 :
