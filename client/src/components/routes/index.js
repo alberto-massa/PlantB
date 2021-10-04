@@ -7,6 +7,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import CommentForm from "../pages/CommentForm/CommentForm";
 import MessageForm from "../pages/MessageForm/MessageForm";
 import PlantDetails from "../pages/PlantDetails/PlantDetails";
+import EditPlant from "../pages/PlantDetails/Editplant/Editplant";
 
 const Routes = ({ storeUser, loggedUser }) => {
   return (
@@ -45,6 +46,8 @@ const Routes = ({ storeUser, loggedUser }) => {
       <Route path="/plant/:id" render={ (props) => <PlantDetails { ...props } loggedUser={ loggedUser } /> } />
       <Route exact path="/new-comment" render={ (props) => <CommentForm { ...props } loggedUser={ loggedUser } /> } />
       <Route exact path="/login" render={ (props) => <Login storeUser={ storeUser } { ...props } /> } />
+      <Route path="/edit-plant/:id" render={ (props) => <EditPlant { ...props } loggedUser={ loggedUser } /> } />
+      
       { loggedUser !== null ? (
         <Route path={ `/${loggedUser.username}` } render={(props) => <Profile { ...props } loggedUser={ loggedUser } /> } />
       ) 
