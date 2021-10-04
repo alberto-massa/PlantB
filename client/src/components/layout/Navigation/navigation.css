@@ -1,11 +1,19 @@
-/* #dropdown-autoclose-inside{
-
-    width: 100%;
-    background-color: white;
-    border: none;
-} */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+#dropdown-autoclose-inside {
+
+    width: 50vh;
+    background-color: transparent;
+    border: none;
+    height: 50px;
+    color: transparent;
+}
+
+#dropdown-autoclose-inside:focus,
+#dropdown-autoclose-inside:active {
+    outline: none !important;
+    box-shadow: none;
+}
 
 .navbar {
     background: rgba(51, 169, 141, 0.9);
@@ -13,14 +21,21 @@
 
 .navbar__logo {
     font-family: 'Poppins', sans-serif;
+    font-weight: 700;
     color: #435151 !important;
 }
 
 .navbar__avatar {
     margin-left: 2px;
-    width: 25px
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
 }
 
 .navbar a {
     text-decoration: none;
+}
+
+.navbar__toggle {
+    display: none;
 }

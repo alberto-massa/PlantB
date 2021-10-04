@@ -1,57 +1,36 @@
-import "./navigation.css"
-import { Link } from "react-router-dom"
+import "./navigation.css";
+import { Link } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
 import React, { useState, useEffect } from "react";
 import NotLoggedUser from "./NotLoggedUser/NotLoggedUser";
 import PlantService from "../../../services/plant.service";
 import LoggedUser from "./LoggedUser/LoggedUser";
 import DropdownItem from "./DropdownItem/Dropdownitem";
-import { Container, Dropdown, Form, FormControl, Nav, Navbar } from "react-bootstrap";
-import logoImg from "../../../logo.svg"
+import {
+  Container,
+  Dropdown,
+  Form,
+  FormControl,
+  Nav,
+  Navbar,
+} from "react-bootstrap";
+import logoImg from "../../../logo.svg";
 
 const Navigation = (props) => {
-
-  const [ plants, setPlants ] = useState([])
-  const [ plantsList, setPlantsList ] = useState([])
+  const [plants, setPlants] = useState([]);
+  const [plantsList, setPlantsList] = useState([]);
 
   useEffect(() => {
-
     const plantService = new PlantService();
-    plantService.getPlants().then(res => setPlantsList( res.data ))
-  }, [])
+    plantService.getPlants().then((res) => setPlantsList(res.data));
+  }, []);
 
-  const displayPlants = ( searchValue ) => {
-
-        const filteredPlants = plantsList.filter(( plant ) => plant.name.toLowerCase().includes(searchValue.toLowerCase()))
-        setPlants( filteredPlants )
-        refreshPlants(plantsList)
-  }
-
-  const refreshPlants = (plantsList) => {
-
-    setPlants(plantsList)
-  }
-
-  const notLoggedUser = () => {
-
-    return (
-      <NotLoggedUser />
-    )
-  }
-
-  const loggedUser = (props) => {
-
-    return (
-      <LoggedUser {...props} />
-    )
-  }
-
-  const dropdownItem = (plants) => {
-  
-    return (
-      <DropdownItem plants={plants} />
-    )
-  }
+  const displayPlants = (searchValue) => {
+    const filteredPlants = plantsList.filter((plant) =>
+      plant.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setPlants(filteredPlants);
+  };
 
   return (
     <>
@@ -63,7 +42,7 @@ const Navigation = (props) => {
           <Navbar.Brand href="#"></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="m-auto">
               <Dropdown className="d-inline mx-2" autoclose="inside">
                 <Dropdown.Toggle id="dropdown-autoclose-inside">
                   <Navbar.Brand>
@@ -72,12 +51,6 @@ const Navigation = (props) => {
                 </Dropdown.Toggle>
                 {dropdownItem(plants)}
               </Dropdown>
-
-              {props.loggedUser ? (
-                <>{loggedUser(props)}</>
-              ) : (
-                <>{notLoggedUser()}</>
-              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -92,36 +65,30 @@ const Navigation = (props) => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="m-auto">
-              <Form className="d-flex">
-              {/* TODO -> insert searchbar */}
-                <FormControl
-                  type="search"
-                  placeholder="Search for a plant"
-                  aria-label="Search"
-                  plant={displayPlants}
-                />
- 
-                <Dropdown.Menu>
+              <Dropdown className="d-inline mx-2" autoclose="inside" show>
+                <Dropdown.Toggle
+                  className="navbar__toggle"
+                  id="dropdown-autoclose-inside"
+                >
+                  <Searchbar displayPlants={displayPlants} />
+                </Dropdown.Toggle>
+
+                {/* asdfasdf */}
+                <Dropdown.Menu className="dropdown__menu">
                   {plants.length > 0 &&
                     plants.map((plant, idx) => (
-                      <Dropdown.Item
-                        key={`${plant._id}-${idx}`}
-                        href={`/plant/${plant._id}`}
-                        eventKey="2"
-                      >
-                        <li>{plant.name}</li>
-                      </Dropdown.Item>
+                      <Link to={`/plant/${plant._id}`}>
+                        <DropdownItem key={plant._id} plant={plant} />
+                      </Link>
                     ))}
                 </Dropdown.Menu>
 
-              </Form>
+                {/* asdfasdf */}
+                {/* <DropdownItem plants={plants} /> */}
+              </Dropdown>
             </Nav>
             <Nav>
-              {props.loggedUser ? (
-                <LoggedUser {...props} />
-              ) : (
-                <NotLoggedUser />
-              )}
+              {props.loggedUser ? <LoggedUser {...props} /> : <NotLoggedUser />}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -137,7 +104,7 @@ const Navigation = (props) => {
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">
                 Home
-              </Nav.Link>xq
+              </Nav.Link>
               <Dropdown className="d-inline mx-2" autoclose="inside">
                 <Dropdown.Toggle id="dropdown-autoclose-inside">
                   <Navbar.Brand>
@@ -192,6 +159,6 @@ const Navigation = (props) => {
       </Navbar> */}
     </>
   );
-}
+};
 
-export default Navigation
+export default Navigation;
