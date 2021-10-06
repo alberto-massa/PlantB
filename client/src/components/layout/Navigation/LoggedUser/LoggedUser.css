@@ -1,0 +1,30 @@
+/* @media (max-width: 768px) {
+    .navbar__large {
+        display: none;
+        visibility: hidden;
+    }
+} */
+
+.navbar__collapsed__text {
+    margin: auto;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width: 992px) {
+    .navbar__large {
+        display: none;
+        visibility: hidden;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .navbar__collapsed {
+        display: none;
+        visibility: hidden;
+    }
+}
