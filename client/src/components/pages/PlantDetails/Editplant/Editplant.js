@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { Button, Col, Form, Row, Spinner } from "react-bootstrap"
+import { Button, Form, Spinner } from "react-bootstrap"
 import PlantService from "../../../../services/plant.service";
 import UploadService from "../../../../services/upload.service";
 
 const plantService = new PlantService();
 const uploadService = new UploadService();
-
-
-
-
 
 const EditPlant = (props, loggedUser) => {
     
@@ -48,7 +44,7 @@ const EditPlant = (props, loggedUser) => {
         useEffect(() => {
             findPlant(id)
 
-        }, [])
+        }, [id]) //remove id if giving problems (reacthooksfix)
             
               
         const clearState = () => {

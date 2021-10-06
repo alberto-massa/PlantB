@@ -22,17 +22,20 @@ const Navigation = (props) => {
   }, []);
 
   useEffect(() => {
-    if (!searching) setToggle(false);
+    if (!searching || plants.length === 0) setToggle(false);
     else setToggle(true);
-  }, [plants]);
+  }, [plants, searching]);
+
+
 
   const displayPlants = (searchValue) => {
     if (searchValue && searchValue.length > 0) setSearching(true);
-    else setSearching(false);
+    else setSearching(false); 
 
     const filteredPlants = plantsList.filter((plant) =>
       plant.name.toLowerCase().includes(searchValue.toLowerCase())
     );
+    
     setPlants(filteredPlants);
   };
 
@@ -64,7 +67,7 @@ const Navigation = (props) => {
 
               <Dropdown.Menu className="dropdown__menu">
                 {plants.length > 0 &&
-                  plants.map((plant, idx) => (
+                  plants.map((plant) => (
                     <Link to={`/plant/${plant._id}`}>
                       <DropdownItem key={plant._id} plant={plant} />
                     </Link>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import AuthService from "../../../services/auth.service";
 import { Link } from "react-router-dom";
 
@@ -28,35 +28,41 @@ const Login = (props) => {
 
   return (
     <Container>
-      <Form onSubmit={handleFormSubmit}>
-        <Form.Group className="mb-3" controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            name="username"
-            value={username}
-            onChange={(e) => handleInput(e)}
-            type="text"
-            placeholder="Enter username"
-          />
-        </Form.Group>
+      <Row className="mt-3 d-flex justify-content-center">
+        <Col xs={8} sm={8} lg={6}>
+          <Form className="container" onSubmit={handleFormSubmit}>
+            <Form.Group className="mb-3" controlId="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                name="username"
+                value={username}
+                onChange={(e) => handleInput(e)}
+                type="text"
+                placeholder="Enter username"
+              />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            name="password"
-            value={password}
-            onChange={(e) => handleInput(e)}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                name="password"
+                value={password}
+                onChange={(e) => handleInput(e)}
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
 
-      <p>Not registered? <Link to={"/register"}>Register now.</Link></p>
+          <p className="text-center mt-4">
+            Not registered? <Link to={"/register"}>Sign up</Link>
+          </p>
+        </Col>
+      </Row>
     </Container>
   );
 };

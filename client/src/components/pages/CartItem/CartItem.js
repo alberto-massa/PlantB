@@ -1,7 +1,10 @@
 import './CartItem.css'
 import { Link }  from 'react-router-dom'
 
-function CartItem() {
+const CartItem = (props) => {
+
+  console.log(props.id)
+
     return (
       <div className="cart">
         <div className="cartitem__image"></div>

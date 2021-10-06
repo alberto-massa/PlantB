@@ -1,14 +1,19 @@
 import "./PlantsList.css"
 import PlantService from "../../../services/plant.service";
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import UserService from "../../../services/user.service";
+
+const userService = new UserService();
 
 const PlantsList = (props) => {
 
      const [plantsList, setPlantsList] = useState([]);
+     const [user, setUser] = useState("")
 
+     console.log(user)
      useEffect(() => {
         const plantService = new PlantService();
         plantService
@@ -18,6 +23,22 @@ const PlantsList = (props) => {
             })
             .catch((err) => console.log("Error while trying to get plants list", err))
     }, []);
+
+    useEffect(() => {
+
+      setUser(props.loggedUser?._id)
+
+    }, [props.loggedUser])
+    
+    
+    const addToCart = (plant) => {
+      userService
+        .editUser(user, { cart: plant })
+        .then((plant) => {
+          console.log(plant);
+        })
+        .catch((err) => console.log(err));
+    };
 
     return (
       <>
@@ -37,13 +58,11 @@ const PlantsList = (props) => {
                       <Col xs={12} sm={12} lg={6} className="d-flex justify-content-center">
                         <Link
                           to={`/plant/${plant._id}`}
-                          className="btn btn-success"
+                          className="btn btn-success rounded-pill"
                         >See details</Link>
                       </Col>
-                      <Col xs={12} sm={12} lg={6} className="d-flex justify-content-center">
-                        <Link className="btn btn-outline-success">
-                          <FaShoppingCart/> Add to cart
-                        </Link>
+                      <Col className="d-flex justify-content-center" xs={12} sm={12} lg={6} >
+                          <button onClick={() => addToCart(plant._id)} className="btn btn-outline-success rounded-pill" type="submit"><FaShoppingCart/> Add to cart</button>
                       </Col>
                     </Row>
                     <hr className="mt-5 mb-5" />

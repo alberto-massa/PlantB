@@ -20,6 +20,8 @@ router.get("/:id", isLoggedIn , (req, res) => {
 
 router.post("/",  isLoggedIn , (req, res) => {
 
+    const cart = req.body
+
     Cart
         .create(cart)
         .then((cart => res.status(200).json({

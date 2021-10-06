@@ -20,8 +20,8 @@ const cartSchema = new Schema(
       type: String,
       Default: "Pending",
       enum: [ "Pending, Completed", "Shipped", "Delivered" ]
-
     }
+
   },
   {
     timestamps: true,

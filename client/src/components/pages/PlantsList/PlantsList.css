@@ -28,7 +28,6 @@
     opacity: .7;
 }
 
-
 @media (max-width: 768px) {
     .plantslist .btn-success {
         margin-bottom: 1vh;

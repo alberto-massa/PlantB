@@ -1,0 +1,16 @@
+.signup__uploadavatar {
+    border: 1px solid #318161;
+    padding: 5px 10px;
+    border-radius: 25px;
+    transition: transform .6s;
+    margin-left: 20px !important;
+}
+
+.signup__uploadavatar:hover {
+    transform: scale(1.05);
+    opacity: .7;
+}
+
+.form-control-hide {
+   display: none;
+}
