@@ -12,7 +12,7 @@ router.get("/", isLoggedIn, (req, res) => {
 router.get("/:username", isLoggedIn, (req, res) => {
   const { username } = req.params;
   console.log("--------------------------",username)
-  User.find(username)
+  User.find({username})
     .then(user => res.status(200).json({ user, message: "user getted" }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving a single User", err }))
 })
