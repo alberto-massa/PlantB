@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import AuthService from "../../../services/auth.service";
 import { Link } from "react-router-dom";
+import "../../../App.css";
 
 const Login = (props) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("");
+  const [error, setErrorLogin] = useState("")
+
 
   const authService = new AuthService();
-
+  
   const handleInput = (e) => {
     const { name, value } = e.target;
     name === 'username' ? setUsername(value) : setPassword(value)
   };
-
+  
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -23,7 +26,10 @@ const Login = (props) => {
         props.storeUser(res.data);
         props.history.push("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setErrorLogin(err.response.data.message)
+        setTimeout(() => setErrorLogin(undefined),2500)
+      });
   };
 
   return (
@@ -55,6 +61,8 @@ const Login = (props) => {
           Submit
         </Button>
       </Form>
+      
+      {error && <p id="errorMessage">{error}</p>}
 
       <p>Not registered? <Link to={"/register"}>Register now.</Link></p>
     </Container>

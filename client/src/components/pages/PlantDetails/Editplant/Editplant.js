@@ -127,7 +127,6 @@ const EditPlant = (props, loggedUser) => {
                     price,
                 })
                 .then((res) => {
-                console.log("esta es la planta actualizada",res)
                 clearState();
                 })
                 .catch((err) => console.error(err));

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Spinner } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
 //import Geocode from "react-geocode";
+import "../../../App.css"
 
 // import {
 //   GeoapifyGeocoderAutocomplete,
@@ -26,6 +27,8 @@ const Signup = (props) => {
     "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-man-default-avatar-png-image_2813122.jpg"
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setErrorLogin] = useState("")
+
 
   const clearState = () => {
     setUsername("");
@@ -83,7 +86,10 @@ const Signup = (props) => {
     authService
       .signup(username, password, email, address, age, tmp, avatar)
       .then(() => props.history.push("/"))
-      .catch((err) => console.log(err));
+      .catch((err) =>{
+        setErrorLogin(err.response.data.message)
+        setTimeout(() => setErrorLogin(undefined),2500)
+      });
 
     clearState();
   };
@@ -206,10 +212,12 @@ const Signup = (props) => {
 
         {isLoading && <Spinner animation="border" variant="success" />}
 
+
         <Button disabled={isLoading} variant="primary" type="submit">
           {isLoading ? "Loading..." : "Submit"}
         </Button>
       </Form>
+      {error && <p id="errorMessage">{error}</p>}
     </Container>
   );
 };

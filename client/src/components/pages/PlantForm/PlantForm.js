@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import PlantService from "../../../services/plant.service";
 import UploadService from "../../../services/upload.service";
+import "../../../App.css"
 
 const plantService = new PlantService();
 const uploadService = new UploadService();
@@ -17,6 +18,7 @@ const PlantForm = (props) => {
   const [watering, setWatering] = useState("");
   const [price, setPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("")
 
 
   const clearState = () => {
@@ -90,7 +92,11 @@ const PlantForm = (props) => {
       .then(() => {
         clearState();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.log(err)
+        setError(err.response.data.message)
+        setTimeout(() => setError(undefined),2500)
+      });
   };
 
   const handleFile = (e) => {
@@ -242,7 +248,7 @@ const PlantForm = (props) => {
         </Form.Group>
 
         {isLoading && <Spinner animtion="border" variant="success" />}
-
+        {error && <p id="errorMessage">{error}</p>}
         <Button disabled={isLoading} variant="primary" type="submit">
           {isLoading ? "Loading..." : "Submit"}
         </Button>

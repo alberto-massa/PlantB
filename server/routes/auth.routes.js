@@ -36,7 +36,7 @@ router.post("/signup", (req, res) => {
         .catch((err) =>
           res.status(500).json({
             code: 500,
-            message: "DB error while creating user",
+            message: "You must fullfill all fields.",
             err: err.message,
           })
         );
@@ -44,7 +44,7 @@ router.post("/signup", (req, res) => {
     .catch((err) =>
       res.status(500).json({
         code: 500,
-        message: "DB error while fetching user",
+        message: "You must fullfill all fields.",
         err: err.message,
       })
     );

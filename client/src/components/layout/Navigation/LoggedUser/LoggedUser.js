@@ -31,8 +31,8 @@ const LoggedUser = (props) => {
       <NavDropdown.Item as={Link} to={`/${props.loggedUser.username}`}>
         My profile
       </NavDropdown.Item>
-      <NavDropdown.Item as={Link} to="/new-message">
-        Send a message
+      <NavDropdown.Item as={Link} to={`/message-list/${props.loggedUser._id}`}>
+        Messages
       </NavDropdown.Item>
       <NavDropdown.Item as={Link} to="/new-plant">
         Add a plant

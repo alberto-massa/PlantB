@@ -4,7 +4,7 @@ import { Card, Container, ListGroup, ListGroupItem } from "react-bootstrap"
 import RemoveItem from "./RemoveItem/RemoveItem"
 import { Link } from "react-router-dom"
 import EditPlant from "./Editplant/Editplant"
-import MessageForm from "./FormMessage/FormMessage"
+import MessageForm from "./MessageForm/MessageForm"
 const { formatDate } = require("../../../utils/index")
 
 
@@ -12,13 +12,17 @@ const PlantDetails = (props) => {
   const plantService = new PlantService();
   const [plantsDetails, setPlantsDetails] = useState(undefined);
   const { id } = props.match.params;
+  // const user = plantsDetails.sellerId
+  const [user, setUser] = useState({})
+  
 
   const getOnePlant = (id) => {
     plantService
       .getPlant(id)
       .then((plant) => {
-        setPlantsDetails(plant.data.plant);
+        return setPlantsDetails(plant.data.plant);
       })
+      .then(() => setUser(plantsDetails?.sellerId))
       .catch((err) => console.log(err));
   };
 
@@ -66,17 +70,17 @@ const PlantDetails = (props) => {
 
               <div>
                 <>
-                  {props.loggedUser.role === "Admin" && <RemoveItem id={id} {...props} />}
+                  {props.loggedUser?.role === "Admin" && <RemoveItem id={id} {...props} />}
                 </>
               </div>
 
               
               <div>
                 <>
-                  {props.loggedUser._id === plantsDetails.sellerId._id &&
+                  {props.loggedUser?._id === plantsDetails.sellerId._id &&
                    
                    <Container>
-                        <RemoveItem id={id} {...props} />
+                        <RemoveItem sellerDetails={plantsDetails.sellerId} {...props} />
                         <Link className="btn bg-success" to={`/edit-plant/${id}`}>
                             Edit plant
                         </Link>
@@ -84,8 +88,19 @@ const PlantDetails = (props) => {
                 </>
               </div>
 
+                    {props.loggedUser ? (
+
+                      <h2> Hello {props.loggedUser.username} </h2>
+                    ) : (
+                      <div>
+                        <>
+                          <p><Link to="/login">Login</Link> in order to see our seller</p>
+                        </>
+                      </div>
+                        )
+                    }
               <>
-                {props.loggedUser ? (
+                {props.loggedUser && props.loggedUser?.username !== plantsDetails.sellerId.username &&
                   <div>
                     <hr />
 
@@ -99,7 +114,7 @@ const PlantDetails = (props) => {
                     <ListGroupItem>
                       <h4>Role: {plantsDetails.sellerId?.role}</h4>
                     </ListGroupItem>
-                    <ListGroupItem>
+                    {/* <ListGroupItem>
                       Plantb user since:{" "}
                       {formatDate(plantsDetails.sellerId?.createdAt)}
                     </ListGroupItem>
@@ -108,21 +123,15 @@ const PlantDetails = (props) => {
                     </ListGroupItem>
                     <ListGroupItem>
                       Email: {plantsDetails.sellerId?.email}
-                    </ListGroupItem>
+                    </ListGroupItem> */}
+                    <Card.Body>
+                    <MessageForm {...props} seller={plantsDetails.sellerId} />
+                    <Card.Link href="#">Another Link</Card.Link>
+                  </Card.Body>
                   </div>
-                ) : (
-                  <div>
-                    <>
-                      <p>Login in order to see our seller</p>
-                    </>
-                  </div>
-                )}
+                }
               </>
-            </ListGroup>
-            <Card.Body>
-              <MessageForm id={plantsDetails.sellerId._id} />
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
+            </ListGroup>         
           </Card>
         </div>
       ) : (
