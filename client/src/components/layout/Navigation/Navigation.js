@@ -26,8 +26,6 @@ const Navigation = (props) => {
     else setToggle(true);
   }, [plants, searching]);
 
-
-
   const displayPlants = (searchValue) => {
     if (searchValue && searchValue.length > 0) setSearching(true);
     else setSearching(false); 
@@ -48,14 +46,20 @@ const Navigation = (props) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto">
-            <Dropdown
-              className="d-inline mx-2"
+            <Dropdown   
+              className="d-inline mx-2 "
               autoclose="inside"
               show={toggle}
               onToggle={(isOpen, e, metadata) => {
                 if (plants.length === 0) setToggle(false);
                 else if (isOpen) setToggle(isOpen);
                 else if (e.target.type !== "button") setToggle(isOpen);
+              }}
+              onBlur={(e) => {
+                //check with guillermo how to empty value when clicking on a plant
+                if (toggle === false) e.target.value = "";
+                //and why plants dont change page 
+                e.target.value = "";
               }}
             >
               <Dropdown.Toggle

@@ -29,7 +29,7 @@ const SendMessage = ({seller, loggedUser}) => {
     }
 
     getOneUser(seller)
-  }, [])
+  }, [seller])
 
   useEffect(() => {
     setUsername(seller?.username)

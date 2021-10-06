@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
-import { Button, Card, Container } from "react-bootstrap"
+import { Card, Container } from "react-bootstrap"
 import MessageService from "../../../../services/message.service"
 import MessageForm from "../../PlantDetails/MessageForm/MessageForm"
 const { formatDate } = require("../../../../utils/index")
@@ -11,20 +12,17 @@ const MessageList = (props) => {
     const { loggedUser } = props
     const { id } = props.match.params  
      
-
     const getMessages = (id) => {
         
-               messageService
-                   .getMessages({authorId: id})
-                   .then(messages => {
-                       setMessage(messages?.data)
-                   })
-                   .catch(err => console.log(err))
-             }
-    useEffect(() => {
-        getMessages()
-        
-    }, [id])
+        messageService
+            .getMessages({authorId: id})
+            .then(messages => {
+                setMessage(messages?.data)
+            })
+            .catch(err => console.log(err))
+        }
+
+    useEffect(() => getMessages(), [getMessages, id])
 
 
     return(

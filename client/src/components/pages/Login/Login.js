@@ -40,6 +40,7 @@ const Login = (props) => {
             <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username</Form.Label>
               <Form.Control
+                className="rounded-pill"
                 name="username"
                 value={username}
                 onChange={(e) => handleInput(e)}
@@ -51,6 +52,7 @@ const Login = (props) => {
             <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                className="rounded-pill"
                 name="password"
                 value={password}
                 onChange={(e) => handleInput(e)}
@@ -58,13 +60,14 @@ const Login = (props) => {
                 placeholder="Password"
               />
             </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+            <div className="d-grid gap-2">
+              <Button variant="success" type="submit" className="rounded-pill">
+                Submit
+              </Button>
+            </div>
           </Form>
-      
-      {error && <p id="errorMessage">{error}</p>}
+
+          {error && <p id="errorMessage">{error}</p>}
 
           <p className="text-center mt-4">
             Not registered? <Link to={"/register"}>Sign up</Link>
