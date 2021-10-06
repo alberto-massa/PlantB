@@ -28,6 +28,7 @@ const Routes = ({ storeUser, loggedUser }) => {
       <Route exact path="/login" render={ (props) => <Login storeUser={ storeUser } { ...props } /> } />
       <Route path="/edit-plant/:id" render={ (props) => <EditPlant { ...props } loggedUser={ loggedUser } /> } />
       <Route path="/plants" render={(props) => <PlantsList {...props} loggedUser={ loggedUser } /> }/>
+      <Route path="/plants/:username" render={(props) => <PlantsList {...props} loggedUser={ loggedUser } /> }/>
       <Route path="/cart" render={(props) => <Cart {...props}/>}/>
       <Route path="/message-list/:id" render={ (props) => <MessageList {...props} loggedUser={loggedUser}/>} />
         

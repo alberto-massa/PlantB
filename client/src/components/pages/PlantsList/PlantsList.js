@@ -5,17 +5,20 @@ import { Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import UserService from "../../../services/user.service";
+import CartService from "../../../services/cart.service";
 
-const userService = new UserService();
 
 const PlantsList = (props) => {
+  
+     const plantService = new PlantService();
+     const userService = new UserService();
 
      const [plantsList, setPlantsList] = useState([]);
      const [user, setUser] = useState("")
 
-     console.log(user)
+      // console.log(user)
+
      useEffect(() => {
-        const plantService = new PlantService();
         plantService
             .getPlants()
             .then((plants) => {
@@ -26,18 +29,31 @@ const PlantsList = (props) => {
 
     useEffect(() => {
 
-      setUser(props.loggedUser?._id)
+      setUser(props.loggedUser?.username)
 
     }, [props.loggedUser])
     
     
     const addToCart = (plant) => {
       userService
-        .editUser(user, { cart: plant })
-        .then((plant) => {
-          console.log(plant);
-        })
-        .catch((err) => console.log(err));
+            .getUser(user)
+            .then((users) => {
+              // console.log(user);
+              console.log(users)
+              })
+            .catch((err) => console.log(err));
+
+      // plantService
+      //       .getPlant(plant)
+      //       .then(plant =>{
+
+      //         console.log("esto es plant",plant.data.plant._id)
+
+      //       })
+      //       .catch(err => console.log(err))
+
+      
+
     };
 
     return (
@@ -62,7 +78,9 @@ const PlantsList = (props) => {
                         >See details</Link>
                       </Col>
                       <Col className="d-flex justify-content-center" xs={12} sm={12} lg={6} >
+                      <Link to={`/plants/${user}`}>
                           <button onClick={() => addToCart(plant._id)} className="btn btn-outline-success rounded-pill" type="submit"><FaShoppingCart/> Add to cart</button>
+                      </Link>
                       </Col>
                     </Row>
                     <hr className="mt-5 mb-5" />

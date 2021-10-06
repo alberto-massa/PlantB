@@ -24,7 +24,7 @@ class AuthService {
       address,
       age,
       role,
-      avatar,
+      avatar
     });
   login = (username, password) =>
     this.instance.post("/login", { username, password });

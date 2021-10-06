@@ -11,29 +11,30 @@ router.get("/", isLoggedIn, (req, res) => {
 
 router.get("/:username", isLoggedIn, (req, res) => {
   const { username } = req.params;
+  console.log("--------------------------",username)
   User.find(username)
-    .then(User => res.status(200).json({ User, message: "User getted" }))
+    .then(user => res.status(200).json({ user, message: "user getted" }))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving a single User", err }))
 })
 
 router.post("/", isLoggedIn, (req, res) => {
-  const User = req.body;
-  User.create(User)
-    .then(User => res.status(200).json({ User, message: "User created" }))
+  const { user } = req.body;
+  User.create(user)
+    .then(user => res.status(200).json({ user, message: "user created" }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating User", err }))
 })
 
 router.delete("/:id", isLoggedIn, (req, res) => {
   const { id } = req.params;
   User.findByIdAndDelete(id)
-    .then(() => res.status(200).json({ message: `User ${id} deleted` }))
+    .then(() => res.status(200).json({ message: `user ${id} deleted` }))
     .catch(err => res.status(500).json({ code: 500, message: "Error deleting User", err }))
 })
 
 router.put("/:id", isLoggedIn, (req, res) => {
   const { id } = req.params;
   User.findByIdAndUpdate(id, req.body, { new: true })
-    .then(User => res.status(200).json({ User, message: "User edited" }))
+    .then(user => res.status(200).json({ user, message: "user edited" }))
     .catch(err => res.status(500).json({ code: 500, message: "Error editing", err }))
 })
 

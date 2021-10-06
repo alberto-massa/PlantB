@@ -1,4 +1,4 @@
-// import AuthService from "./../../../services/auth.service";
+ import AuthService from "./../../../services/auth.service";
 import React, { useState } from "react";
 import { Container, Form, Button, Spinner, Row, Col } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
@@ -9,7 +9,7 @@ import Autocomplete from "react-google-autocomplete";
 
 const { formatSignDate } = require("../../../utils/index");
 
-// const authService = new AuthService();
+ const authService = new AuthService();
 const uploadService = new UploadService();
 const cartService = new CartService();
 
@@ -90,18 +90,27 @@ const Signup = (props) => {
 
 
     //check if useful for the cart
-    cartService
-      .createCart({ total: 0 }, { buyer: user })
-      .then((cart) => {
-        setCartId(cart._id);
-      })
-      .catch((err) => console.log(err));
+    // cartService
+    //   .createCart({ total: 0})
+    //   .then((cart) => {
+    //     console.log("this is the cart has been created",cart)
+    //     setCartId(cart._id)
+    //     return authService.signup(username, password, email, address, age, tmp, avatar, cartId)
+    //   })
+    //   .then(user => {
+
+    //     console.log("this is the user has been created",user)
+
+    //   })
+    //   .catch((err) => console.log(err));
     //otherwise delete ------------
 
-
+    console.log("esto es avatar", avatar)
     authService
       .signup(username, password, email, address, age, tmp, avatar)
-      .then(() => props.history.push("/"))
+      .then(() => {
+        clearState()
+        props.history.push("/")})
       .catch((err) =>{
         setErrorLogin(err.response.data.message)
         setTimeout(() => setErrorLogin(undefined),2500)
@@ -129,8 +138,7 @@ const Signup = (props) => {
         
 
 
-
-    clearState();
+ 
   };
 
   const handleFile = (e) => {
@@ -142,6 +150,7 @@ const Signup = (props) => {
     uploadService
       .uploadImg(uploadData)
       .then((res) => {
+        
         setIsLoading(false);
         setAvatar(res.data.cloudinary_url);
       })
@@ -154,7 +163,7 @@ const Signup = (props) => {
         <Col xs={6} sm={8} lg={6}>
           <Row>
             <Form.Group className="mb-3 text-center" controlId="avatar">
-              <img alt="default avatar" src={avatar_img} />
+              <img alt="default avatar" src={avatar} />
               <Form.Label className="btn btn-outline-success rounded-pill">
                 Change picture
               </Form.Label>
@@ -277,22 +286,6 @@ const Signup = (props) => {
           </Form>
         </Col>
       </Row>
-
-        <Form.Group className="mb-3" controlId="avatar">
-          <Form.Label>Avatar</Form.Label>
-          <Form.Control
-            name="avatar"
-            onChange={(e) => handleFile(e)}
-            type="file"
-          />
-        </Form.Group>
-
-        {isLoading && <Spinner animation="border" variant="success" />}
-
-
-        <Button disabled={isLoading} variant="primary" type="submit">
-          {isLoading ? "Loading..." : "Submit"}
-        </Button>
       {error && <p id="errorMessage">{error}</p>}
     </Container>
   );

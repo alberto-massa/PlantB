@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const User = require("./../models/User.model");
+const Cart = require("./../models/Cart.model");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 router.post("/signup", (req, res) => {
-  const { username, password, email, age, role, address, avatar } = req.body;
+  const { username, password, email, age, role, address, avatar} = req.body;
 
   User.findOne({ username })
     .then((user) => {
@@ -23,15 +24,21 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
 
-      User.create({
-        username,
-        password: hashPass,
-        email,
-        age,
-        role,
-        address,
-        avatar,
-      })
+      Cart.create({total:0})
+        .then(cart =>
+          
+          User.create({
+            username,
+            password: hashPass,
+            email,
+            age,
+            role,
+            address,
+            avatar,
+            cart: cart._id
+          })
+
+          )      
         .then(() => res.json({ code: 200, message: "User created" }))
         .catch((err) =>
           res.status(500).json({

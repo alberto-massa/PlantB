@@ -11,11 +11,6 @@ const cartSchema = new Schema(
 
     items: [  { type: Schema.Types.ObjectId,ref: "Plant" } ],
 
-    buyer: {
-      type: String,
-      required: true,
-    },
-
     status: {
       type: String,
       Default: "Pending",
