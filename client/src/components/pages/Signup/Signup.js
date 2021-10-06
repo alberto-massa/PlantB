@@ -1,4 +1,3 @@
-// import AuthService from "./../../../services/auth.service";
 import React, { useState } from "react";
 import { Container, Form, Button, Spinner, Row, Col } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";

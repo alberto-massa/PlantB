@@ -28,38 +28,45 @@ const Navigation = (props) => {
 
   const displayPlants = (searchValue) => {
     if (searchValue && searchValue.length > 0) setSearching(true);
-    else setSearching(false); 
+    else setSearching(false);
 
     const filteredPlants = plantsList.filter((plant) =>
       plant.name.toLowerCase().includes(searchValue.toLowerCase())
     );
-    
+
     setPlants(filteredPlants);
   };
 
   return (
-    <Navbar className="navbar fixed-top" collapseOnSelect expand="lg" variant="dark">
+    <Navbar
+      className="navbar fixed-top"
+      collapseOnSelect
+      expand="lg"
+      variant="dark"
+    >
       <Container>
         <Navbar.Brand className="navbar__logo" as={Link} to="/">
-           <img alt="logo" src={logoImg}/> Plant B
+          <img alt="logo" src={logoImg} /> Plant B
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto">
-            <Dropdown   
+            <Dropdown
               className="d-inline mx-2 "
               autoclose="inside"
               show={toggle}
+              onBlur={(e) => {
+                console.log(e.target.value);
+
+                // if (!toggle) e.target.value = "";
+
+                e.target.value = "";
+              }}
               onToggle={(isOpen, e, metadata) => {
+                console.log(e);
                 if (plants.length === 0) setToggle(false);
                 else if (isOpen) setToggle(isOpen);
                 else if (e.target.type !== "button") setToggle(isOpen);
-              }}
-              onBlur={(e) => {
-                //check with guillermo how to empty value when clicking on a plant
-                if (toggle === false) e.target.value = "";
-                //and why plants dont change page 
-                e.target.value = "";
               }}
             >
               <Dropdown.Toggle
