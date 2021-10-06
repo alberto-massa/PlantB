@@ -35,8 +35,10 @@ router.post("/",  isLoggedIn , (req, res) => {
         })))
 })
 
-router.put("/:id",  isLoggedIn , (req, res) => {
+router.put("/:id" , isLoggedIn, (req, res) => {
   const { id } = req.params;
+  console.log("holaaaa")
+  console.log(req.body)
   Cart.findByIdAndUpdate(id, req.body, { new: true })
     .then((cart) => res.status(200).json({ cart, message: "Cart edited" }))
     .catch((err) =>

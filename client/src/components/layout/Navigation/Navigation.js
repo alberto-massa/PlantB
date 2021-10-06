@@ -34,8 +34,16 @@ const Navigation = (props) => {
       plant.name.toLowerCase().includes(searchValue.toLowerCase())
     );
 
+  
     setPlants(filteredPlants);
   };
+
+  const changeToggle = (toggle) => {
+
+    toggle && setToggle(false)
+
+  }
+    
 
   return (
     <Navbar
@@ -73,9 +81,9 @@ const Navigation = (props) => {
                 className="navbar__toggle"
                 id="dropdown-autoclose-inside"
               >
-                <Searchbar displayPlants={displayPlants} />
+                <Searchbar toggle={toggle} changeToggle={changeToggle} displayPlants={displayPlants} />
               </Dropdown.Toggle>
-
+                {/* /onClick setState searchValue */}
               <Dropdown.Menu className="dropdown__menu">
                 {plants.length > 0 &&
                   plants.map((plant) => (

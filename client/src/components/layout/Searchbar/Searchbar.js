@@ -5,12 +5,25 @@ import "./Searchbar.css"
 const Searchbar = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const { displayPlants } = props;
+  const { changeToggle } = props
+  let { toggle } = props
+
+  console.log(toggle)
 
   const handleChange = (e) => {
     const { value } = e.target;
     setSearchValue(value);
     displayPlants(value);
+    setTimeout(() => {
+      clearState(searchValue);
+      changeToggle(toggle)
+    }, 3000);
+    
   };
+  const clearState = (searchValue) => {
+
+    setSearchValue("")
+  } 
 
   return (
     <>

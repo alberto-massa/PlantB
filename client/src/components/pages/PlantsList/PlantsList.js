@@ -12,11 +12,12 @@ const PlantsList = (props) => {
   
      const plantService = new PlantService();
      const userService = new UserService();
+     const cartService = new CartService();
 
      const [plantsList, setPlantsList] = useState([]);
      const [user, setUser] = useState("")
 
-      // console.log(user)
+     console.log(user)
 
      useEffect(() => {
         plantService
@@ -29,19 +30,28 @@ const PlantsList = (props) => {
 
     useEffect(() => {
 
-      setUser(props.loggedUser?.username)
+      setUser(props.loggedUser)
 
     }, [props.loggedUser])
     
     
     const addToCart = (plant) => {
-      userService
-            .getUser(user)
-            .then((users) => {
-              // console.log(user);
-              console.log(users)
-              })
-            .catch((err) => console.log(err));
+      // userService
+      //       .getUser(user)
+      //       .then((users) => {
+      //         // console.log(user);
+      //         console.log(users)
+      //         })
+      //       
+
+      cartService
+          .editCart({id: user.cart, items: plant })
+          .then(res => {
+
+              console.log("esto es res",res)
+
+          })
+          .catch((err) => console.log(err));
 
       // plantService
       //       .getPlant(plant)
