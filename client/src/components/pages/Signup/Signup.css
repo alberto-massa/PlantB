@@ -1,7 +1,13 @@
+.signup__avatar {
+    min-width: 10vh;
+    max-width: 10vh;
+    object-fit: cover;
+    margin-right: 3vh;
+
+}
+
 .signup__uploadavatar {
-    border: 1px solid #318161;
     padding: 5px 10px;
-    border-radius: 25px;
     transition: transform .6s;
     margin-left: 20px !important;
 }

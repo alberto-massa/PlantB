@@ -23,6 +23,10 @@
     font-weight: 500;
 }
 
+.about img {
+    width: 100%;
+}
+
 
 @media (max-width: 768px) {
     .homepage__row {

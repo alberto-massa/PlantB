@@ -1,12 +1,10 @@
-/* @media (max-width: 768px) {
-    .navbar__large {
-        display: none;
-        visibility: hidden;
-    }
-} */
+.navbar__large__text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #fff
+}
 
 .navbar__collapsed__text {
-    margin: auto;
     color: #fff;
     text-align: center;
     text-transform: uppercase;
@@ -15,9 +13,8 @@
 }
 
 @media (max-width: 992px) {
-    .navbar__large {
-        display: none;
-        visibility: hidden;
+    .navbar__large  {
+        display: none !important;
     }
 
 }
@@ -25,6 +22,5 @@
 @media (min-width: 992px) {
     .navbar__collapsed {
         display: none;
-        visibility: hidden;
     }
 }

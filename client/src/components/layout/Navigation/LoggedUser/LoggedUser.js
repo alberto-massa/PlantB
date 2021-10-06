@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import AuthService from "../../../../services/auth.service";
 import "./LoggedUser.css"
 
@@ -54,13 +54,13 @@ const LoggedUser = (props) => {
 
       <div className="navbar__collapsed">
         <NavDropdown.Divider /> 
-        <div className="navbar__collapsed__text" as={Link} to={`/${props.loggedUser.username}`}>My profile</div>
+        <Nav.Link className="navbar__collapsed__text" as={Link} to={`/${props.loggedUser.username}`}>My profile</Nav.Link>
         <NavDropdown.Divider />
-        <div className="navbar__collapsed__text" as={Link} to={`/message-list/${props.loggedUser._id}`}>Messages</div>
+        <Nav.Link className="navbar__collapsed__text" as={Link} to={`/message-list/${props.loggedUser._id}`}>Messages</Nav.Link>
         <NavDropdown.Divider />
-        <div className="navbar__collapsed__text" as={Link} to="/new-plant">Sell a plant</div>
+        <Nav.Link className="navbar__collapsed__text" as={Link} to="/new-plant">Sell a plant</Nav.Link>
         <NavDropdown.Divider />
-        <div className="navbar__collapsed__text" as={Link} to="/" onClick={logout}>Logout</div>
+        <Nav.Link className="navbar__collapsed__text" as={Link} to="/" onClick={logout}>Logout</Nav.Link>
       </div>
     </>
   );

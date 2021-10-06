@@ -20,7 +20,7 @@ const Routes = ({ storeUser, loggedUser }) => {
       <Route exact path="/new-plant" render={ (props) => loggedUser ? (<PlantForm { ...props } loggedUser={ loggedUser } />) : (<Redirect to="/login" />)}/>
       <Route exact path="/new-comment" render={ (props) => loggedUser ? ( <CommentForm { ...props } loggedUser={ loggedUser } />) : (<Redirect to="/login" />)}/>
       <Route path="/new-message" render={ (props) => loggedUser ? ( <SendMessage { ...props } loggedUser={ loggedUser } />) : (<Redirect to="/login" />)}/>
-      <Route exact path="/register" render={ (props) => <SignUp { ...props } /> } />
+      <Route exact path="/register" render={ (props) => <SignUp storeUser={ storeUser } { ...props } /> } />
       <Route exact path="/login" render={ (props) => <Login storeUser={ storeUser } { ...props } /> } />
       <Route exact path="/new-plant" render={ (props) => <PlantForm { ...props } loggedUser={ loggedUser } /> } />
       <Route path="/plant/:id" render={ (props) => <PlantDetails { ...props } loggedUser={ loggedUser } /> } />
