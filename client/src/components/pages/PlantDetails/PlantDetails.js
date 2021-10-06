@@ -31,8 +31,8 @@ const PlantDetails = (props) => {
   }, []);
 
   useEffect(() => {
-    plantsDetails || getOnePlant(id);
-  }, [id]);
+    getOnePlant(id);
+  }, [props]);
 
   return (
     <>

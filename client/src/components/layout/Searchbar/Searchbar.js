@@ -13,14 +13,16 @@ const Searchbar = (props) => {
   };
 
   return (
-    <FormControl
-      className="searchbar__input rounded-pill"
-      type="search"
-      placeholder="Search for a plant"
-      aria-label="Search"
-      value={searchValue}
-      onChange={(e) => handleChange(e)}
-    />
+    <>
+      <FormControl
+        className="searchbar__input rounded-pill"
+        type="search"
+        placeholder="Search for a plant"
+        aria-label="Search"
+        value={searchValue}
+        onChange={(e) => handleChange(e)}
+      />
+    </>
   );
 };
 

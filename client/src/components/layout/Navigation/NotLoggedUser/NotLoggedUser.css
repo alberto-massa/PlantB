@@ -1,10 +1,3 @@
-/* @media (max-width: 768px) {
-    .navbar__large {
-        display: none;
-        visibility: hidden;
-    }
-} */
-
 .navbar__large__text {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
