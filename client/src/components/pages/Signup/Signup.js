@@ -24,8 +24,14 @@ const Signup = (props) => {
     "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-man-default-avatar-png-image_2813122.jpg"
   );
   const [isLoading, setIsLoading] = useState(false);
+
+  // check if useful for the card 
   const [cartId, setCartId] = useState(null)
+  //----------
+
   const [user, setUser] = useState("")
+  const [error, setErrorLogin] = useState("")
+
 
   const clearState = () => {
     setUsername("");
@@ -82,12 +88,24 @@ const Signup = (props) => {
     let tmp = "";
     role ? (tmp = "Shop") : (tmp = "User");
 
+
+    //check if useful for the cart
     cartService
       .createCart({ total: 0 }, { buyer: user })
       .then((cart) => {
         setCartId(cart._id);
       })
       .catch((err) => console.log(err));
+    //otherwise delete ------------
+
+
+    authService
+      .signup(username, password, email, address, age, tmp, avatar)
+      .then(() => props.history.push("/"))
+      .catch((err) =>{
+        setErrorLogin(err.response.data.message)
+        setTimeout(() => setErrorLogin(undefined),2500)
+      });
 
 
     // authService
@@ -259,6 +277,23 @@ const Signup = (props) => {
           </Form>
         </Col>
       </Row>
+
+        <Form.Group className="mb-3" controlId="avatar">
+          <Form.Label>Avatar</Form.Label>
+          <Form.Control
+            name="avatar"
+            onChange={(e) => handleFile(e)}
+            type="file"
+          />
+        </Form.Group>
+
+        {isLoading && <Spinner animation="border" variant="success" />}
+
+
+        <Button disabled={isLoading} variant="primary" type="submit">
+          {isLoading ? "Loading..." : "Submit"}
+        </Button>
+      {error && <p id="errorMessage">{error}</p>}
     </Container>
   );
 };

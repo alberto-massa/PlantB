@@ -11,6 +11,7 @@ import SendMessage from "../pages/SendMessage/SendMessage";
 import PlantsList from "../pages/PlantsList/PlantsList";
 import Cart from "../pages/Cart/Cart"
 
+import MessageList from "../pages/messages/MessageList/MessageList";
 
 const Routes = ({ storeUser, loggedUser }) => {
   return (
@@ -22,12 +23,13 @@ const Routes = ({ storeUser, loggedUser }) => {
       <Route exact path="/register" render={ (props) => <SignUp { ...props } /> } />
       <Route exact path="/login" render={ (props) => <Login storeUser={ storeUser } { ...props } /> } />
       <Route exact path="/new-plant" render={ (props) => <PlantForm { ...props } loggedUser={ loggedUser } /> } />
-      <Route exact path="/plant/:id" render={ (props) => <PlantDetails { ...props } loggedUser={ loggedUser } /> } />
+      <Route path="/plant/:id" render={ (props) => <PlantDetails { ...props } loggedUser={ loggedUser } /> } />
       <Route exact path="/new-comment" render={ (props) => <CommentForm { ...props } loggedUser={ loggedUser } /> } />
       <Route exact path="/login" render={ (props) => <Login storeUser={ storeUser } { ...props } /> } />
       <Route path="/edit-plant/:id" render={ (props) => <EditPlant { ...props } loggedUser={ loggedUser } /> } />
       <Route path="/plants" render={(props) => <PlantsList {...props} loggedUser={ loggedUser } /> }/>
       <Route path="/cart" render={(props) => <Cart {...props}/>}/>
+      <Route path="/message-list/:id" render={ (props) => <MessageList {...props} loggedUser={loggedUser}/>} />
         
       { loggedUser !== null ? (
         <Route path={ `/${loggedUser.username}` } render={(props) => <Profile { ...props } loggedUser={ loggedUser } /> } />

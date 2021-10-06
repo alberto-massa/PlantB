@@ -1,30 +1,44 @@
 import React, { useEffect, useState } from "react";
 import MessageService from "../../../services/message.service";
 import { Button, Form } from "react-bootstrap";
+import UserService from "../../../services/user.service"
+
 
 const messageService = new MessageService();
 
-const SendMessage = (props) => {
-    const [subject, setSubject] = useState("");
-    const [content, setContent] = useState("");
-    const [username, setUsername] = useState("")
-    const [address, setAddress] = useState("")
-    const [avatar, setAvatar] = useState("")
-
-    const { id } = props.id
+const SendMessage = ({seller, loggedUser}) => {
 
 
-   useEffect(() => {
+  const [subject, setSubject] = useState("");
+  const [content, setContent] = useState("");
+  const [username, setUsername] = useState("")
+  const [address, setAddress] = useState("")
+  const [avatar, setAvatar] = useState("")
+  const [plantSellerId, setPlantSellerId] = useState(undefined)
+
+
+
+  useEffect(() => {
+    const getOneUser = (seller) => {
+
+      setUsername(seller?.username)
+      setAddress(seller?.address)
+      setAvatar(seller?.avatar)
+      setPlantSellerId(seller?._id)
+
+    }
+
+    getOneUser(seller)
+  }, [])
+
+  useEffect(() => {
+    setUsername(seller?.username)
+    setAddress(seller?.address)
+    setAvatar(seller?.avatar)
+    setPlantSellerId(seller?._id)
     
-     const getOneUser = (id) => {
-     
-      
-     
-     
-     }
-     
-   }, []) 
-  
+  }, [seller, loggedUser])
+
   const clearState = () => {
     setSubject("");
     setContent("");
@@ -47,11 +61,11 @@ const SendMessage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const authorId = props.loggedUser;
-    
+    const authorId = loggedUser._id;
+    const receiverId = plantSellerId
     messageService
-      .createMessage({ content, subject, authorId })
-      .then(() => {
+      .createMessage({ content, subject, authorId, receiverId })
+      .then((res) => {
         clearState();
       })
       .catch((err) => console.log(err));
@@ -60,7 +74,9 @@ const SendMessage = (props) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h1>Send a message </h1>
+        <img src={avatar} alt="User " />
+        <h1>Send a message to {username} </h1>
+        <h2>Address: {address}</h2>
         <Form.Group className="mb-3" controlId="subject">
           <Form.Label>Subject:* </Form.Label>
 
