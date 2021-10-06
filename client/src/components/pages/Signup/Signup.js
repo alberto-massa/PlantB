@@ -1,4 +1,4 @@
- import AuthService from "./../../../services/auth.service";
+import AuthService from "./../../../services/auth.service";
 import React, { useState } from "react";
 import { Container, Form, Button, Spinner, Row, Col } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
@@ -9,7 +9,7 @@ import Autocomplete from "react-google-autocomplete";
 
 const { formatSignDate } = require("../../../utils/index");
 
- const authService = new AuthService();
+const authService = new AuthService();
 const uploadService = new UploadService();
 const cartService = new CartService();
 
@@ -24,10 +24,6 @@ const Signup = (props) => {
     "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-man-default-avatar-png-image_2813122.jpg"
   );
   const [isLoading, setIsLoading] = useState(false);
-
-  // check if useful for the card 
-  const [cartId, setCartId] = useState(null)
-  //----------
 
   const [user, setUser] = useState("")
   const [error, setErrorLogin] = useState("")
@@ -88,57 +84,18 @@ const Signup = (props) => {
     let tmp = "";
     role ? (tmp = "Shop") : (tmp = "User");
 
-
-    //check if useful for the cart
-    // cartService
-    //   .createCart({ total: 0})
-    //   .then((cart) => {
-    //     console.log("this is the cart has been created",cart)
-    //     setCartId(cart._id)
-    //     return authService.signup(username, password, email, address, age, tmp, avatar, cartId)
-    //   })
-    //   .then(user => {
-
-    //     console.log("this is the user has been created",user)
-
-    //   })
-    //   .catch((err) => console.log(err));
-    //otherwise delete ------------
-
-    console.log("esto es avatar", avatar)
     authService
       .signup(username, password, email, address, age, tmp, avatar)
-      .then(() => {
-        clearState()
-        props.history.push("/")})
+      .then(({user}) => {
+        props.history.push("/");
+        props.loggedUser = {user}
+      })
       .catch((err) =>{
         setErrorLogin(err.response.data.message)
         setTimeout(() => setErrorLogin(undefined),2500)
       });
 
-
-    // authService
-    //   .signup(username, password, email, address, age, tmp, avatar)
-    //   .then((user) => {
-    //     setUser(user._id)
-    //     console.log(user._id)
-    //     props.history.push("/")})
-    //   .catch((err) => console.log(err));
-
-
-        // authService
-        //   .signup(username, password, email, address, age, tmp, avatar)
-        //   .then((user) => {
-        //     // setUser(user._id);
-        //     // console.log(user._id);
-        //     props.history.push("/");
-        //     return cartService.createCart({ total: 0 }, { buyer: user });
-        //   });
-        //   .then(cart =>)
-        
-
-
- 
+    clearState();
   };
 
   const handleFile = (e) => {
@@ -154,7 +111,7 @@ const Signup = (props) => {
         setIsLoading(false);
         setAvatar(res.data.cloudinary_url);
       })
-      .catch((err) => alert("Error, image not uploaded"));
+      .catch((err) => alert("Error, image not uploaded", err));
   };
 
   return (
@@ -181,6 +138,7 @@ const Signup = (props) => {
             <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username*</Form.Label>
               <Form.Control
+                className="rounded-pill"
                 name="username"
                 value={username}
                 onChange={(e) => handleChange(e)}
@@ -191,6 +149,7 @@ const Signup = (props) => {
             <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password*</Form.Label>
               <Form.Control
+                className="rounded-pill"
                 name="password"
                 value={password}
                 onChange={(e) => handleChange(e)}
@@ -201,6 +160,7 @@ const Signup = (props) => {
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email*</Form.Label>
               <Form.Control
+                className="rounded-pill"
                 name="email"
                 value={email}
                 onChange={(e) => handleChange(e)}
@@ -212,41 +172,23 @@ const Signup = (props) => {
             <Form.Group className="mb-3" controlId="address">
               <Form.Label>Address*</Form.Label>
               <Autocomplete
-                className="form-control"
+                className="form-control rounded-pill"
                 apiKey={process.env.REACT_APP_API_KEY_MAPS}
+                language="en"
                 options={{
                   types: ["address"],
-                  // fields: ["(formatted_address)"],
-                  // componentRestrictions: { country: "es" },
+                  fields: ["(formatted_address)"],
+                  componentRestrictions: { country: "es" },
                 }}
-                onPlaceSelected={(place) => {
-                  console.log(place);
-                }}
+                onChange={(e) => handleChange(e)
+                }
               />
             </Form.Group>
 
-            {/* <Form.Group className="mb-3" controlId="address">
-              <Form.Label>Address*</Form.Label>
-              <GeoapifyContext apiKey={process.env.REACT_APP_API_KEY_GEO}>
-                <GeoapifyGeocoderAutocomplete
-                  className="form-control"
-                  placeholder="Enter address here"
-                  value={address}
-                  onChange={(e) => handleChange(e)}
-                  name="address"
-                  lang={"en"}
-                  placeSelect={(place) => {
-                    setAddress(
-                      `${place.properties.address_line1}, ${place.properties.address_line2}`
-                    );
-                  }}
-                />
-              </GeoapifyContext>
-
-            </Form.Group> */}
             <Form.Group className="mb-3" controlId="age">
               <Form.Label>Date of Birth*</Form.Label>
               <Form.Control
+                className="rounded-pill"
                 name="age"
                 value={age}
                 max={formatSignDate()}
@@ -268,6 +210,7 @@ const Signup = (props) => {
                   onChange={(e) => handleChange(e)}
                 />
                 <Form.Check
+                  className="success"
                   defaultChecked
                   inline
                   label="No"
@@ -279,14 +222,25 @@ const Signup = (props) => {
                 />
               </div>
             </Form.Group>
-            {isLoading && <Spinner animation="border" variant="success" />}
-            <Button disabled={isLoading} variant="primary" type="submit">
-              {isLoading ? "Loading..." : "Submit"}
-            </Button>
+
+            <Row className="justify-content-center mt-2 mb-2">
+              {isLoading && <Spinner animation="border" variant="success" />}
+            </Row>
+
+            <div className="d-grid gap-2">
+              <Button
+                className="rounded-pill"
+                disabled={isLoading}
+                variant="success"
+                type="submit"
+              >
+                {isLoading ? "Loading..." : "Submit"}
+              </Button>
+            </div>
           </Form>
         </Col>
       </Row>
-      {error && <p id="errorMessage">{error}</p>}
+{error && <p id="errorMessage">{error}</p>}
     </Container>
   );
 };
