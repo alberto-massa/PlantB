@@ -4,6 +4,7 @@ import { Container, Form, Button, Spinner, Row, Col } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
 import avatar_img from "./../../../default-avatar.svg";
 import "./Signup.css"
+import "../../../App.css"
 import CartService from "./../../../services/cart.service"
 import Autocomplete from "react-google-autocomplete";
 

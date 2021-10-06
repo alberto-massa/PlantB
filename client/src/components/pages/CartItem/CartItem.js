@@ -3,21 +3,27 @@ import { Link }  from 'react-router-dom'
 
 const CartItem = (props) => {
 
-  console.log(props.id)
-
+  const { userCart } = props
+  console.log(userCart)
+  
     return (
-      <div className="cart">
-        <div className="cartitem__image"></div>
+     userCart?.items.map(el =>{
+       return(
+        <div className="cart">
+        <div className="cartitem__image"><img src={el.image} alt="User " /></div>
 
         <Link to={`/product/${111}`} className="cartitem__name">
-          <p>Product 1</p>
+          <p>{el.name}</p>
         </Link>
-        <p className="cartitem__price">$499.99</p>
+        <p className="cartitem__price">{el.description.size}</p>
+        <p className="cartitem__price">{el.description.type}</p>
+        <p className="cartitem__price">{el.description.temperature}</p>
+        <p className="cartitem__price">{el.description.watering}</p>
         
         <select className="cartitem__select">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          <option value="1"></option>
+          <option value="2"></option>
+          <option value="3"></option>
           <option value="4">4</option>
         </select>
 
@@ -25,6 +31,8 @@ const CartItem = (props) => {
             <i className="fas fa-trash"></i>
         </button>
       </div>
+       )
+     })
     );
 }
 

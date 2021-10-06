@@ -18,7 +18,7 @@ const App = () => {
         .catch(() => storeUser(null));
     };
     fetchUser();
-  }, []);
+  }, [loggedUser]);
   
   return (
     <>

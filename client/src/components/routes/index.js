@@ -29,7 +29,7 @@ const Routes = ({ storeUser, loggedUser }) => {
       <Route path="/edit-plant/:id" render={ (props) => <EditPlant { ...props } loggedUser={ loggedUser } /> } />
       <Route path="/plants" render={(props) => <PlantsList {...props} loggedUser={ loggedUser } /> }/>
       <Route path="/plants/:username" render={(props) => <PlantsList {...props} loggedUser={ loggedUser } /> }/>
-      <Route path="/cart" render={(props) => <Cart {...props}/>}/>
+      <Route path="/cart" render={(props) => <Cart {...props} loggedUser={ loggedUser }/>}/>
       <Route path="/message-list/:id" render={ (props) => <MessageList {...props} loggedUser={loggedUser}/>} />
         
       { loggedUser !== null ? (

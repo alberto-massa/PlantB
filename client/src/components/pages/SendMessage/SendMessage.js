@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MessageService from "../../../services/message.service";
 import { Button, Form } from "react-bootstrap";
 import UserService from "../../../services/user.service"
+import "../../../App.css"
 
 
 const messageService = new MessageService();
@@ -15,6 +16,8 @@ const SendMessage = ({seller, loggedUser}) => {
   const [address, setAddress] = useState("")
   const [avatar, setAvatar] = useState("")
   const [plantSellerId, setPlantSellerId] = useState(undefined)
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
 
 
 
@@ -67,8 +70,12 @@ const SendMessage = ({seller, loggedUser}) => {
       .createMessage({ content, subject, authorId, receiverId })
       .then((res) => {
         clearState();
+        setTimeout(() => setSuccess(undefined),2500)
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setTimeout(() => setError(undefined),2500)
+        console.log(err)
+      });
   };
 
   return (
@@ -104,6 +111,8 @@ const SendMessage = ({seller, loggedUser}) => {
           Submit
         </Button>
       </Form>
+        {error && <p id="errorMessage">{error}</p>}
+        {success && <p id="successMessage">{success}</p>}
     </>
   );
 };
