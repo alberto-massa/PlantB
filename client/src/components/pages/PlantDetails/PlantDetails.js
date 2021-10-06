@@ -28,7 +28,7 @@ const PlantDetails = (props) => {
 
   useEffect(() => {
     getOnePlant(id);
-  }, []);
+  }, []); 
 
   useEffect(() => {
     getOnePlant(id);

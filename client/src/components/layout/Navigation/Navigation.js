@@ -33,7 +33,6 @@ const Navigation = (props) => {
     const filteredPlants = plantsList.filter((plant) =>
       plant.name.toLowerCase().includes(searchValue.toLowerCase())
     );
-
   
     setPlants(filteredPlants);
   };
@@ -41,7 +40,6 @@ const Navigation = (props) => {
   const changeToggle = (toggle) => {
 
     toggle && setToggle(false)
-
   }
     
 
@@ -63,13 +61,7 @@ const Navigation = (props) => {
               className="d-inline mx-2 "
               autoclose="inside"
               show={toggle}
-              onBlur={(e) => {
-                console.log(e.target.value);
-
-                // if (!toggle) e.target.value = "";
-
-                e.target.value = "";
-              }}
+              onBlur={e => e.target.value = "" }
               onToggle={(isOpen, e, metadata) => {
                 console.log(e);
                 if (plants.length === 0) setToggle(false);
@@ -83,7 +75,6 @@ const Navigation = (props) => {
               >
                 <Searchbar toggle={toggle} changeToggle={changeToggle} displayPlants={displayPlants} />
               </Dropdown.Toggle>
-                {/* /onClick setState searchValue */}
               <Dropdown.Menu className="dropdown__menu">
                 {plants.length > 0 &&
                   plants.map((plant) => (

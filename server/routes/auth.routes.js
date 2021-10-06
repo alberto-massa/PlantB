@@ -39,7 +39,10 @@ router.post("/signup", (req, res) => {
           })
 
           )      
-        .then(() => res.json({ code: 200, message: "User created" }))
+        .then((user) => {
+          req.session.currentUser = user;
+          res.status(200).json({user});
+        })
         .catch((err) =>
           res.status(500).json({
             code: 500,

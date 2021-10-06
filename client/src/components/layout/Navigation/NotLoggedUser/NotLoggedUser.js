@@ -1,6 +1,7 @@
 import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./NotLoggedUser.css"
+
+//Style in LoggedUser.css
 
  const NotLoggedUser = () => {
 
@@ -12,9 +13,9 @@ import "./NotLoggedUser.css"
 
         <div className="navbar__collapsed">
           <NavDropdown.Divider />
-          <div className="navbar__collapsed__text" as={Link} to="/login">
+          <Nav.Link className="navbar__collapsed__text" as={Link} to="/login">
             Sign in
-          </div>
+          </Nav.Link>
         </div>
       </>
     );

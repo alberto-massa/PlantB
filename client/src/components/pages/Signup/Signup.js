@@ -2,16 +2,13 @@ import AuthService from "./../../../services/auth.service";
 import React, { useState } from "react";
 import { Container, Form, Button, Spinner, Row, Col } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
-// import avatar_img from "./../../../default-avatar.svg";
 import "./Signup.css"
-import CartService from "./../../../services/cart.service"
 import Autocomplete from "react-google-autocomplete";
 
 const { formatSignDate } = require("../../../utils/index");
 
 const authService = new AuthService();
 const uploadService = new UploadService();
-const cartService = new CartService();
 
 const Signup = (props) => {
   const [username, setUsername] = useState("");
@@ -21,11 +18,9 @@ const Signup = (props) => {
   const [age, setAge] = useState(0);
   const [role, setRole] = useState("");
   const [avatar, setAvatar] = useState(
-    "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-man-default-avatar-png-image_2813122.jpg"
+    "https://res.cloudinary.com/dubhsyrde/image/upload/v1633536992/orl5czm2lgcz9a2fzkhu.svg"
   );
   const [isLoading, setIsLoading] = useState(false);
-
-  const [user, setUser] = useState("")
   const [error, setErrorLogin] = useState("")
 
 
@@ -86,13 +81,15 @@ const Signup = (props) => {
 
     authService
       .signup(username, password, email, address, age, tmp, avatar)
-      .then(({user}) => {
+      .then((user) => {
+        props.storeUser(user.data.user);
+        console.log(user)
         props.history.push("/");
-        props.loggedUser = {user}
       })
       .catch((err) =>{
         setErrorLogin(err.response.data.message)
         setTimeout(() => setErrorLogin(undefined),2500)
+        console.log(err)
       });
 
     clearState();
@@ -120,7 +117,7 @@ const Signup = (props) => {
         <Col xs={6} sm={8} lg={6}>
           <Row>
             <Form.Group className="mb-3 text-center" controlId="avatar">
-              <img alt="default avatar" src={avatar} />
+              <img className="signup__avatar rounded-circle" alt="default avatar" src={avatar} />
               <Form.Label className="btn btn-outline-success rounded-pill">
                 Change picture
               </Form.Label>
@@ -240,7 +237,7 @@ const Signup = (props) => {
           </Form>
         </Col>
       </Row>
-{error && <p id="errorMessage">{error}</p>}
+      {error && <p id="errorMessage">{error}</p>}
     </Container>
   );
 };

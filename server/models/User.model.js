@@ -57,16 +57,14 @@ const userSchema = new Schema(
       type: String,
       required: true,
       default:
-        "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-man-default-avatar-png-image_2813122.jpg",
+        "https://res.cloudinary.com/dubhsyrde/image/upload/v1633536992/orl5czm2lgcz9a2fzkhu.svg",
     },
 
-    cart: 
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Cart",
-        required: true,
-      },
-    
+    cart: {
+      type: Schema.Types.ObjectId,
+      ref: "Cart",
+      required: true,
+    },
 
     // favouritePlants: [
     //   {
