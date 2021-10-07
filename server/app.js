@@ -8,7 +8,6 @@ const app = express();
 require("./config")(app);
 require("./config/session.config")(app)
 
-app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.locals.title = "PlantB";
 

@@ -23,7 +23,7 @@ module.exports = (app) => {
   app.use(
     cors({
       credentials: true,
-      origin: process.env.ORIGIN 
+      origin: process.env.ORIGIN,
     })
   );
 
@@ -34,4 +34,6 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+
+  app.use(express.static(path.join(__dirname, "..", "public")));
 };
