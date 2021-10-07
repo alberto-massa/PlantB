@@ -8,14 +8,14 @@ const app = express();
 require("./config")(app);
 require("./config/session.config")(app)
 
+app.use(express.static(path.join(__dirname, "..", "public")));
+
 app.locals.title = "PlantB";
 
 const allRoutes = require("./routes");
 app.use("/api", allRoutes);
 
-require("./error-handling")(app);
 
-app.use(express.static(path.join(__dirname, "..", "public")));
 app.use((req, res) => res.sendFile(__dirname + "/public/index.html"));
 
 
