@@ -66,6 +66,12 @@ const plantSchema = new Schema({
     required: true,
     default: 0,
   },
+
+  delivery: {
+    type: Number,
+    required: true,
+    default: 3,
+  }
 });
 
 const Plant = model("Plant", plantSchema);
