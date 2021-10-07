@@ -22,8 +22,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "REACT_APP_BASE_URL=http://localhost:5000/api react-scripts start",
-    "build": "REACT_APP_BASE_URL=https://plantb.herokuapp.com/api react-scripts build",
+    "start": "REACT_APP_API_URL=http://localhost:5000/api react-scripts start",
+    "build": "REACT_APP_API_URL=https://plantb.herokuapp.com/api react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
