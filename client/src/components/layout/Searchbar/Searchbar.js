@@ -8,8 +8,6 @@ const Searchbar = (props) => {
   const { changeToggle } = props
   const { toggle } = props
 
-  console.log(toggle)
-
   const handleChange = (e) => {
     const { value } = e.target;
     setSearchValue(value);

@@ -18,11 +18,12 @@
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "react-social-icons": "^5.6.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "cross-env REACT_APP_BASE_URL=http://localhost:5000/api react-scripts start",
-    "build": "cross-env REACT_APP_BASE_URL=https://plantb.herokuapp.com/api react-scripts build",
+    "start": "cross-env REACT_APP_API_URL=http://localhost:5005/api react-scripts start",
+    "build": "cross-env REACT_APP_API_URL=https://plantb.herokuapp.com/api react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

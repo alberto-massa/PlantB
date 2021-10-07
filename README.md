@@ -1,4 +1,4 @@
-  <h1 align="center">Welcome to  <strong>PlantB</strong> :seedling: </h1>
+<h1 align="center">Welcome to  <strong>PlantB</strong> :seedling: </h1>
 
 <p align="center">
   
@@ -17,18 +17,23 @@
    <a href="https://www.mongodb.com/cloud/atlas/lp/try2?      utm_content=controlhterms&utm_source=google&utm_campaign=gs_emea_spain_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624563&gclid=Cj0KCQjw18WKBhCUARIsAFiW7JxndhZMH08YpjdWksOmVSblF1hcLt_cuvK3eh0iqYsNPzGz6oTJRCgaAhE3EALw_wcB">
      <img src="https://img.shields.io/badge/MongoDB-5.0.2-brightgreen" />
    </a>
+
    <a href="https://nodejs.org/en/">
      <img src="https://img.shields.io/badge/Node.js-v14.17.4-brightgreen" />
    </a>
+
    <a href="https://expressjs.com/">
      <img src="https://img.shields.io/badge/Express-4.17.1-brightgreen" />
    </a>
+
    <a href="https://es.reactjs.org/">
     <img alt="React" src="https://img.shields.io/badge/React-v1.6.4-brightgreen" target="_blank" />
    </a>
+
    <a href="https://getbootstrap.com/">
     <img src="https://img.shields.io/badge/Bootstrap-v5.1.1-brightgreen" />
    </a>
+   
    <a href="https://react-bootstrap.github.io/">
     <img src="https://img.shields.io/badge/React%20Bootstrap-v2.0.0-brightgreen">
    </a>

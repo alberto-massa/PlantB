@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import homepage_image from "./../../../homepage_plant.png"
 import about_image from "./../../../about_us_image.png";
 import "./Home.css"
+import Footer from "./../../pages/Footer/Footer"
 
 const Home = () => {
 
@@ -20,7 +21,7 @@ const Home = () => {
                 perfect for your home and your work space, too.
               </p>
               <Link to={"/plants"}>
-                <button className="homepage__btn">Check our plants</button>
+                <button className="homepage__btn">Check the latest plants</button>
               </Link>
             </Col>
             <Col xs={12} md={12} lg={5}>
@@ -42,14 +43,15 @@ const Home = () => {
               <h2>About us</h2>
               <p>
                 <del>We are 2 junior web developers doing a project--</del> We
-                love plants, and wanted to make accessible to the whole
-                community.
+                love plants, and we wanted to make them accessible to everyone, as easy as possible, so we created this community.
               </p>
             </Col>
 
             <Col xs={false} md={false} lg={1} />
           </Row>
         </Container>
+
+        <Footer/>
       </>
     );
 }

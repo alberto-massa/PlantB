@@ -17,6 +17,7 @@ const PlantForm = (props) => {
   const [temperature, setTemperature] = useState(0);
   const [watering, setWatering] = useState("");
   const [price, setPrice] = useState(0);
+  const [delivery, setDelivery] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("")
 
@@ -31,6 +32,7 @@ const PlantForm = (props) => {
     setTemperature(0);
     setWatering("");
     setPrice(0);
+    setDelivery(3);
   };
 
   const handleChange = (e) => {
@@ -74,6 +76,9 @@ const PlantForm = (props) => {
       case "watering":
         setWatering(value);
         break;
+      case "delivery":
+        setDelivery(value);
+        break;
       default:
     }
   };
@@ -88,6 +93,7 @@ const PlantForm = (props) => {
         description: { size, type, toxic, location, temperature, watering },
         sellerId: props.loggedUser,
         price,
+        delivery,
       })
       .then(() => {
         clearState();
@@ -245,6 +251,17 @@ const PlantForm = (props) => {
             placeholder="Price"
           />
           €
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="delivery">
+          <Form.Label>Delivery time (days)*: </Form.Label>
+          <Form.Control
+            onChange={(e) => handleChange(e)}
+            name="delivery"
+            value={delivery}
+            type="number"
+            placeholder="Indicate an average of days"
+          />
         </Form.Group>
 
         {isLoading && <Spinner animtion="border" variant="success" />}

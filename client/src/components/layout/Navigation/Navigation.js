@@ -33,15 +33,13 @@ const Navigation = (props) => {
     const filteredPlants = plantsList.filter((plant) =>
       plant.name.toLowerCase().includes(searchValue.toLowerCase())
     );
-  
+
     setPlants(filteredPlants);
   };
 
   const changeToggle = (toggle) => {
-
-    toggle && setToggle(false)
-  }
-    
+    toggle && setToggle(false);
+  };
 
   return (
     <Navbar
@@ -61,9 +59,8 @@ const Navigation = (props) => {
               className="d-inline mx-2 "
               autoclose="inside"
               show={toggle}
-              onBlur={e => e.target.value = "" }
+              onBlur={(e) => (e.target.value = "")}
               onToggle={(isOpen, e, metadata) => {
-                console.log(e);
                 if (plants.length === 0) setToggle(false);
                 else if (isOpen) setToggle(isOpen);
                 else if (e.target.type !== "button") setToggle(isOpen);
@@ -73,7 +70,11 @@ const Navigation = (props) => {
                 className="navbar__toggle"
                 id="dropdown-autoclose-inside"
               >
-                <Searchbar toggle={toggle} changeToggle={() => changeToggle} displayPlants={displayPlants} />
+                <Searchbar
+                  toggle={toggle}
+                  changeToggle={changeToggle}
+                  displayPlants={displayPlants}
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown__menu">
                 {plants.length > 0 &&
