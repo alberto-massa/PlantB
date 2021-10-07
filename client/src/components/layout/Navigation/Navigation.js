@@ -66,11 +66,6 @@ const Navigation = (props) => {
                 else if (e.target.type !== "button") setToggle(isOpen);
               }}
             >
-              <Searchbar
-                toggle={toggle}
-                changeToggle={changeToggle}
-                displayPlants={displayPlants}
-              />
               <Dropdown.Toggle
                 className="navbar__toggle"
                 id="dropdown-autoclose-inside"
