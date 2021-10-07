@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MessageService from "../../../services/message.service";
 import { Button, Form } from "react-bootstrap";
-import UserService from "../../../services/user.service"
 import "../../../App.css"
 
 

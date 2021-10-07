@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import AuthService from "../../../../services/auth.service";
-import "./LoggedUser.css"
+import "./LoggedUser.css";
 
 const LoggedUser = (props) => {
-
   const authService = new AuthService();
 
   const logout = () => {
     authService
-        .logout()
-        .then(() => props.storeUser(null))
-        .catch((err) => console.log(err));
+      .logout()
+      .then(() => props.storeUser(undefined))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -53,18 +52,38 @@ const LoggedUser = (props) => {
       </NavDropdown>
 
       <div className="navbar__collapsed">
-        <NavDropdown.Divider /> 
-        <Nav.Link className="navbar__collapsed__text" as={Link} to={`/${props.loggedUser.username}`}>My profile</Nav.Link>
         <NavDropdown.Divider />
-        <Nav.Link className="navbar__collapsed__text" as={Link} to={`/message-list/${props.loggedUser._id}`}>Messages</Nav.Link>
+        <Nav.Link
+          className="navbar__collapsed__text"
+          as={Link}
+          to={`/${props.loggedUser.username}`}
+        >
+          My profile
+        </Nav.Link>
         <NavDropdown.Divider />
-        <Nav.Link className="navbar__collapsed__text" as={Link} to="/new-plant">Sell a plant</Nav.Link>
+        <Nav.Link
+          className="navbar__collapsed__text"
+          as={Link}
+          to={`/message-list/${props.loggedUser._id}`}
+        >
+          Messages
+        </Nav.Link>
         <NavDropdown.Divider />
-        <Nav.Link className="navbar__collapsed__text" as={Link} to="/" onClick={logout}>Logout</Nav.Link>
+        <Nav.Link className="navbar__collapsed__text" as={Link} to="/new-plant">
+          Sell a plant
+        </Nav.Link>
+        <NavDropdown.Divider />
+        <Nav.Link
+          className="navbar__collapsed__text"
+          as={Link}
+          to="/"
+          onClick={logout}
+        >
+          Logout
+        </Nav.Link>
       </div>
     </>
   );
+};
 
-}
-
-export default LoggedUser
+export default LoggedUser;

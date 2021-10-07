@@ -49,68 +49,108 @@ const PlantDetails = (props) => {
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroupItem>Price:{plantsDetails.price}</ListGroupItem>
-              <ListGroupItem>
-                Size: {plantsDetails.description.size}
-              </ListGroupItem>
-              <ListGroupItem>
-                Type: {plantsDetails.description.type}
-              </ListGroupItem>
-              <ListGroupItem>
-                Toxic: {plantsDetails.description.toxic}
-              </ListGroupItem>
-              <ListGroupItem>
-                Temperature: {plantsDetails.description.temperature}
-              </ListGroupItem>
-              <ListGroupItem>
-                Watering: {plantsDetails.description.watering}
-              </ListGroupItem>
-
+              {plantsDetails.sellerId.address && (
+                <>
+                  <ListGroupItem>
+                    City: {plantsDetails.sellerId.address.split(",")}
+                  </ListGroupItem>
+                </>
+              )}
+              {plantsDetails.description.size && (
+                <>
+                  <ListGroupItem>
+                    Size: {plantsDetails.description.size}
+                  </ListGroupItem>
+                </>
+              )}
+              {plantsDetails.description.type && (
+                <>
+                  <ListGroupItem>
+                    Type: {plantsDetails.description.type}
+                  </ListGroupItem>
+                </>
+              )}
+              {plantsDetails.description.toxic && (
+                <>
+                  <ListGroupItem>
+                    Toxic: {plantsDetails.description.toxic}
+                  </ListGroupItem>
+                </>
+              )}
+              {plantsDetails.description.temperature && (
+                <>
+                  <ListGroupItem>
+                    Temperature: {plantsDetails.description.temperature}
+                  </ListGroupItem>
+                </>
+              )}
+              {plantsDetails.description.watering && (
+                <>
+                  <ListGroupItem>
+                    Watering: {plantsDetails.description.watering}
+                  </ListGroupItem>
+                </>
+              )}
+              {plantsDetails.delivery && (
+                <>
+                  <ListGroupItem>
+                    Delivery time: {plantsDetails.delivery} days~
+                  </ListGroupItem>
+                </>
+              )}
               <div>
                 <>
-                  {props.loggedUser?.role === "Admin" && <RemoveItem id={id} {...props} />}
+                  {props.loggedUser?.role === "Admin" && (
+                    <RemoveItem id={id} {...props} />
+                  )}
                 </>
               </div>
 
               <div>
                 <>
-                  {props.loggedUser?._id === plantsDetails.sellerId._id &&
-                   
-                   <Container>
-                        <RemoveItem sellerDetails={plantsDetails.sellerId} {...props} />
-                        <Link className="btn bg-success" to={`/edit-plant/${id}`}>
-                            Edit plant
-                        </Link>
-                    </Container>}
+                  {props.loggedUser?._id === plantsDetails.sellerId._id && (
+                    <Container>
+                      <RemoveItem
+                        sellerDetails={plantsDetails.sellerId}
+                        {...props}
+                      />
+                      <Link className="btn bg-success" to={`/edit-plant/${id}`}>
+                        Edit plant
+                      </Link>
+                    </Container>
+                  )}
                 </>
               </div>
 
-                    {props.loggedUser ? (
-
-                      <h2> Hello {props.loggedUser.username} </h2>
-                    ) : (
-                      <div>
-                        <>
-                          <p><Link to="/login">Login</Link> in order to see our seller</p>
-                        </>
-                      </div>
-                        )
-                    }
+              {props.loggedUser ? (
+                <h2> Hello {props.loggedUser.username} </h2>
+              ) : (
+                <div>
+                  <>
+                    <p>
+                      <Link to="/login">Login</Link> in order to see our seller
+                    </p>
+                  </>
+                </div>
+              )}
               <>
-                {props.loggedUser && props.loggedUser?.username !== plantsDetails.sellerId.username &&
-                  <div>
-                    <hr />
+                {props.loggedUser &&
+                  props.loggedUser?.username !==
+                    plantsDetails.sellerId.username && (
+                    <div>
+                      <hr />
 
-                    <Card.Img
-                      variant="top"
-                      src={plantsDetails.sellerId?.avatar}
-                    />
-                    <ListGroupItem>
-                      <h3>Name: {plantsDetails.sellerId?.username}</h3>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <h4>Role: {plantsDetails.sellerId?.role}</h4>
-                    </ListGroupItem>
-                    {/* <ListGroupItem>
+                      <Card.Img
+                        variant="top"
+                        src={plantsDetails.sellerId?.avatar}
+                      />
+                      <ListGroupItem>
+                        <h3>Name: {plantsDetails.sellerId?.username}</h3>
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        <h4>Role: {plantsDetails.sellerId?.role}</h4>
+                      </ListGroupItem>
+                      {/* <ListGroupItem>
                       Plantb user since:{" "}
                       {formatDate(plantsDetails.sellerId?.createdAt)}
                     </ListGroupItem>
@@ -120,14 +160,17 @@ const PlantDetails = (props) => {
                     <ListGroupItem>
                       Email: {plantsDetails.sellerId?.email}
                     </ListGroupItem> */}
-                    <Card.Body>
-                    <MessageForm {...props} seller={plantsDetails.sellerId} />
-                    <Card.Link href="#">Another Link</Card.Link>
-                  </Card.Body>
-                  </div>
-                }
+                      <Card.Body>
+                        <MessageForm
+                          {...props}
+                          seller={plantsDetails.sellerId}
+                        />
+                        <Card.Link href="#">Another Link</Card.Link>
+                      </Card.Body>
+                    </div>
+                  )}
               </>
-            </ListGroup>         
+            </ListGroup>
           </Card>
         </div>
       ) : (

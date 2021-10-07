@@ -11,7 +11,6 @@ import CartService from "../../../services/cart.service";
 const PlantsList = (props) => {
   
      const plantService = new PlantService();
-     const userService = new UserService();
      const cartService = new CartService();
 
      const [plantsList, setPlantsList] = useState([]);
@@ -35,35 +34,14 @@ const PlantsList = (props) => {
     }, [props.loggedUser])
     
     
-    const addToCart = (plant) => {
-      // userService
-      //       .getUser(user)
-      //       .then((users) => {
-      //         // console.log(user);
-      //         console.log(users)
-      //         })
-      //       
+    const addToCart = (plant) => {   
 
       cartService
           .editCart({id: user.cart, items: plant })
           .then(res => {
-
-              console.log("esto es res",res)
-
+              console.log(res)
           })
           .catch((err) => console.log(err));
-
-      // plantService
-      //       .getPlant(plant)
-      //       .then(plant =>{
-
-      //         console.log("esto es plant",plant.data.plant._id)
-
-      //       })
-      //       .catch(err => console.log(err))
-
-      
-
     };
 
     return (
