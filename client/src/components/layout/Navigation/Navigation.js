@@ -63,7 +63,6 @@ const Navigation = (props) => {
               show={toggle}
               onBlur={e => e.target.value = "" }
               onToggle={(isOpen, e, metadata) => {
-                console.log(e);
                 if (plants.length === 0) setToggle(false);
                 else if (isOpen) setToggle(isOpen);
                 else if (e.target.type !== "button") setToggle(isOpen);

@@ -33,8 +33,8 @@ const Login = (props) => {
   };
 
   return (
-    <Container>
-      <Row className="mt-3 d-flex justify-content-center">
+    <Container className="login">
+      <Row className="mt-5 d-flex justify-content-center">
         <Col xs={8} sm={8} lg={6}>
           <Form className="container" onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="username">

@@ -92,7 +92,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/isloggedin", (req, res) => {
-  req.session.currentUser
+    req.session.currentUser
     ? res.json(req.session.currentUser)
     : res.status(401).json({ code: 401, message: "Unauthorized" });
 });

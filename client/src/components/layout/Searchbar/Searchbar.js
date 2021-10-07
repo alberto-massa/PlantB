@@ -8,8 +8,6 @@ const Searchbar = (props) => {
   const { changeToggle } = props
   let { toggle } = props
 
-  console.log(toggle)
-
   const handleChange = (e) => {
     const { value } = e.target;
     setSearchValue(value);
@@ -17,7 +15,7 @@ const Searchbar = (props) => {
     setTimeout(() => {
       clearState(searchValue);
       changeToggle(toggle)
-    }, 3000);
+    }, 5000);
     
   };
   const clearState = (searchValue) => {

@@ -24,7 +24,11 @@
 }
 
 .about img {
-    width: 100%;
+    width: 80%;
+}
+
+.about p {
+    font-size: 1.3rem;
 }
 
 
@@ -40,6 +44,11 @@
         display: flex;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 3vh;
+    }
+
+    .about img {
+        display: none;
     }
 }
 
@@ -55,6 +64,15 @@
         display: flex;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 3vh;
+    }
+
+    .about img {
+        display: none;
+    }
+
+    .about h2, .about p {
+        text-align: center;
     }
 }
 

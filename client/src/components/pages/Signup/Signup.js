@@ -195,7 +195,7 @@ const Signup = (props) => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="role">
-              <Form.Label>Are you a company?</Form.Label>
+              <Form.Label>Are you a local store / company?</Form.Label>
               <div key={`inline-radio`}>
                 <Form.Check
                   inline
