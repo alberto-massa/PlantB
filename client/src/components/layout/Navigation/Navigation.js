@@ -90,6 +90,13 @@ const Navigation = (props) => {
             {props.loggedUser ? <LoggedUser {...props} /> : <NotLoggedUser />}
           </Nav>
         </Navbar.Collapse>
+        <Nav.Link className="cart" as={Link} to={`/cart`}>
+          <img
+            width="30px"
+            src="https://screenshots.imgix.net/mui-org/material-ui-icons/shopping-cart/~v=3.9.2/0690bb7e-2cd6-4508-b947-a74f34012f94.png?ixlib=js-1.2.0&s=84859c3ed47f9e704304b8e85ed0d992&w=300&h=200&fit=fillmax&fm=webp"
+            alt="cart icon"
+          />
+        </Nav.Link>
       </Container>
     </Navbar>
   );

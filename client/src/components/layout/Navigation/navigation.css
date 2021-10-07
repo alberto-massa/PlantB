@@ -39,3 +39,7 @@
 /* .navbar__toggle {
     display: none;
 } */
+
+.cart{
+    background-color: rgba(51, 169, 141, 0.9);
+}

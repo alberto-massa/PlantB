@@ -1,44 +1,47 @@
-import './Cart.css'
-import CartItem from './../CartItem/CartItem'
-import CartService from "../../../services/cart.service"
-import { useEffect, useState } from 'react'
+import "./Cart.css";
+import CartItem from "./../CartItem/CartItem";
+import CartService from "../../../services/cart.service";
+import { useEffect, useState } from "react";
+
+const cartService = new CartService();
 
 const Cart = (props) => {
-
-  const cartService = new CartService() 
-  const { cart } = props.loggedUser
-  const [userCart, setCart] = useState(undefined)
+  // console.log(props.loggedUser._id)
+  // console.log(cart)
+  const [userCart, setCart] = useState(undefined);
+  const [id, setId] = useState("props");
+  console.log("eso es el ID --------", id);
+  console.log(userCart);
 
   useEffect(() => {
-    cartService
-      .getCart(cart)
-      .then(cartFound =>{
-        setCart(cartFound.data)
-        console.log(cartFound.data)
-      })
-  }, [props])
+    setId(props.loggedUser.cart);
+  }, [props.loggedUser]);
 
+  useEffect(() => {
+    cartService.getCart(id).then((cartFound) => {
+      setCart(cartFound.data);
+      console.log(cartFound.data);
+    });
+  }, [id]);
 
-    return (
+  return (
+    <div className="cart">
+      <div className="cart__left">
+        <h2>Shopping cart</h2>
 
-          <div className="cart">
-        <div className="cart__left">
-          <h2>Shopping cart</h2>
-
-          <CartItem userCart={userCart} />
+        <CartItem userCart={userCart} />
+      </div>
+      <div className="cart__right">
+        <div className="cart__info">
+          <p>Subtotal {userCart?.items.length} items</p>
+          {/* <p>{userCart.items[0].price}</p> */}
         </div>
-        <div className="cart__right">
-          <div className="cart__info">
-            <p>Subtotal 0 items</p>
-            {/* <p>{userCart.items[0].price}</p> */}
-          </div>
-          <div>
-              <button>Proceed to checkout</button>
-          </div>
+        <div>
+          <button>Proceed to checkout</button>
         </div>
       </div>
-    )
-}
+    </div>
+  );
+};
 
-export default Cart
-
+export default Cart;

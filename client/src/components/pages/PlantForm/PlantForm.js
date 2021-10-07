@@ -156,17 +156,6 @@ const PlantForm = (props) => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="type">
-          <Form.Label>Type*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="type"
-            value={type}
-            type="text"
-            placeholder="Plant's type"
-          />
-        </Form.Group>
-
         <Form.Group className="mb-3" controlId="toxic">
           <Form.Label>Is it toxic for animals?*</Form.Label>
           {["radio"].map((type) => (
@@ -219,27 +208,53 @@ const PlantForm = (props) => {
           ))}
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="temperature">
-          <Form.Label>Temperature*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="temperature"
-            value={temperature}
-            type="number"
-            placeholder="Temperature"
-          />
-        </Form.Group>
+        {props.loggedUser.role === "Shop" && (
+          <>
+            <Form.Group className="mb-3" controlId="type">
+              <Form.Label>Type*: </Form.Label>
+              <Form.Control
+                onChange={(e) => handleChange(e)}
+                name="type"
+                value={type}
+                type="text"
+                placeholder="Plant's type"
+              />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="watering">
-          <Form.Label>Watering*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="watering"
-            value={watering}
-            type="text"
-            placeholder="Watering"
-          />
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="temperature">
+              <Form.Label>Temperature*: </Form.Label>
+              <Form.Control
+                onChange={(e) => handleChange(e)}
+                name="temperature"
+                value={temperature}
+                type="number"
+                placeholder="Temperature"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="watering">
+              <Form.Label>Watering*: </Form.Label>
+              <Form.Control
+                onChange={(e) => handleChange(e)}
+                name="watering"
+                value={watering}
+                type="text"
+                placeholder="Watering"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="delivery">
+              <Form.Label>Delivery time (days)*: </Form.Label>
+              <Form.Control
+                onChange={(e) => handleChange(e)}
+                name="delivery"
+                value={delivery}
+                type="number"
+                placeholder="Indicate an average of days"
+              />
+            </Form.Group>
+          </>
+        )}
 
         <Form.Group className="mb-3" controlId="price">
           <Form.Label>Price*: </Form.Label>
@@ -251,17 +266,6 @@ const PlantForm = (props) => {
             placeholder="Price"
           />
           €
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="delivery">
-          <Form.Label>Delivery time (days)*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="delivery"
-            value={delivery}
-            type="number"
-            placeholder="Indicate an average of days"
-          />
         </Form.Group>
 
         {isLoading && <Spinner animtion="border" variant="success" />}

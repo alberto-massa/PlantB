@@ -11,6 +11,8 @@ const App = () => {
   const storeUser = (user) => setLoggedUser(user);
 
   useEffect(() => {
+    if (loggedUser !== undefined) return;
+    
     const fetchUser = () => {
       authService
         .isloggedin()
@@ -19,7 +21,7 @@ const App = () => {
     };
     fetchUser();
   }, [loggedUser]);
-  
+
   return (
     <>
       <Navigation loggedUser={loggedUser} storeUser={storeUser} />
@@ -28,8 +30,7 @@ const App = () => {
         <Routes storeUser={storeUser} loggedUser={loggedUser} />
       ) : (
         <p>Loading...</p>
-      )}  
-      
+      )}
     </>
   );
 };

@@ -1,9 +1,7 @@
 module.exports = {
-        
-    
-    formatDate: date => {
+  formatDate: date => {
 
-      let dateF = new Date(date)
+    let dateF = new Date(date)
 
     let month = '' + (dateF.getMonth() + 1)
     let day = '' + dateF.getDate()
@@ -30,5 +28,4 @@ module.exports = {
 
     return [year, month, day].join('-')
   }
-
 }
