@@ -73,7 +73,7 @@ const Navigation = (props) => {
                 className="navbar__toggle"
                 id="dropdown-autoclose-inside"
               >
-                <Searchbar toggle={toggle} changeToggle={changeToggle} displayPlants={displayPlants} />
+                <Searchbar toggle={toggle} changeToggle={() => changeToggle} displayPlants={displayPlants} />
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown__menu">
                 {plants.length > 0 &&

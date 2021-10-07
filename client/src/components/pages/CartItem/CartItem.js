@@ -7,7 +7,8 @@ const CartItem = (props) => {
   console.log(userCart)
   
     return (
-     userCart?.items.map(el =>{
+      <>
+     {/* {userCart?.items.map(el =>{
        return(
         <div className="cart">
         <div className="cartitem__image"><img src={el.image} alt="User " /></div>
@@ -15,10 +16,10 @@ const CartItem = (props) => {
         <Link to={`/product/${111}`} className="cartitem__name">
           <p>{el.name}</p>
         </Link>
-        <p className="cartitem__price">{el.description.size}</p>
-        <p className="cartitem__price">{el.description.type}</p>
-        <p className="cartitem__price">{el.description.temperature}</p>
-        <p className="cartitem__price">{el.description.watering}</p>
+        <p className="cartitem__price">Size: {el.description.size}</p>
+        <p className="cartitem__price">Type: {el.description.type}</p>
+        <p className="cartitem__price">temperature: {el.description.temperature}</p>
+        <p className="cartitem__price">watering: {el.description.watering}</p>
         
         <select className="cartitem__select">
           <option value="1"></option>
@@ -32,8 +33,9 @@ const CartItem = (props) => {
         </button>
       </div>
        )
-     })
-    );
+     })} */}
+     </>
+    )
 }
 
 export default CartItem

@@ -27,11 +27,11 @@ const PlantDetails = (props) => {
   };
 
   useEffect(() => {
-    getOnePlant(id);
+     getOnePlant(id);
   }, []); 
 
   useEffect(() => {
-    getOnePlant(id);
+    plantsDetails || getOnePlant(id);
   }, [props]);
 
   return (
