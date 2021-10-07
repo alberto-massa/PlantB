@@ -1,5 +1,3 @@
-//check week8_day1 teo's notes
-
 const cloudinary = require("cloudinary").v2
 const { CloudinaryStorage } = require('multer-storage-cloudinary')
 const multer = require('multer')
