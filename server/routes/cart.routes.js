@@ -7,13 +7,13 @@ const { isLoggedIn } = require("./../middleware/index.js")
 router.get("/:id", isLoggedIn , (req, res) => {
     const {id} = req.params
 
-    Plant
+    Cart
         .findById(id)
-        .populate("sellerId")
+        .populate("items")
         .then((plant) => res.status(200).json(plant))
         .catch((err) => res.status(500).json({
             code: 500,
-            message: "Error retrieving Plant",
+            message: "Error retrieving cart",
             err
         }));
 })

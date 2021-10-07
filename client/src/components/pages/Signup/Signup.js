@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Spinner, Row, Col } from "react-bootstrap";
 import UploadService from "./../../../services/upload.service";
 import "./Signup.css"
+import "../../../App.css"
 import Autocomplete from "react-google-autocomplete";
 
 const { formatSignDate } = require("../../../utils/index");
