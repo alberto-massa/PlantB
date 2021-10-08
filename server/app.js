@@ -1,5 +1,5 @@
 require("dotenv/config");
-
+//const path = require ("path")
 require("./db");
 
 const express = require("express");
@@ -10,6 +10,7 @@ require("./config/session.config")(app)
 
 
 app.locals.title = "PlantB";
+
 
 const allRoutes = require("./routes");
 app.use("/api", allRoutes);

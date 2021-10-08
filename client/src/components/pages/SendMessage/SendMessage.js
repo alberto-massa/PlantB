@@ -70,10 +70,10 @@ const SendMessage = ({seller, loggedUser}) => {
       .createMessage({ content, subject, authorId, receiverId })
       .then((res) => {
         clearState();
-        setTimeout(() => setSuccess(undefined),2500)
+        //setTimeout(() => setSuccess(undefined),2500)
       })
       .catch((err) => {
-        setTimeout(() => setError(undefined),2500)
+       // setTimeout(() => setError(undefined),2500)
         console.log(err)
       });
   };
