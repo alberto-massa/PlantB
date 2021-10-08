@@ -44,9 +44,9 @@ const Cart = (props) => {
           <p>{totalPrice(userCart)}</p>
         </div>
         <div>
-          <Link to={`/checkout/${userCart?._id}`}>
-            <button>Proceed to checkout</button>
-          </Link>
+        <Link to={`/checkout/${userCart?._id}`}>
+          <button>Proceed to checkout</button>
+        </Link>
         </div>
       </div>
     </div>
