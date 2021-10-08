@@ -5,6 +5,7 @@ const { isLoggedIn, checkRoles } = require("./../middleware/index.js")
 
 router.get("/", (req, res) => {
   Plant.find()
+    .populate("sellerId")
     .then(plants => res.status(200).json(plants))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Shops", err }))
 })
