@@ -53,11 +53,7 @@ const Signup = (props) => {
       case "email":
         setEmail(value);
         break;
-
-      case "address":
-        setAddress(value);
-        break;
-
+        
       case "age":
         setAge(value);
         break;
@@ -173,12 +169,15 @@ const Signup = (props) => {
                 className="form-control rounded-pill"
                 apiKey={process.env.REACT_APP_API_KEY_MAPS}
                 language="en"
+                name="address"
                 options={{
                   types: ["address"],
                   fields: ["(formatted_address)"],
                   componentRestrictions: { country: "es" },
                 }}
-                onChange={(e) => handleChange(e)
+                onPlaceSelected={(place) => {
+                    setAddress(place.name)}
+                // onChange={(e) => handleChange(e)
                 }
               />
             </Form.Group>

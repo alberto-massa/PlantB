@@ -1,10 +1,9 @@
 import "./PlantsList.css"
 import PlantService from "../../../services/plant.service";
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import UserService from "../../../services/user.service";
 import CartService from "../../../services/cart.service";
 
 

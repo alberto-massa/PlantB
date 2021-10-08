@@ -21,13 +21,13 @@ const CartItem = ({ userCart, history }) => {
   }, [userCart])
 
   const removeItem = (userCart, id ) => {
-console.log(id)
+    console.log(id)
 
     cartService
         .removeItem(userCart, id)
         .then(res => {
-          history.push("/plants")
           console.log("element just drop off the cart.", res)
+          history.push("/plants")
         })
         .catch(err => console.log(err))
   }
@@ -44,36 +44,36 @@ console.log(id)
           <p>{el.name}</p>
         </Link>
         {el.description.type && (
-                <>
-                  <ListGroupItem>
-                    Type: {el.description.type}
-                  </ListGroupItem>
-                </>
-              )}
-              {el.description.size && (
-                <>
-                  <ListGroupItem>
-                    Size: {el.description.size}
-                  </ListGroupItem>
-                </>
-              )}
-              {el.description.temperature && (
-                <>
-                  <ListGroupItem>
-                    Temperature: {el.description.temperature}
-                  </ListGroupItem>
-                </>
-              )}
-              {el.description.watering && (
-                <>
-                  <ListGroupItem>
-                    Watering: {el.description.watering}
-                  </ListGroupItem>
-                </>
-                
-              )}
-              <button onClick={ () => removeItem(userCart._id, el._id) }>
-            <i className="fas fa-trash">Remove Item from your cart.</i>
+          <>
+            <ListGroupItem>
+              Type: {el.description.type}
+            </ListGroupItem>
+          </>
+        )}
+        {el.description.size && (
+          <>
+            <ListGroupItem>
+              Size: {el.description.size}
+            </ListGroupItem>
+          </>
+        )}
+        {el.description.temperature && (
+          <>
+            <ListGroupItem>
+              Temperature: {el.description.temperature}
+            </ListGroupItem>
+          </>
+        )}
+        {el.description.watering && (
+          <>
+            <ListGroupItem>
+              Watering: {el.description.watering}
+            </ListGroupItem>
+          </>
+          
+        )}
+        <button onClick={ () => removeItem(userCart._id, el._id) }>
+            <i className="fas fa-trash">Remove Item </i>
         </button>
         
       </div>

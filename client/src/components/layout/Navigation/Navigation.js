@@ -116,7 +116,6 @@ const Navigation = (props) => {
                   &nbsp; &#40; {total} &#41;
                 </p>
               </Navbar.Brand>
-{/*  &nbsp; &#40; {total} &#41; */}
               <Nav.Link
                 className="navbar__cart__collapsed"
                 as={Link}
@@ -132,10 +131,6 @@ const Navigation = (props) => {
           ) : (
             <NotLoggedUser />
           )}
-
-          {/* <Nav>
-            {props.loggedUser ? <LoggedUser {...props} /> : <NotLoggedUser />}
-          </Nav> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

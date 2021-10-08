@@ -29,10 +29,10 @@ const userSchema = new Schema(
       trim: true,
     },
 
-    // address: {
-    //   type: String,
-    //   minlength: 1,
-    // },
+    address: {
+      type: String,
+      minlength: 1,
+    },
 
     age: {
       type: Date,

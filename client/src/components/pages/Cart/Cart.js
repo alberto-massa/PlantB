@@ -9,34 +9,28 @@ const cartService = new CartService();
 const Cart = (props) => {
   const [userCart, setCart] = useState(undefined);
   const [id, setId] = useState("props");
-  console.log(userCart)
-  
+  console.log(userCart);
+
   useEffect(() => {
     setId(props.loggedUser.cart);
   }, [props.loggedUser]);
-  
+
   useEffect(() => {
     cartService.getCart(id).then((cartFound) => {
       setCart(cartFound.data);
-     
     });
   }, [id]);
 
   const totalPrice = (userCart) => {
-      
-       let price = userCart?.items.reduce(((a,b) => a + b.price),0)
-    
-    return (
-      <p>{price}&#8364;</p>
-    )
-  } 
+    let price = userCart?.items.reduce((a, b) => a + b.price, 0);
+
+    return <p>{price}&#8364;</p>;
+  };
 
   useEffect(() => {
-    
-    totalPrice(userCart)
-  }, [])
+    totalPrice(userCart);
+  }, []);
 
-  
   return (
     <div className="cart">
       <div className="cart__left">
@@ -47,13 +41,12 @@ const Cart = (props) => {
       <div className="cart__right">
         <div className="cart__info">
           <p>Subtotal {userCart?.items.length} items</p>
-          <p>{totalPrice(userCart)}</p> 
-    
+          <p>{totalPrice(userCart)}</p>
         </div>
         <div>
-        <Link to={`/checkout/${userCart._id}`}>
-          <button>Proceed to checkout</button>
-        </Link>
+          <Link to={`/checkout/${userCart?._id}`}>
+            <button>Proceed to checkout</button>
+          </Link>
         </div>
       </div>
     </div>

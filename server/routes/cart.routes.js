@@ -45,7 +45,7 @@ router.put("/delete/:id", isLoggedIn, (req, res) => {
   const { plantId } = req.body
   console.log(plantId)
 
-  Cart.findByIdAndUpdate(id, { $pull: { items:plantId }}, {new:true})
+  Cart.findByIdAndUpdate(id, { $pull: { items: plantId }}, {new:true})
     .then((cart) => res.status(200).json({ cart, message: "Cart edited" })) 
     .catch((err) =>
       res.status(500).json({ code: 500, message: "Error editing", err })
