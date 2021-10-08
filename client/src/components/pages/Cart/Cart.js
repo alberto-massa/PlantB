@@ -51,7 +51,7 @@ const Cart = (props) => {
     
         </div>
         <div>
-        <Link to={`/checkout/${userCart._id}`}>
+        <Link to={`/checkout/${userCart?._id}`}>
           <button>Proceed to checkout</button>
         </Link>
         </div>

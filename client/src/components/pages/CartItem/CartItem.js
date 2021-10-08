@@ -21,7 +21,7 @@ const CartItem = ({ userCart, history }) => {
   }, [userCart])
 
   const removeItem = (userCart, id ) => {
-console.log(id)
+    console.log(id)
 
     cartService
         .removeItem(userCart, id)
