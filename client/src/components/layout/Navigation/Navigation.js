@@ -4,27 +4,37 @@ import Searchbar from "../Searchbar/Searchbar";
 import React, { useState, useEffect } from "react";
 import NotLoggedUser from "./NotLoggedUser/NotLoggedUser";
 import PlantService from "../../../services/plant.service";
+import CartService from "../../../services/cart.service";
 import LoggedUser from "./LoggedUser/LoggedUser";
 import DropdownItem from "./DropdownItem/Dropdownitem";
-import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
+import { Container, Dropdown, Nav, Navbar, Row } from "react-bootstrap";
 import logoImg from "../../../logo.svg";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navigation = (props) => {
+  const cartService = new CartService();
+
   const [plants, setPlants] = useState([]);
   const [plantsList, setPlantsList] = useState([]);
-
   const [toggle, setToggle] = useState(false);
   const [searching, setSearching] = useState(false);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const plantService = new PlantService();
-    plantService.getPlants().then((res) => setPlantsList(res.data));
+
+    refreshTotal();
+
+    plantService.getPlants().then((res) => setPlantsList(res.data)).catch(err => console.log(err));
+    
   }, []);
 
   useEffect(() => {
     if (!searching || plants.length === 0) setToggle(false);
     else setToggle(true);
   }, [plants, searching]);
+
+  useEffect(() => refreshTotal());
 
   const displayPlants = (searchValue) => {
     if (searchValue && searchValue.length > 0) setSearching(true);
@@ -40,6 +50,13 @@ const Navigation = (props) => {
   const changeToggle = (toggle) => {
     toggle && setToggle(false);
   };
+
+  const refreshTotal = () => {
+    cartService
+      .getCart(props.loggedUser?.cart)
+      .then((res) => res.data.items.length && setTotal(res.data.items.length))
+      .catch((err) => console.log(err));
+  }
 
   return (
     <Navbar
@@ -76,6 +93,7 @@ const Navigation = (props) => {
                   displayPlants={displayPlants}
                 />
               </Dropdown.Toggle>
+
               <Dropdown.Menu className="dropdown__menu">
                 {plants.length > 0 &&
                   plants.map((plant) => (
@@ -86,17 +104,39 @@ const Navigation = (props) => {
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
-          <Nav>
+          {props.loggedUser ? (
+            <>
+              <Navbar.Brand
+                className="navbar__cart my-0 mx-5"
+                as={Link}
+                to={`/cart`}
+              >
+                <p>
+                  <FaShoppingCart />
+                  &nbsp; &#40; {total} &#41;
+                </p>
+              </Navbar.Brand>
+{/*  &nbsp; &#40; {total} &#41; */}
+              <Nav.Link
+                className="navbar__cart__collapsed"
+                as={Link}
+                to={`/cart`}
+              >
+                Cart &nbsp; &#40; {total} &#41;
+              </Nav.Link>
+
+              <Nav>
+                <LoggedUser {...props} />
+              </Nav>
+            </>
+          ) : (
+            <NotLoggedUser />
+          )}
+
+          {/* <Nav>
             {props.loggedUser ? <LoggedUser {...props} /> : <NotLoggedUser />}
-          </Nav>
+          </Nav> */}
         </Navbar.Collapse>
-        <Nav.Link className="cart" as={Link} to={`/cart`}>
-          <img
-            width="30px"
-            src="https://screenshots.imgix.net/mui-org/material-ui-icons/shopping-cart/~v=3.9.2/0690bb7e-2cd6-4508-b947-a74f34012f94.png?ixlib=js-1.2.0&s=84859c3ed47f9e704304b8e85ed0d992&w=300&h=200&fit=fillmax&fm=webp"
-            alt="cart icon"
-          />
-        </Nav.Link>
       </Container>
     </Navbar>
   );

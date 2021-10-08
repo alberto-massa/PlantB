@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import MessageService from "../../../services/message.service";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "../../../App.css"
+import "./SendMessage.css"
 
 
 const messageService = new MessageService();
@@ -79,39 +80,45 @@ const SendMessage = ({seller, loggedUser}) => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <img src={avatar} alt="User " />
-        <h1>Send a message to {username} </h1>
-        <h2>Address: {address}</h2>
-        <Form.Group className="mb-3" controlId="subject">
-          <Form.Label>Subject:* </Form.Label>
+      <Form className="container send__message" onSubmit={handleSubmit}>
+        <Row className="justify-content-center d-flex">
+          <h6 className="text-center">
+            Send a message to {username} <img src={avatar} alt="User " />
+          </h6>
+        </Row>
+        <Row>
+          <Form.Group className="mb-3" controlId="subject">
+            <Form.Label>Subject:* </Form.Label>
 
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="subject"
-            value={subject}
-            type="text"
-            placeholder="Subject"
-          />
-        </Form.Group>
+            <Form.Control
+              className="rounded-pill"
+              onChange={(e) => handleChange(e)}
+              name="subject"
+              value={subject}
+              type="text"
+              placeholder="Subject"
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="content">
-          <Form.Label>Message:* </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="content"
-            value={content}
-            type="text"
-            placeholder="Type here your message"
-          />
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="content">
+            <Form.Label>Message:* </Form.Label>
+            <Form.Control
+              className="rounded-pill"
+              onChange={(e) => handleChange(e)}
+              name="content"
+              value={content}
+              type="text"
+              placeholder="Type here your message"
+            />
+          </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+          <Button className="rounded-pill mt-3" variant="success" type="submit">
+            Submit
+          </Button>
+          {error && <p id="errorMessage">{error}</p>}
+          {success && <p id="successMessage">{success}</p>}
+        </Row>
       </Form>
-        {error && <p id="errorMessage">{error}</p>}
-        {success && <p id="successMessage">{success}</p>}
     </>
   );
 };

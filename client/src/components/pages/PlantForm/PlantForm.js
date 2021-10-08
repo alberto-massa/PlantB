@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button, Form, Spinner } from "react-bootstrap";
+import { Button, Form, Row, Spinner, Container, Col } from "react-bootstrap";
 import PlantService from "../../../services/plant.service";
 import UploadService from "../../../services/upload.service";
 import "../../../App.css"
+import "./PlantForm.css"
 
 const plantService = new PlantService();
 const uploadService = new UploadService();
@@ -121,160 +122,166 @@ const PlantForm = (props) => {
   };
 
   return (
-    <>
-      <h1 className="text-center mt-2 mb-3">Sell a plant</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Name*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="name"
-            value={name}
-            type="text"
-            placeholder="Plant's name"
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="image">
-          <Form.Label>Image*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleFile(e)}
-            name="image"
-            type="file"
-            placeholder="Plant's image"
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="size">
-          <Form.Label>Size*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="size"
-            value={size}
-            type="text"
-            placeholder="Plant's sizes"
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="toxic">
-          <Form.Label>Is it toxic for animals?*</Form.Label>
-          {["radio"].map((type) => (
-            <div key={`inline-${type}`}>
-              <Form.Check
-                inline
-                label="Yes"
-                name="toxic"
-                type="radio"
-                id={`inline-${type}-1`}
-                value={true}
-                onChange={(e) => handleChange(e)}
-              />
-              <Form.Check
-                inline
-                label="No"
-                name="toxic"
-                type="radio"
-                id={`inline-${type}-2`}
-                value={false}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-          ))}
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="location">
-          <Form.Label>Location?*</Form.Label>
-          {["checkbox"].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                inline
-                label="Indoors"
-                name="location"
-                type={type}
-                id={`inline-${type}-1`}
-                onChange={(e) => handleChange(e)}
-                value="Indoors"
-              />
-              <Form.Check
-                inline
-                label="Outdoors"
-                name="location"
-                type={type}
-                id={`inline-${type}-2`}
-                onChange={(e) => handleChange(e)}
-                value="Outdoors"
-              />
-            </div>
-          ))}
-        </Form.Group>
-
-        {props.loggedUser.role === "Shop" && (
-          <>
-            <Form.Group className="mb-3" controlId="type">
-              <Form.Label>Type*: </Form.Label>
+    <Container className="sell__form">
+      <h1 className="text-center mb-3">Sell a plant</h1>
+      <Row className="justify-content-center d-flex">
+        <Col className="d-flex justify-content-center">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="name">
+              <Form.Label>Name*: </Form.Label>
               <Form.Control
                 onChange={(e) => handleChange(e)}
-                name="type"
-                value={type}
+                name="name"
+                value={name}
                 type="text"
-                placeholder="Plant's type"
+                placeholder="Plant's name"
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="temperature">
-              <Form.Label>Temperature*: </Form.Label>
+            <Form.Group className="mb-3" controlId="image">
+              <Form.Label>Image*: </Form.Label>
               <Form.Control
-                onChange={(e) => handleChange(e)}
-                name="temperature"
-                value={temperature}
-                type="number"
-                placeholder="Temperature"
+                onChange={(e) => handleFile(e)}
+                name="image"
+                type="file"
+                placeholder="Plant's image"
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="watering">
-              <Form.Label>Watering*: </Form.Label>
+            <Form.Group className="mb-3" controlId="size">
+              <Form.Label>Size*: </Form.Label>
               <Form.Control
                 onChange={(e) => handleChange(e)}
-                name="watering"
-                value={watering}
+                name="size"
+                value={size}
                 type="text"
-                placeholder="Watering"
+                placeholder="Plant's sizes"
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="delivery">
-              <Form.Label>Delivery time (days)*: </Form.Label>
+            <Form.Group className="mb-3" controlId="toxic">
+              <Form.Label>Is it toxic for animals?*</Form.Label>
+              {["radio"].map((type) => (
+                <div key={`inline-${type}`}>
+                  <Form.Check
+                    inline
+                    label="Yes"
+                    name="toxic"
+                    type="radio"
+                    id={`inline-${type}-1`}
+                    value={true}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <Form.Check
+                    inline
+                    label="No"
+                    name="toxic"
+                    type="radio"
+                    id={`inline-${type}-2`}
+                    value={false}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+              ))}
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="location">
+              <Form.Label>Location?*</Form.Label>
+              {["checkbox"].map((type) => (
+                <div key={`inline-${type}`} className="mb-3">
+                  <Form.Check
+                    inline
+                    label="Indoors"
+                    name="location"
+                    type={type}
+                    id={`inline-${type}-1`}
+                    onChange={(e) => handleChange(e)}
+                    value="Indoors"
+                  />
+                  <Form.Check
+                    inline
+                    label="Outdoors"
+                    name="location"
+                    type={type}
+                    id={`inline-${type}-2`}
+                    onChange={(e) => handleChange(e)}
+                    value="Outdoors"
+                  />
+                </div>
+              ))}
+            </Form.Group>
+
+            {props.loggedUser.role === "Shop" && (
+              <>
+                <Form.Group className="mb-3" controlId="type">
+                  <Form.Label>Type*: </Form.Label>
+                  <Form.Control
+                    onChange={(e) => handleChange(e)}
+                    name="type"
+                    value={type}
+                    type="text"
+                    placeholder="Plant's type"
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="temperature">
+                  <Form.Label>Temperature*: </Form.Label>
+                  <Form.Control
+                    onChange={(e) => handleChange(e)}
+                    name="temperature"
+                    value={temperature}
+                    type="number"
+                    placeholder="Temperature"
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="watering">
+                  <Form.Label>Watering*: </Form.Label>
+                  <Form.Control
+                    onChange={(e) => handleChange(e)}
+                    name="watering"
+                    value={watering}
+                    type="text"
+                    placeholder="Watering"
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="delivery">
+                  <Form.Label>Delivery time (days)*: </Form.Label>
+                  <Form.Control
+                    onChange={(e) => handleChange(e)}
+                    name="delivery"
+                    value={delivery}
+                    type="number"
+                    placeholder="Indicate an average of days"
+                  />
+                </Form.Group>
+              </>
+            )}
+
+            <Form.Group className="mb-3" controlId="price">
+              <Form.Label>Price*: </Form.Label>
               <Form.Control
                 onChange={(e) => handleChange(e)}
-                name="delivery"
-                value={delivery}
+                name="price"
+                value={price}
                 type="number"
-                placeholder="Indicate an average of days"
+                placeholder="Price"
               />
+              €
             </Form.Group>
-          </>
-        )}
 
-        <Form.Group className="mb-3" controlId="price">
-          <Form.Label>Price*: </Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="price"
-            value={price}
-            type="number"
-            placeholder="Price"
-          />
-          €
-        </Form.Group>
-
-        {isLoading && <Spinner animtion="border" variant="success" />}
-        {error && <p id="errorMessage">{error}</p>}
-        <Button disabled={isLoading} variant="primary" type="submit">
-          {isLoading ? "Loading..." : "Submit"}
-        </Button>
-      </Form>
-    </>
+            {isLoading && <Spinner animtion="border" variant="success" />}
+            {error && <p id="errorMessage">{error}</p>}
+            <div className="d-grid gap-2">
+              <Button className="rounded-pill" disabled={isLoading} variant="success" type="submit">
+                {isLoading ? "Loading..." : "Submit"}
+              </Button>
+            </div>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

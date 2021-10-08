@@ -28,7 +28,7 @@ const Searchbar = (props) => {
       <FormControl
         className="searchbar__input rounded-pill"
         type="search"
-        placeholder="Search for a plant"
+        placeholder="&#x1F50D; Search for a plant"
         aria-label="Search"
         value={searchValue}
         onChange={(e) => handleChange(e)}

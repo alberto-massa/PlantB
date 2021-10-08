@@ -1,6 +1,6 @@
 .signup__avatar {
-    min-width: 10vh;
-    max-width: 10vh;
+    width: 10vh;
+    height: 10vh;
     object-fit: cover;
     margin-right: 3vh;
 

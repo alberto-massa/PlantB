@@ -35,11 +35,12 @@ const PlantsList = (props) => {
     
     
     const addToCart = (plant) => {   
-
+      
       cartService
           .editCart({id: user.cart, items: plant })
           .then(res => {
               console.log(res)
+              props.refreshTotal();
           })
           .catch((err) => console.log(err));
     };

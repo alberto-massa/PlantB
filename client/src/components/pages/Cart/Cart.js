@@ -10,8 +10,8 @@ const Cart = (props) => {
   // console.log(cart)
   const [userCart, setCart] = useState(undefined);
   const [id, setId] = useState("props");
-  console.log("eso es el ID --------", id);
-  console.log(userCart);
+  // console.log("eso es el ID --------", id);
+  // console.log(userCart);
 
   useEffect(() => {
     setId(props.loggedUser.cart);
@@ -20,7 +20,7 @@ const Cart = (props) => {
   useEffect(() => {
     cartService.getCart(id).then((cartFound) => {
       setCart(cartFound.data);
-      console.log(cartFound.data);
+      // console.log(cartFound.data);
     });
   }, [id]);
 

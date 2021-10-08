@@ -8,20 +8,20 @@ const uploadService = new UploadService();
 
 const EditPlant = (props, loggedUser) => {
     
-        const { id } = props.match.params
+    const { id } = props.match.params
 
-        const [name, setName] = useState("");
-        const [image, setImage] = useState("");
-        const [size, setSize] = useState("");
-        const [type, setType] = useState("");
-        const [toxic, setToxic] = useState(false);
-        const [location, setLocation] = useState([]);
-        const [temperature, setTemperature] = useState(0);
-        const [watering, setWatering] = useState("");
-        const [price, setPrice] = useState(0);
-        const [isLoading, setIsLoading] = useState(false);
+    const [name, setName] = useState("");
+    const [image, setImage] = useState("");
+    const [size, setSize] = useState("");
+    const [type, setType] = useState("");
+    const [toxic, setToxic] = useState(false);
+    const [location, setLocation] = useState([]);
+    const [temperature, setTemperature] = useState(0);
+    const [watering, setWatering] = useState("");
+    const [price, setPrice] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
     
-    
+
     const findPlant = (id) => {
 
         plantService
@@ -44,7 +44,7 @@ const EditPlant = (props, loggedUser) => {
         useEffect(() => {
             findPlant(id)
 
-        }, [id]) //remove id if giving problems (reacthooksfix)
+        }, [id])
             
               
         const clearState = () => {
@@ -77,7 +77,7 @@ const EditPlant = (props, loggedUser) => {
                 case "name":
                 setName(value);
                 break;
-                case "avatar":
+                case "image":
                 setImage(value);
                 break;
                 case "size":
@@ -106,14 +106,9 @@ const EditPlant = (props, loggedUser) => {
         };
 
             const handleSubmitUpdate = (e) => {
+              
             e.preventDefault();
-            console.log({
-                name,
-                image,
-                description: { size, type, toxic, location, temperature, watering },
-                sellerId: props.loggedUser._id,
-                price,
-            })
+
             plantService
                 .editPlant(id, {
                     name,

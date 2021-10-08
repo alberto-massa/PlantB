@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 
     return (
       <>
-        <Nav.Link className="navbar__large navbar__large__text" as={Link} to="/login">
+        <Nav.Link className="navbar__large navbar__large__text text-light" as={Link} to="/login">
           Sign in
         </Nav.Link>
 
         <div className="navbar__collapsed">
           <NavDropdown.Divider />
-          <Nav.Link className="navbar__collapsed__text" as={Link} to="/login">
+          <Nav.Link className="navbar__collapsed__text text-light" as={Link} to="/login">
             Sign in
           </Nav.Link>
         </div>

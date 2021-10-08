@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CommentService from "../../../services/comment.service";
-import { Button, Form } from "react-bootstrap";
+import { Button, Container, Form, Row, Col } from "react-bootstrap";
 import { FaStar } from "react-icons/fa"
 import "./CommentForm.css"
 
@@ -44,50 +44,54 @@ const CommentForm = (props) => {
     }
 
     return (
-      <>
-        <Form onSubmit={handleSubmit}>
-          <h1>Review this seller </h1>
-          {[...Array(5)].map((star, idx) => {
-            const ratingValue = idx + 1;
+      <Container>
+        <Row>
+          <Col>
+            <Form onSubmit={handleSubmit}>
+              <h1>Review this seller </h1>
+              {[...Array(5)].map((star, idx) => {
+                const ratingValue = idx + 1;
 
-            return (
-              <label key={idx}>
-                <input
-                  id="starRadio"
-                  type="radio"
-                  name="rating"
-                  value={ratingValue}
-                  onClick={(e) => handleChange(e)}
+                return (
+                  <label key={idx}>
+                    <input
+                      id="starRadio"
+                      type="radio"
+                      name="rating"
+                      value={ratingValue}
+                      onClick={(e) => handleChange(e)}
+                    />
+                    <FaStar
+                      className="star"
+                      color={
+                        ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                      }
+                      size={30}
+                      onMouseEnter={() => setHover(ratingValue)}
+                      onMouseLeave={() => setHover(null)}
+                    />
+                  </label>
+                );
+              })}
+
+              <Form.Group className="mb-3" controlId="content">
+                <Form.Label>Additional comment:</Form.Label>
+                <Form.Control
+                  onChange={(e) => handleChange(e)}
+                  name="content"
+                  value={content}
+                  type="text"
+                  placeholder="Your comment goes here"
                 />
-                <FaStar
-                  className="star"
-                  color={
-                    ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
-                  }
-                  size={30}
-                  onMouseEnter={() => setHover(ratingValue)}
-                  onMouseLeave={() => setHover(null)}
-                />
-              </label>
-            );
-          })}
+              </Form.Group>
 
-          <Form.Group className="mb-3" controlId="content">
-            <Form.Label>Additional comment:</Form.Label>
-            <Form.Control
-              onChange={(e) => handleChange(e)}
-              name="content"
-              value={content}
-              type="text"
-              placeholder="Your comment goes here"
-            />
-          </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     );
 }
 

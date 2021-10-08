@@ -33,6 +33,7 @@ router.delete("/:id", isLoggedIn, (req, res) => {
 
 router.put("/:id", isLoggedIn, (req, res) => {
   const { id } = req.params;
+  console.log(req.body)
   User.findByIdAndUpdate(id, req.body, { new: true })
     .then(user => res.status(200).json({ user, message: "user edited" }))
     .catch(err => res.status(500).json({ code: 500, message: "Error editing", err }))

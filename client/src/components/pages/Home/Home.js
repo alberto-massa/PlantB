@@ -33,7 +33,7 @@ const Home = () => {
 
         <br/>
 
-        <Container className="about mt-5">
+        <Container className="about mt-3">
           <Row className="justify-content-center align-items-center">
             <Col xs={false} md={false} lg={1} />
             <Col xs={12} md={12} lg={5}>

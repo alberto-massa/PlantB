@@ -11,8 +11,8 @@
 @media (max-width: 768px) {
     .profile img {
         object-fit: cover;
-        height: 50px;
-        width: 50px;
+        width: 10vh;
+        height: 10vh;
     }
 }
 
