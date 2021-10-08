@@ -10,7 +10,8 @@ class CartService {
 
   getCart = (id) => this.instance.get(`/${id}`);
   createCart = (cart) => this.instance.post("/", cart);
-  editCart = (data) => this.instance.put(`/${data.id}`,data);
+  editCart = (id, plantId) => this.instance.put(`/${id}`, {plantId});
+  removeItem = (id, plantId) => this.instance.put(`/delete/${id}`, {plantId});
 }
 
 export default CartService;

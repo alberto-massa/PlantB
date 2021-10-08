@@ -12,12 +12,15 @@ import PlantsList from "../pages/PlantsList/PlantsList";
 import Cart from "../pages/Cart/Cart"
 
 import MessageList from "../pages/messages/MessageList/MessageList";
+import Checkout from "../pages/Checkout/Checkout";
 
 const Routes = ({ storeUser, loggedUser, refreshTotal }) => {
   return (
     <Switch>
       <Route exact path="/" render={ (props) => <Home/> }/>
       <Route exact path="/new-plant" render={ (props) => loggedUser ? (<PlantForm { ...props } loggedUser={ loggedUser } />) : (<Redirect to="/login" />)}/>
+      <Route exact path="/new-plant" render={ (props) => <PlantForm { ...props } loggedUser={ loggedUser } /> } />
+      <Route exact path="/checkout/:id" render={ (props) => loggedUser ? (<Checkout { ...props } loggedUser={ loggedUser } />) : (<Redirect to="/login" />)}/>
       <Route exact path="/new-comment" render={ (props) => loggedUser ? ( <CommentForm { ...props } loggedUser={ loggedUser } />) : (<Redirect to="/login" />)}/>
       <Route path="/new-message" render={ (props) => loggedUser ? ( <SendMessage { ...props } loggedUser={ loggedUser } />) : (<Redirect to="/login" />)}/>
       <Route exact path="/register" render={ (props) => <SignUp storeUser={ storeUser } { ...props } /> } />

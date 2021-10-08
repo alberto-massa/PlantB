@@ -39,6 +39,9 @@ const LoggedUser = (props) => {
         >
           Messages
         </NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/plants">
+          Checkout our plants
+        </NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/new-plant">
           Add a plant
         </NavDropdown.Item>
