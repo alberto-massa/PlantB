@@ -1,18 +1,40 @@
 import './CartItem.css'
 import { Link }  from 'react-router-dom'
+import { ListGroupItem } from 'react-bootstrap'
+import { useState } from 'react'
+import CartService from '../../../services/cart.service'
+import { useEffect } from 'react'
 
-const CartItem = (props) => {
+const cartService = new CartService()
 
-  const { userCart } = props
-  console.log(userCart)
+const CartItem = ({ userCart, history }) => {
+
+  
+  const [userItems, setUserItems] = useState("")
+  // console.log(userCart._id)
+  const [itemId, setId] = useState("")
+  
+
+  useEffect(()=> {
+    setId(userCart?._id)
+
+  }, [userCart])
+
+  const removeItem = (userCart, id ) => {
+console.log(id)
+
+    cartService
+        .removeItem(userCart, id)
+        .then(res => {
+          history.push("/plants")
+          console.log("element just drop off the cart.", res)
+        })
+        .catch(err => console.log(err))
+  }
   
     return (
       <>
-<<<<<<< HEAD
-     {/* {userCart?.items.map(el =>{
-=======
      {userCart?.items.map(el =>{
->>>>>>> 4b692db0449980763be960f0caf7d8bca8405ff9
        return(
          <>
         <div className="cart">
@@ -21,39 +43,46 @@ const CartItem = (props) => {
         <Link to={`/product/${111}`} className="cartitem__name">
           <p>{el.name}</p>
         </Link>
-        <p className="cartitem__price">Size: {el.description.size}</p>
-        <p className="cartitem__price">Type: {el.description.type}</p>
-<<<<<<< HEAD
-        <p className="cartitem__price">temperature: {el.description.temperature}</p>
-        <p className="cartitem__price">watering: {el.description.watering}</p>
-=======
-        <p className="cartitem__price">Temperature: {el.description.temperature}</p>
-        <p className="cartitem__price">Watering: {el.description.watering}</p>
->>>>>>> 4b692db0449980763be960f0caf7d8bca8405ff9
-        
-        {/* <select className="cartitem__select">
-          <option value="1"></option>
-          <option value="2"></option>
-          <option value="3"></option>
-          <option value="4">4</option>
-        </select> */}
-
-        <button className="cartitem__deletebtn">
-            <i className="fas fa-trash"></i>
+        {el.description.type && (
+                <>
+                  <ListGroupItem>
+                    Type: {el.description.type}
+                  </ListGroupItem>
+                </>
+              )}
+              {el.description.size && (
+                <>
+                  <ListGroupItem>
+                    Size: {el.description.size}
+                  </ListGroupItem>
+                </>
+              )}
+              {el.description.temperature && (
+                <>
+                  <ListGroupItem>
+                    Temperature: {el.description.temperature}
+                  </ListGroupItem>
+                </>
+              )}
+              {el.description.watering && (
+                <>
+                  <ListGroupItem>
+                    Watering: {el.description.watering}
+                  </ListGroupItem>
+                </>
+                
+              )}
+              <button onClick={ () => removeItem(userCart._id, el._id) }>
+            <i className="fas fa-trash">Remove Item from your cart.</i>
         </button>
+        
       </div>
       </>
        )
-<<<<<<< HEAD
-     })} */}
-     </>
-    )
-=======
      })
      }
      </>
     );
->>>>>>> 4b692db0449980763be960f0caf7d8bca8405ff9
 }
 
 export default CartItem

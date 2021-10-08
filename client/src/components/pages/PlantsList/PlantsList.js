@@ -34,10 +34,10 @@ const PlantsList = (props) => {
     }, [props.loggedUser])
     
     
-    const addToCart = (plant) => {   
+    const addToCart = (plantId) => {   
 
       cartService
-          .editCart({id: user.cart, items: plant })
+          .editCart(user.cart, plantId)
           .then(res => {
               console.log(res)
           })
@@ -66,9 +66,9 @@ const PlantsList = (props) => {
                         >See details</Link>
                       </Col>
                       <Col className="d-flex justify-content-center" xs={12} sm={12} lg={6} >
-                      <Link to={`/plants/${user}`}>
+                      {/* <Link to={``}> */}
                           <button onClick={() => addToCart(plant._id)} className="btn btn-outline-success rounded-pill" type="submit"><FaShoppingCart/> Add to cart</button>
-                      </Link>
+                      {/* </Link> */}
                       </Col>
                     </Row>
                     <hr className="mt-5 mb-5" />
