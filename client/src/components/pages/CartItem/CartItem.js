@@ -8,11 +8,7 @@ const CartItem = (props) => {
   
     return (
       <>
-<<<<<<< HEAD
-     {/* {userCart?.items.map(el =>{
-=======
      {userCart?.items.map(el =>{
->>>>>>> 4b692db0449980763be960f0caf7d8bca8405ff9
        return(
          <>
         <div className="cart">
@@ -23,13 +19,8 @@ const CartItem = (props) => {
         </Link>
         <p className="cartitem__price">Size: {el.description.size}</p>
         <p className="cartitem__price">Type: {el.description.type}</p>
-<<<<<<< HEAD
-        <p className="cartitem__price">temperature: {el.description.temperature}</p>
-        <p className="cartitem__price">watering: {el.description.watering}</p>
-=======
         <p className="cartitem__price">Temperature: {el.description.temperature}</p>
         <p className="cartitem__price">Watering: {el.description.watering}</p>
->>>>>>> 4b692db0449980763be960f0caf7d8bca8405ff9
         
         {/* <select className="cartitem__select">
           <option value="1"></option>
@@ -44,16 +35,10 @@ const CartItem = (props) => {
       </div>
       </>
        )
-<<<<<<< HEAD
-     })} */}
-     </>
-    )
-=======
      })
      }
      </>
     );
->>>>>>> 4b692db0449980763be960f0caf7d8bca8405ff9
 }
 
 export default CartItem
