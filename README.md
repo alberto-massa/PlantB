@@ -40,6 +40,10 @@
   
 </p>
 
+## The website
+
+Check the website here: https://plantb.herokuapp.com/
+
 FRONT PATHS:
 
 | Path                  | Description                           | 
