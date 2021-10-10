@@ -42,11 +42,13 @@
 
 ## The website
 
-Check the website here: https://plantb.herokuapp.com/
-
 <p align="center">
   <img src="./client/public/small.png" height="350" title="mobile version">
   <img src="./client/public/large.png" height="350" title="large screen version">
+</p>
+
+<p align="center">
+  Check the website here: <a blank_ href="https://plantb.herokuapp.com">
 </p>
 
 
