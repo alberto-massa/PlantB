@@ -44,7 +44,7 @@
 
 Check the website here: https://plantb.herokuapp.com/
 
-![Small](small.png)
+![Small](./client/public/small.png)
 
 FRONT PATHS:
 
