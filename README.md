@@ -45,13 +45,15 @@
   Check the website here: https://plantb.herokuapp.com
 </p>
 
+<br>
+
 <p align="center">
   <img src="./client/public/large.png" height="350" title="large screen version">
   <img src="./client/public/small.png" height="350" title="mobile version">
 </p>
 
-<p align="center" style="font-style:10px">
-  Large screen and mobile screen preview.
+<p align="center" style="font-style:8px">
+  large screen and mobile screen preview.
  </p>
 
 
