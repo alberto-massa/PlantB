@@ -42,7 +42,7 @@
 
 ## The website
 <p>
-  Check the website here: https://plantb.herokuapp.com"
+  Check the website here: https://plantb.herokuapp.com
 </p>
 
 <p align="center">
@@ -50,9 +50,9 @@
   <img src="./client/public/small.png" height="350" title="mobile version">
 </p>
 
-<small align="center">
-  Large screen and mobile screen previews
- </small>
+<p align="center" style="font-style:10px">
+  Large screen and mobile screen preview.
+ </p>
 
 
 
