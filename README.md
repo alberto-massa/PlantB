@@ -45,8 +45,8 @@
 Check the website here: https://plantb.herokuapp.com/
 
 <p align="center">
-  <img src="./client/public/small.png" width="350" title="mobile version">
-  <img src="./client/public/large.png" width="350" title="large screen version">
+  <img src="./client/public/small.png" height="350" title="mobile version">
+  <img src="./client/public/large.png" height="350" title="large screen version">
 </p>
 
 
