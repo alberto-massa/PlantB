@@ -44,6 +44,8 @@
 
 Check the website here: https://plantb.herokuapp.com/
 
+![Screenshot 2021-10-10 at 09.37.00][Screenshot 2021-10-10 at 09.37.00.png]
+
 FRONT PATHS:
 
 | Path                  | Description                           | 
