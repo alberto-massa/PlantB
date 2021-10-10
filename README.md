@@ -43,8 +43,12 @@
 ## The website
 
 <p align="center">
-  <img src="./client/public/small.png" height="350" title="mobile version">
+  Large screen and mobile screen previews
+ </p>
+
+<p align="center">
   <img src="./client/public/large.png" height="350" title="large screen version">
+  <img src="./client/public/small.png" height="350" title="mobile version">
 </p>
 
 <p align="center">
