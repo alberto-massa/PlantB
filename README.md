@@ -48,7 +48,7 @@
 </p>
 
 <p align="center">
-  Check the website here: <a blank_ href="https://plantb.herokuapp.com">
+  Check the website here: https://plantb.herokuapp.com"
 </p>
 
 
