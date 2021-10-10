@@ -41,19 +41,21 @@
 </p>
 
 ## The website
-
-<p align="center">
-  Large screen and mobile screen previews
- </p>
+<p>
+  Check the website here: https://plantb.herokuapp.com"
+</p>
 
 <p align="center">
   <img src="./client/public/large.png" height="350" title="large screen version">
   <img src="./client/public/small.png" height="350" title="mobile version">
 </p>
 
-<p align="center">
-  Check the website here: https://plantb.herokuapp.com"
-</p>
+<small align="center">
+  Large screen and mobile screen previews
+ </small>
+
+
+
 
 
 FRONT PATHS:
