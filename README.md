@@ -46,9 +46,9 @@ Check the website here: https://plantb.herokuapp.com/
 
 <p align="center">
   <img src="./client/public/small.png" width="350" title="mobile version">
- </p>
- 
-![Small](./client/public/small.png)
+  <img src="./client/public/large.png" width="350" title="large screen version">
+</p>
+
 
 FRONT PATHS:
 
