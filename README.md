@@ -1,5 +1,7 @@
 <h1 align="center">Welcome to  <strong>PlantB</strong> :seedling: </h1>
 
+<p> This is a project made with React hooks fully responsive, we have three types of roles (user, shop, admin). Our users can buy and sell plants, can send messages to each other and it renders different info taking into consideration if you are or aren´t signed in and which role is logged in. We have a search bar made with Ajax on the navbar. We have apis as Google Maps. <p>
+
 <p align="center">
   
    <a href="https://www.linkedin.com/in/massa-alberto/">
