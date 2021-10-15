@@ -1,14 +1,15 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-import Navigation from "./components/layout/Navigation/Navigation";
 import Routes from "./components/routes";
+import { useState, useEffect } from "react";
 import AuthService from "./services/auth.service";
+import Navigation from "./components/layout/Navigation/Navigation";
 
 const authService = new AuthService();
 
 const App = () => {
-  const [loggedUser, setLoggedUser] = useState(undefined);
+
   const storeUser = (user) => setLoggedUser(user);
+  const [loggedUser, setLoggedUser] = useState(undefined);
 
   useEffect(() => {
     const fetchUser = () => {
@@ -23,9 +24,12 @@ const App = () => {
   return (
     <>
       <Navigation loggedUser={loggedUser} storeUser={storeUser} />
-      {loggedUser !== undefined ? (
+      {loggedUser !== undefined ?
+      (
         <Routes storeUser={storeUser} loggedUser={loggedUser} />
-      ) : (
+      )
+      :
+      (
         <p>Loading...</p>
       )}
     </>

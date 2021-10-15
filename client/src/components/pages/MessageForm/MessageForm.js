@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import MessageService from "./../../../services/message.service";
 import { Button, Form } from "react-bootstrap";
+import MessageService from "./../../../services/message.service";
 
 const messageService = new MessageService();
 
 const MessageForm = (props) => {
-    const [subject, setSubject] = useState("");
-    const [content, setContent] = useState("");
+
+    const [ content, setContent ] = useState("");
+    const [ subject, setSubject ] = useState("");
   
   const clearState = () => {
     setSubject("");
@@ -17,19 +18,22 @@ const MessageForm = (props) => {
     const { value, name } = e.target;
 
     switch (name) {
-      case "content":
-        setContent(value);
-        break;
-      case "subject":
-        setSubject(value);
-        break;
-      default:
+
+        case "content":
+          setContent(value);
+          break;
+
+        case "subject":
+          setSubject(value);
+          break;
+
+        default:
     }
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
 
+    e.preventDefault();
     const authorId = props.loggedUser;
     
     messageService
@@ -42,26 +46,26 @@ const MessageForm = (props) => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <h1>Send a message </h1>
+      <Form onSubmit={ handleSubmit }>
+        <h1> Send a message </h1>
         <Form.Group className="mb-3" controlId="subject">
-          <Form.Label>Subject:* </Form.Label>
+          <Form.Label> Subject: </Form.Label>
 
           <Form.Control
-            onChange={(e) => handleChange(e)}
+            onChange={ (e) => handleChange(e) }
             name="subject"
-            value={subject}
+            value={ subject }
             type="text"
             placeholder="Subject"
           />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="content">
-          <Form.Label>Message:* </Form.Label>
+          <Form.Label> Message: </Form.Label>
           <Form.Control
-            onChange={(e) => handleChange(e)}
+            onChange={ (e) => handleChange(e) }
             name="content"
-            value={content}
+            value={ content }
             type="text"
             placeholder="Type here your message"
           />

@@ -4,14 +4,14 @@ import { Container, FormControl, InputGroup } from "react-bootstrap"
 
 const Searchbar = (props) => {
 
-    const [searchValue, setSearchValue] = useState("")
     const { plant } = props
+    const [ searchValue, setSearchValue ] = useState("")
 
     const handleChange = (e) => {
+
         const { value } = e.target
         setSearchValue(value)
         plant(value)
-
     }
 
     return(
@@ -20,13 +20,12 @@ const Searchbar = (props) => {
 
             <InputGroup className="mb-3 mt-4">
                 <FormControl
-                onChange={e => handleChange(e)}
+                onChange={ e => handleChange(e) }
                 name="searchValue"
-                value={searchValue}
+                value={ searchValue }
                 placeholder="Search for title..."
                 aria-label="buscar"
                 />
-
             </InputGroup>      
 
         </Container>

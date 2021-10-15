@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
 import AuthService from "../../../services/auth.service";
+import { Container, Form, Button } from "react-bootstrap";
 
 const Login = (props) => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("");
+
+  const [ password, setPassword ] = useState("");
+  const [ username, setUsername ] = useState("")
 
   const authService = new AuthService();
 
   const handleInput = (e) => {
+
     const { name, value } = e.target;
     name === 'username' ? setUsername(value) : setPassword(value)
   };
 
   const handleFormSubmit = (e) => {
+
     e.preventDefault();
 
     authService
@@ -27,24 +30,24 @@ const Login = (props) => {
 
   return (
     <Container>
-      <Form onSubmit={handleFormSubmit}>
+      <Form onSubmit={ handleFormSubmit }>
         <Form.Group className="mb-3" controlId="username">
-          <Form.Label>Username</Form.Label>
+          <Form.Label> Username </Form.Label>
           <Form.Control
             name="username"
-            value={username}
-            onChange={(e) => handleInput(e)}
+            value={ username }
+            onChange={ (e) => handleInput(e) }
             type="text"
             placeholder="Enter username"
           />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label> Password </Form.Label>
           <Form.Control
             name="password"
-            value={password}
-            onChange={(e) => handleInput(e)}
+            value={ password }
+            onChange={ (e) => handleInput(e) }
             type="password"
             placeholder="Password"
           />

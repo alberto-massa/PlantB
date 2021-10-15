@@ -1,10 +1,8 @@
-module.exports = {
-        
+module.exports = {   
     
-    formatDate: date => {
+  formatDate: date => {
 
-      let dateF = new Date(date)
-
+    let dateF = new Date(date)
     let month = '' + (dateF.getMonth() + 1)
     let day = '' + dateF.getDate()
     let year = dateF.getFullYear()
@@ -15,11 +13,9 @@ module.exports = {
     return [year, month, day].join('-')
   },
 
-
   formatSignDate: date => {
 
-    var today = new Date();
-  
+    let today = new Date();
     let month = '' + (today.getMonth() + 1)
     let day = '' + today.getDate()
     let year = today.getFullYear() - 18
@@ -30,5 +26,4 @@ module.exports = {
 
     return [year, month, day].join('-')
   }
-
 }
