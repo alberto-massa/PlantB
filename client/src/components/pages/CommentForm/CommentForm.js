@@ -1,84 +1,98 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import CommentService from "../../../services/comment.service";
+//import CommentService from "../../../services/comment.service";
+import { Button, Container, Form, Row, Col } from "react-bootstrap";
+import { FaStar } from "react-icons/fa"
+import "./CommentForm.css"
 
-const commentService = new CommentService();
+//const commentService = new CommentService();
 
 const CommentForm = (props) => {
+    const [content, setContent] = useState("")
+    const [rating, setRating] = useState(null)
+    const [hover, setHover] = useState(null)
 
-  const [ rating, setRating ] = useState(0)
-  const [ content, setContent ] = useState("")
+    const clearState = () => {
+        setContent("")
+        setRating(0)
+    }
 
-  const clearState = () => {
-      setRating(0)
-      setContent("")
-  }
+    const handleChange = (e) => {
+        const {value, name} = e.target;
 
-  const handleChange = (e) => {
+        switch (name) {
+            case "content":
+                setContent(value);
+                break;
+            case "rating":
+                setRating(value);
+                break;
+            default:
+        }
+    }
 
-      const {value, name} = e.target;
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-      switch (name) {
+        const authorId = props.loggedUser;
 
-          case "content":
-              setContent(value);
-              break;
+        // commentService
+        //     .createComment({ content, rating, authorId })
+        //     .then(() => {
+        //         clearState()
+        //     })
+        //     .catch((err) => console.log(err, 'jgfkjhgkjghj'))
+    }
 
-          case "rating":
-              setRating(value);
-              break;
+    return (
+      <Container>
+        <Row>
+          <Col>
+            <Form onSubmit={handleSubmit}>
+              <h1>Review this seller </h1>
+              {[...Array(5)].map((star, idx) => {
+                const ratingValue = idx + 1;
 
-          default:
-      }
-  }
+                return (
+                  <label key={idx}>
+                    <input
+                      id="starRadio"
+                      type="radio"
+                      name="rating"
+                      value={ratingValue}
+                      onClick={(e) => handleChange(e)}
+                    />
+                    <FaStar
+                      className="star"
+                      color={
+                        ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                      }
+                      size={30}
+                      onMouseEnter={() => setHover(ratingValue)}
+                      onMouseLeave={() => setHover(null)}
+                    />
+                  </label>
+                );
+              })}
 
-  const handleSubmit = (e) => {
+              <Form.Group className="mb-3" controlId="content">
+                <Form.Label>Additional comment:</Form.Label>
+                <Form.Control
+                  onChange={(e) => handleChange(e)}
+                  name="content"
+                  value={content}
+                  type="text"
+                  placeholder="Your comment goes here"
+                />
+              </Form.Group>
 
-      e.preventDefault();
-
-      const authorId = props.loggedUser;
-
-      commentService
-          .createComment({ content, rating, authorId })
-          .then(() => {
-              clearState()
-          })
-          .catch((err) => console.log(err, 'This is an error while you create a comment.'))
-  }
-
-  return (
-    <>
-      <Form onSubmit={ handleSubmit }>
-        <h1> Add a comment </h1>
-        <Form.Group className="mb-3" controlId="rating">
-          <Form.Label> Review this seller </Form.Label>
-
-          <Form.Control
-            onChange={ (e) => handleChange(e) }
-            name="rating"
-            value={ rating }
-            type="number"
-            placeholder="Your comment goes here"
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="content">
-          <Form.Label> Additional info: </Form.Label>
-          <Form.Control
-            onChange={ (e) => handleChange(e) }
-            name="content"
-            value={ content }
-            type="text"
-            placeholder="Your comment goes here"
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </>
-  );
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    );
 }
 
 export default CommentForm

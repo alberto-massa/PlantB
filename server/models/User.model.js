@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema(
   {
     username: {
-      // unique: true,
+      unique: true,
       type: String,
       required: true,
       minlength: 4,
@@ -22,10 +22,10 @@ const userSchema = new Schema(
 
     email: {
       type: String,
-      // unique: true,
+      unique: true,
       match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "is invalid"],
       lowercase: true,
-      // required: true,
+      required: true,
       trim: true,
     },
 
@@ -57,7 +57,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
       default:
-        "https://png.pngtree.com/png-clipart/20210129/ourmid/pngtree-man-default-avatar-png-image_2813122.jpg",
+        "https://res.cloudinary.com/dubhsyrde/image/upload/v1633536992/orl5czm2lgcz9a2fzkhu.svg",
+    },
+
+    cart: {
+      type: Schema.Types.ObjectId,
+      ref: "Cart",
+      required: true,
     },
 
     // favouritePlants: [

@@ -8,11 +8,11 @@ class PlantService {
       });
     }
 
-    getPlants = () => this.instance.get("/");
-    getPlant = (id) => this.instance.get(`/${ id }`);
-    createPlant = (plant) => this.instance.post("/", plant);
-    deletePlant = (id) => this.instance.delete(`/${ id }`);
-    editPlant = (id) => this.instance.put(`/${ id }`);
+  getPlants = () => this.instance.get("/");
+  getPlant = (id) => this.instance.get(`/${id}`);
+  createPlant = (plant) => this.instance.post("/", plant);
+  deletePlant = (id) => this.instance.delete(`/${id}`);
+  editPlant = (id, plant) => this.instance.put(`/${id}`, plant);
 }
 
 export default PlantService;

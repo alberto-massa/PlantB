@@ -1,0 +1,33 @@
+.profile {
+    margin-top: 70px;
+}
+
+
+.profile__col {
+    border-radius: 8px;
+    border: 0.1px solid #318161
+}
+
+@media (max-width: 768px) {
+    .profile img {
+        object-fit: cover;
+        width: 10vh;
+        height: 10vh;
+    }
+}
+
+@media (max-width: 992px) {
+    .profile img {
+        object-fit: cover;
+        height: 75px;
+        width: 75px;
+    }
+}
+
+@media (min-width: 992px) {
+    .profile img {
+        object-fit: cover;
+        height: 100px;
+        width: 100px;
+    }
+}

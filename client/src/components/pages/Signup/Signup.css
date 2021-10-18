@@ -1,0 +1,22 @@
+.signup__avatar {
+    width: 10vh;
+    height: 10vh;
+    object-fit: cover;
+    margin-right: 3vh;
+
+}
+
+.signup__uploadavatar {
+    padding: 5px 10px;
+    transition: transform .6s;
+    margin-left: 20px !important;
+}
+
+.signup__uploadavatar:hover {
+    transform: scale(1.05);
+    opacity: .7;
+}
+
+.form-control-hide {
+   display: none;
+}

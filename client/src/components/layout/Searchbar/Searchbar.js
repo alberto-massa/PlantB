@@ -1,36 +1,40 @@
 import React, { useState } from "react";
-import { Container, FormControl, InputGroup } from "react-bootstrap"
-
+import { FormControl } from "react-bootstrap";
+import "./Searchbar.css"
 
 const Searchbar = (props) => {
+  const [searchValue, setSearchValue] = useState("");
+  const { displayPlants } = props;
+  const { changeToggle } = props
+  const { toggle } = props
 
-    const { plant } = props
-    const [ searchValue, setSearchValue ] = useState("")
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setSearchValue(value);
+    displayPlants(value);
+    setTimeout(() => {
+        clearState(searchValue);
+      changeToggle(toggle)
+    }, 5000);
+    
+  };
+  const clearState = (searchValue) => {
 
-    const handleChange = (e) => {
+    setSearchValue("")
+  } 
 
-        const { value } = e.target
-        setSearchValue(value)
-        plant(value)
-    }
+  return (
+    <>
+      <FormControl
+        className="searchbar__input rounded-pill"
+        type="search"
+        placeholder="&#x1F50D; Search for a plant"
+        aria-label="Search"
+        value={searchValue}
+        onChange={(e) => handleChange(e)}
+      />
+    </>
+  );
+};
 
-    return(
-
-        <Container>
-
-            <InputGroup className="mb-3 mt-4">
-                <FormControl
-                onChange={ e => handleChange(e) }
-                name="searchValue"
-                value={ searchValue }
-                placeholder="Search for title..."
-                aria-label="buscar"
-                />
-            </InputGroup>      
-
-        </Container>
-
-    )
-}
-
-export default Searchbar
+export default Searchbar;

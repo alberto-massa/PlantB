@@ -1,0 +1,25 @@
+.navbar__large__text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #fff
+}
+
+.navbar__collapsed__text {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width: 992px) {
+    .navbar__large  {
+        display: none !important;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .navbar__collapsed {
+        display: none;
+    }
+}

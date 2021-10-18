@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const User = require("./../models/User.model");
+const Cart = require("./../models/Cart.model");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 router.post("/signup", (req, res) => {
-  const { username, password, email, age, role, address, avatar } = req.body;
+  const { username, password, email, age, role, address, avatar} = req.body;
 
   User.findOne({ username })
     .then((user) => {
@@ -23,20 +24,29 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
 
-      User.create({
-        username,
-        password: hashPass,
-        email,
-        age,
-        role,
-        address,
-        avatar,
-      })
-        .then(() => res.json({ code: 200, message: "User created" }))
+      console.log(address)
+      Cart.create({total:0})
+        .then(cart =>
+          User.create({
+            username,
+            password: hashPass,
+            email,
+            age,
+            role,
+            address,
+            avatar,
+            cart: cart._id
+          })
+
+          )      
+        .then((user) => {
+          req.session.currentUser = user;
+          res.status(200).json({user});
+        })
         .catch((err) =>
           res.status(500).json({
             code: 500,
-            message: "DB error while creating user",
+            message: "You must fullfill all fields.",
             err: err.message,
           })
         );
@@ -44,7 +54,7 @@ router.post("/signup", (req, res) => {
     .catch((err) =>
       res.status(500).json({
         code: 500,
-        message: "DB error while fetching user",
+        message: "You must fullfill all fields.",
         err: err.message,
       })
     );
@@ -82,7 +92,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/isloggedin", (req, res) => {
-  req.session.currentUser
+    req.session.currentUser
     ? res.json(req.session.currentUser)
     : res.status(401).json({ code: 401, message: "Unauthorized" });
 });

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+.modal__title {
+    font-family: "Poppins", "sans-serif";
+}
+
+.close {
+    background-color: white;
+    border: 1px solid #318161;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 7px;
+    color: #318161;
+}
+
+.close:hover {
+    background-color: #318161;
+    border: 1px solid white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 7px;
+    color: white;
+}

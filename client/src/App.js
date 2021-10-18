@@ -11,7 +11,13 @@ const App = () => {
   const storeUser = (user) => setLoggedUser(user);
   const [loggedUser, setLoggedUser] = useState(undefined);
 
+  const [refreshTotal, setRefreshTotal] = useState(false);
+
+  useEffect(() => console.log(refreshTotal))
+
   useEffect(() => {
+    if (loggedUser !== undefined) return;
+
     const fetchUser = () => {
       authService
         .isloggedin()
@@ -19,17 +25,15 @@ const App = () => {
         .catch(() => storeUser(null));
     };
     fetchUser();
-  }, []);
-  
+  }, [loggedUser]);
+
   return (
     <>
-      <Navigation loggedUser={loggedUser} storeUser={storeUser} />
-      {loggedUser !== undefined ?
-      (
-        <Routes storeUser={storeUser} loggedUser={loggedUser} />
-      )
-      :
-      (
+      <Navigation loggedUser={loggedUser} storeUser={storeUser} refreshTotal={refreshTotal} />
+
+      {loggedUser !== undefined ? (
+        <Routes storeUser={storeUser} loggedUser={loggedUser} refreshTotal={() => setRefreshTotal(!refreshTotal)}/>
+      ) : (
         <p>Loading...</p>
       )}
     </>

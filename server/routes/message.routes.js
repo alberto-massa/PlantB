@@ -5,11 +5,14 @@ const { isLoggedIn } = require("./../middleware/index.js")
 
 router.get("/", isLoggedIn, (req, res) => {
   Message.find()
-    .them(messages => res.status(200).jsom(messages))
+  .populate("authorId")
+  .then(messages => {
+      res.status(200).json(messages)})
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Messages", err }))
 })
 
 router.get("/:id", isLoggedIn, (req, res) => {
+  //console.log("teeeeeeeeeeeeeeeeeeeest")
   const { id } = req.params;
   Message.findById(id)
     .then(message => res.status(200).json({ message, message: "Message getted" }))
