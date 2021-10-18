@@ -14,8 +14,8 @@ const RemoveItem = ({ id }, props) => {
   };
 
   return (
-    <Button onClick={(id) => removePlant(id)} variant="primary" type="button">
-      Delete a plant
+    <Button onClick={(id) => removePlant(id)} variant="danger" type="button">
+      Delete plant
     </Button>
   );
 };

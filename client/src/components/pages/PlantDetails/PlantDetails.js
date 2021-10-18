@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import PlantService from "../../../services/plant.service"
-import { Card, Container, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Card, Container, ListGroup, ListGroupItem, Row } from "react-bootstrap"
 import RemoveItem from "./RemoveItem/RemoveItem"
 import EditPlant from "./Editplant/Editplant"
 import MessageForm from "./MessageForm/MessageForm"
@@ -35,9 +35,9 @@ const PlantDetails = (props) => {
   }, [props]);
 
   return (
-    <>
+    <Container>
       {plantsDetails ? (
-        <div>
+        <Row className="d-flex justify-content-center">
           <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" src={plantsDetails.image} />
             <Card.Body>
@@ -48,11 +48,12 @@ const PlantDetails = (props) => {
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroupItem>Price:{plantsDetails.price}</ListGroupItem>
+              <ListGroupItem>Price: {plantsDetails.price}€</ListGroupItem>
               {plantsDetails.sellerId.address && (
                 <>
                   <ListGroupItem>
-                    City: {plantsDetails.sellerId.address.split(",")}
+                    City: Madrid, Spain
+                    {/* {plantsDetails.sellerId.address.split(",")} */}
                   </ListGroupItem>
                 </>
               )}
@@ -72,12 +73,20 @@ const PlantDetails = (props) => {
               )}
               {plantsDetails.description.toxic && (
                 <>
+                {plantsDetails.description.toxic === true ? (
                   <ListGroupItem>
-                    Toxic: {plantsDetails.description.toxic}
+                    Toxic for animals: yes
                   </ListGroupItem>
+                )
+                :
+                  <ListGroupItem>
+                    Toxic for animals: no
+                  </ListGroupItem>
+                }
+                  
                 </>
               )}
-              {plantsDetails.description.temperature && (
+              {plantsDetails.description.temperature > 0 && (
                 <>
                   <ListGroupItem>
                     Temperature: {plantsDetails.description.temperature}
@@ -96,6 +105,7 @@ const PlantDetails = (props) => {
                   <ListGroupItem>
                     Delivery time: {plantsDetails.delivery} days~
                   </ListGroupItem>
+                  <br/>
                 </>
               )}
               <div>
@@ -114,7 +124,10 @@ const PlantDetails = (props) => {
                         sellerDetails={plantsDetails.sellerId}
                         {...props}
                       />
-                      <Link className="btn bg-success" to={`/edit-plant/${id}`}>
+                      <Link
+                        className=" btn btn-warning"
+                        to={`/edit-plant/${id}`}
+                      >
                         Edit plant
                       </Link>
                     </Container>
@@ -123,7 +136,7 @@ const PlantDetails = (props) => {
               </div>
 
               {props.loggedUser ? (
-                <h2> Hello {props.loggedUser.username} </h2>
+                <br />
               ) : (
                 <div>
                   <>
@@ -138,8 +151,6 @@ const PlantDetails = (props) => {
                   props.loggedUser?.username !==
                     plantsDetails.sellerId.username && (
                     <div>
-                      <hr />
-
                       <Card.Img
                         variant="top"
                         src={plantsDetails.sellerId?.avatar}
@@ -150,16 +161,6 @@ const PlantDetails = (props) => {
                       <ListGroupItem>
                         <h4>Role: {plantsDetails.sellerId?.role}</h4>
                       </ListGroupItem>
-                      {/* <ListGroupItem>
-                      Plantb user since:{" "}
-                      {formatDate(plantsDetails.sellerId?.createdAt)}
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      Address: {plantsDetails.sellerId?.address}
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      Email: {plantsDetails.sellerId?.email}
-                    </ListGroupItem> */}
                       <Card.Body>
                         <MessageForm
                           {...props}
@@ -172,11 +173,11 @@ const PlantDetails = (props) => {
               </>
             </ListGroup>
           </Card>
-        </div>
+        </Row>
       ) : (
         <p>Loading...</p>
       )}
-    </>
+    </Container>
   );
 };
 

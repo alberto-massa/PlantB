@@ -109,6 +109,7 @@ const Navigation = (props) => {
               <Navbar.Brand
                 className="navbar__cart my-0 mx-5"
                 as={Link}
+                onClick={() => refreshTotal()}
                 to={`/cart`}
               >
                 <p>
