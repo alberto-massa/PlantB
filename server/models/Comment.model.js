@@ -7,9 +7,9 @@ const commentSchema = new Schema(
       required: true,
     },
 
-    plantRef: {
+    userRef: {
       type: Schema.Types.ObjectId,
-      ref: "Plant",
+      ref: "User",
     },
 
     rating: {

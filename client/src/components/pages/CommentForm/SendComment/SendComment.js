@@ -1,0 +1,107 @@
+import React, { useEffect, useState } from "react";
+import CommentService from "../../../../services/comment.service";
+import { Button, Container, Form, Row, Col } from "react-bootstrap";
+import { FaStar } from "react-icons/fa"
+import "../CommentForm.css"
+
+const commentService = new CommentService();
+
+const SendComment = (props) => {
+
+    const { seller } = props
+    console.log(seller)
+
+    const [content, setContent] = useState("")
+    const [rating, setRating] = useState(null)
+    const [hover, setHover] = useState(null)
+  
+
+    
+
+    const clearState = () => {
+        setContent("")
+        setRating(0)
+    }
+
+    const handleChange = (e) => {
+        const {value, name} = e.target;
+
+        switch (name) {
+            case "content":
+                setContent(value);
+                break;
+            case "rating":
+                setRating(value);
+                break;
+            default:
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const authorId = props.loggedUser;
+        const userRef = seller._id
+
+
+        commentService
+            .createComment({ content, rating, authorId, userRef })
+            .then(() => {
+                clearState()
+            })
+            .catch((err) => console.log(err, 'error while create a comment.'))
+    }
+
+    return (
+      <Container>
+        <Row>
+          <Col>
+            <Form onSubmit={handleSubmit}>
+              <h1>Review this seller </h1>
+              {[...Array(5)].map((star, idx) => {
+                const ratingValue = idx + 1;
+
+                return (
+                  <label key={idx}>
+                    <input
+                      id="starRadio"
+                      type="radio"
+                      name="rating"
+                      value={ratingValue}
+                      onClick={(e) => handleChange(e)}
+                    />
+                    <FaStar
+                      className="star"
+                      color={
+                        ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                      }
+                      size={30}
+                      onMouseEnter={() => setHover(ratingValue)}
+                      onMouseLeave={() => setHover(null)}
+                    />
+                  </label>
+                );
+              })}
+
+              <Form.Group className="mb-3" controlId="content">
+                <Form.Label>Additional comment:</Form.Label>
+                <Form.Control
+                  onChange={(e) => handleChange(e)}
+                  name="content"
+                  value={content}
+                  type="text"
+                  placeholder="Your comment goes here"
+                />
+              </Form.Group>
+
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    );
+}
+
+export default SendComment

@@ -166,7 +166,12 @@ const PlantDetails = (props) => {
                           {...props}
                           seller={plantsDetails.sellerId}
                         />
-                        <Card.Link href="#">Another Link</Card.Link>
+                        {props.loggedUser && props.loggedUser.username !== plantsDetails.sellerId.username &&
+                        <>
+                        <Link to={`/sellerProfile/${plantsDetails.sellerId.username}`}>Profile of {plantsDetails.sellerId.username} </Link>
+                        </>
+                        
+                        }
                       </Card.Body>
                     </div>
                   )}

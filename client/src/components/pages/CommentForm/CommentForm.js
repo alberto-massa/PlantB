@@ -1,98 +1,48 @@
-import React, { useState } from "react";
-//import CommentService from "../../../services/comment.service";
-import { Button, Container, Form, Row, Col } from "react-bootstrap";
-import { FaStar } from "react-icons/fa"
-import "./CommentForm.css"
-
-//const commentService = new CommentService();
+import { useState } from "react"
+import { Button, Container, Modal } from "react-bootstrap"
+import SendComment from "./SendComment/SendComment"
 
 const CommentForm = (props) => {
-    const [content, setContent] = useState("")
-    const [rating, setRating] = useState(null)
-    const [hover, setHover] = useState(null)
 
-    const clearState = () => {
-        setContent("")
-        setRating(0)
+  const { seller } = props
+  const { loggedUser } = props
+  
+    const [showForm,setShowForm] = useState(false)
+
+    const openModal = () => {
+        setShowForm(true)
     }
 
-    const handleChange = (e) => {
-        const {value, name} = e.target;
-
-        switch (name) {
-            case "content":
-                setContent(value);
-                break;
-            case "rating":
-                setRating(value);
-                break;
-            default:
-        }
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const authorId = props.loggedUser;
-
-        // commentService
-        //     .createComment({ content, rating, authorId })
-        //     .then(() => {
-        //         clearState()
-        //     })
-        //     .catch((err) => console.log(err, 'jgfkjhgkjghj'))
+    const closeModal = () => {
+        setShowForm(false)
     }
 
     return (
-      <Container>
-        <Row>
-          <Col>
-            <Form onSubmit={handleSubmit}>
-              <h1>Review this seller </h1>
-              {[...Array(5)].map((star, idx) => {
-                const ratingValue = idx + 1;
+      <Container className="d-flex justify-content-center">
+        <Button
+          variant="success"
+          block
+          className="mt-2 mb-5 rounded-pill"
+          onClick={() => openModal()}
+        >
+          Comment to {seller.username}
+        </Button>
 
-                return (
-                  <label key={idx}>
-                    <input
-                      id="starRadio"
-                      type="radio"
-                      name="rating"
-                      value={ratingValue}
-                      onClick={(e) => handleChange(e)}
-                    />
-                    <FaStar
-                      className="star"
-                      color={
-                        ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
-                      }
-                      size={30}
-                      onMouseEnter={() => setHover(ratingValue)}
-                      onMouseLeave={() => setHover(null)}
-                    />
-                  </label>
-                );
-              })}
-
-              <Form.Group className="mb-3" controlId="content">
-                <Form.Label>Additional comment:</Form.Label>
-                <Form.Control
-                  onChange={(e) => handleChange(e)}
-                  name="content"
-                  value={content}
-                  type="text"
-                  placeholder="Your comment goes here"
-                />
-              </Form.Group>
-
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          </Col>
-        </Row>
+        <Modal show={showForm} onHide={() => closeModal()}>
+          <Modal.Header closeButton>
+            <Modal.Title className="modal__title">What would you like to say?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <SendComment
+              loggedUser={loggedUser}
+              seller={seller}
+              closeModal={() => closeModal()}
+            />
+          </Modal.Body>
+        </Modal>
       </Container>
     );
+
 }
 
 export default CommentForm
