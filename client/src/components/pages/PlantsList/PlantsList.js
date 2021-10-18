@@ -67,7 +67,7 @@ const PlantsList = (props) => {
                       </Col>
                       <Col className="d-flex justify-content-center" xs={12} sm={12} lg={6} >
                       {/* <Link to={``}> */}
-                          <button onClick={() => addToCart(plant._id)} className="btn btn-outline-success rounded-pill" type="submit"><FaShoppingCart/> Add to cart</button>
+                          <button onClick={() => addToCart(plant?._id)} className="btn btn-outline-success rounded-pill" type="submit"><FaShoppingCart/> Add to cart</button>
                       {/* </Link> */}
                       </Col>
                     </Row>
