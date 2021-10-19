@@ -24,10 +24,10 @@ const MessageForm = (props) => {
         <Button
           variant="success"
           block
-          className="mt-2 mb-5 rounded-pill"
+          className="rounded-pill"
           onClick={() => openModal()}
         >
-          Reply to {seller.username}
+          Send a Message
         </Button>
 
         <Modal show={showForm} onHide={() => closeModal()}>

@@ -5,7 +5,7 @@
 
 .profile__col {
     border-radius: 8px;
-    border: 0.1px solid #318161
+    background-color: white;
 }
 
 @media (max-width: 768px) {

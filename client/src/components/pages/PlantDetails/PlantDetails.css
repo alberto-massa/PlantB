@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+
+.plant__details{
+    font-family: "Poppins";
+    font-weight: 500;
+    margin-top: 75px;
+    background-color: white;
+    border-radius: 20px;
+    width: 65vw !important;
+}
+
+.seller__role__text{
+    font-weight: 700;
+    color: rgba(51, 169, 141, 0.9);
+}
+
+.plant__details__img img{
+    border-radius: 40px;
+    object-fit: cover;
+    width: 95%;
+    height: 100%;
+}
+
+.plant__details__img {
+    height: 50vh;
+}
+
+.margin__left{
+    margin-left: 30px;
+}
