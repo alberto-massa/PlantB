@@ -3,20 +3,26 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap"
 import { useParams } from "react-router"
 import UserService from "../../../../services/user.service"
 import PlantService from "../../../../services/plant.service"
+import CommentService from "../../../../services/comment.service"
 import { Link } from "react-router-dom"
 import CommentForm from "../../CommentForm/CommentForm"
 const { formatDate } = require("../../../../utils/index")
 
 const userService = new UserService()
 const plantService = new PlantService()
+const commentService = new CommentService()
 
 
 const SellerProfile = (props) => {
 
-    console.log(props)
+    console.log(props.loggedUser)
     const { username } = props.match.params
-    const [seller, setSeller] = useState('')
-    const [plantsList, setPlantsList] = useState(undefined)
+    const [ seller, setSeller] = useState('')
+    const [ plantsList, setPlantsList] = useState(undefined)
+    const [ commentsList, setCommentsList ] = useState(undefined)
+    const [ profileRating, setProfileRating ] = useState(undefined)
+    const [ total, setTotal ] = useState(undefined)
+    console.log(total)
 
     useEffect(() => {
         userService
@@ -34,7 +40,15 @@ const SellerProfile = (props) => {
                 setPlantsList(plants.data)
             })
             .catch(err => console.log(err))
-    }, [username])
+
+        commentService
+            .getComments()
+            .then(comments => {       
+                setCommentsList(comments.data)
+            })
+            .catch(err => console.log(err))
+            resultRating(commentsList)
+    }, [props])
 
     const displayPlants = (seller, plantsList) => {
 
@@ -66,6 +80,46 @@ const SellerProfile = (props) => {
         )
     }
 
+    const displayComments = (commentsList) => {
+        const newList = commentsList?.filter(comment => comment.userRef.username === username)
+        
+        return(
+            <>
+                {newList?.map(comment => {
+                    
+                    return(
+                    <Card className="text-center">
+                    <Card.Header>{comment.authorId.username}</Card.Header>
+                    <Card.Body>
+                        <Card.Img variant="top" src={comment.authorId.avatar} />
+                        <Card.Title>{comment.authorId.role}</Card.Title>
+                        <Card.Text>
+                        Rating: {comment.rating}
+                        </Card.Text>
+                        <Card.Text>
+                        {comment.content}
+                        </Card.Text>
+                        {/* <Button variant="primary">Go somewhere</Button> */}
+                    </Card.Body>
+                    <Card.Footer className="text-muted">Date: {formatDate(comment.createdAt)}</Card.Footer>
+                    </Card>
+                    )
+                })}
+                    
+                </>
+            )
+    }
+
+    const resultRating = (commentsList) => {
+        const newList = commentsList?.filter(comment => comment.userRef.username === username)
+        
+            newList?.rating?.reduce((a,b) => {
+                setTotal((a + b)/newList?.length)
+
+            },0)
+           
+    }
+
 
     return (
 
@@ -86,7 +140,12 @@ const SellerProfile = (props) => {
                         <Card.Text>
                             <p>User since: {formatDate(seller.createdAt)}</p>
                         </Card.Text>
+                        <Card.Text>
+                            <p>Rating: {total}</p>
+                        </Card.Text>
                         {displayPlants(seller, plantsList)}
+                        <hr/>
+                        {displayComments(commentsList)}
                         <CommentForm {...props} seller={seller} />
                     </Card.Body>
                     <Card.Footer className="text-muted">2 days ago</Card.Footer>

@@ -42,10 +42,6 @@ const PlantDetails = (props) => {
             <Card.Img variant="top" src={plantsDetails.image} />
             <Card.Body>
               <Card.Title>{plantsDetails.name}</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroupItem>Price: {plantsDetails.price}€</ListGroupItem>
