@@ -6,6 +6,7 @@ const { isLoggedIn, checkRoles } = require("./../middleware/index.js")
 
 router.get("/", isLoggedIn, (req, res) => {
   Comment.find()
+    .populate('userRef authorId')
     .then(comment => res.status(200).json(comment))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Comment", err }))
 })

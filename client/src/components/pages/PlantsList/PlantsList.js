@@ -49,30 +49,26 @@ const PlantsList = (props) => {
         {plantsList ? (
           <Container className="plantslist">
             <h1 className="text-center">Latest plants</h1>
-            <Row>
+            <Row >
               {plantsList.map((plant) => {
                 return (
-                  <Col xs={12} sm={6} lg={4}>
-                    <div className="plantslist_imagecontainer">
-                      <img alt="plant's pic" src={plant.image} />
-                    </div>
-                    <p>{plant.name}</p>
-                    <p>{plant.price}€</p>
-                    <Row>
-                      <Col xs={12} sm={12} lg={6} className="d-flex justify-content-center">
-                        <Link
-                          to={`/plant/${plant._id}`}
-                          className="btn btn-success rounded-pill"
-                        >See details</Link>
-                      </Col>
-                      <Col className="d-flex justify-content-center" xs={12} sm={12} lg={6} >
-                      {/* <Link to={``}> */}
-                          <button onClick={() => addToCart(plant?._id)} className="btn btn-outline-success rounded-pill" type="submit"><FaShoppingCart/> Add to cart</button>
-                      {/* </Link> */}
-                      </Col>
-                    </Row>
-                    <hr className="mt-5 mb-5" />
+            
+                    <Col as={Link} to={`/plant/${plant._id}`} className="plantslist__card d-flex justify-content-center" xs={12} sm={6} lg={3}>
+                      <article>
+                        <aside className="plantslist_imagecontainer">
+                          <img alt="plant's pic" src={plant.image} />
+                        </aside>
+                        <h4>{plant.price}€</h4>
+                        <h6>{plant.name}</h6>
+                      </article>
+
+                      
+                      {/* TODO: ADD TO CART IN PLANT DETAILS */}
+                      {/* <button onClick={() => addToCart(plant?._id)} className="btn btn-outline-success rounded-pill" type="submit"><FaShoppingCart/> Add to cart</button> */}
+           
+
                   </Col>
+
                 );
               })}
             </Row>

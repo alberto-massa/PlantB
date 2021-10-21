@@ -26,6 +26,7 @@ const MessageForm = (props) => {
           block
           className="rounded-pill"
           onClick={() => openModal()}
+          style={{fontSize: "12px"}}
         >
           Send a Message
         </Button>

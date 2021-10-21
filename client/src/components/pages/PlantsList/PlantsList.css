@@ -11,8 +11,10 @@
 }
 
 .plantslist_imagecontainer{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     overflow: hidden;
-    border: 1px solid ;
+    border-radius: 20px;
 }
 
 .plantslist img {
@@ -21,11 +23,29 @@
     object-fit: cover;
     transition: transform .2s;
     opacity: 1;
+    
 }
 
 .plantslist img:hover {
     transform: scale(1.2);
     opacity: .7;
+}
+
+.plantslist__card{
+    text-decoration: none;
+    color: black;
+}
+
+.plantslist__card article{
+    background-color: white;
+    border-radius: 20px;
+    width: 80%;
+    border-spacing: 2px;
+    text-decoration: none;
+    color: black;
+    padding-bottom: 1vh;
+    margin: 1vh;
+    padding: 1vh;
 }
 
 @media (max-width: 768px) {
